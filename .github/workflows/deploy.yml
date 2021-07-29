@@ -3,24 +3,32 @@ name: Deploy to github pages
 on:
     push:
         branches: [ master ]
+        paths-ignore:
+            - '**.md'
     workflow_dispatch:
 
 jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            -   uses: actions/checkout@v2
-            -   uses: actions/setup-node@v1
+            -   name: Checkout
+                uses: actions/checkout@v2
+            -   name: Set Node.js v14.x
+                uses: actions/setup-node@v1
                 with:
                     node-version: 14
-            -   run: npm i -g yarn
-            -   run: yarn install --frozen-lockfile
-            -   run: |
+            -   name: Install yarn globally
+                run: npm i -g yarn
+            -   name: Install dependencies
+                run: yarn install --frozen-lockfile
+            -   name: Building the app
+                run: |
                     yarn build
                     yarn export
-            -   run: touch ./out/.nojekyll
-            -   name: Deploy 🚀
+            -   name: Adding .nojekyll
+                run: touch ./out/.nojekyll
+            -   name: Deploy to github pages 🚀
                 uses: JamesIves/github-pages-deploy-action@4.1.4
                 with:
-                    branch: gh-pages # The branch the action should deploy to.
-                    folder: out # The folder the action should deploy.
+                    branch: gh-pages
+                    folder: out
