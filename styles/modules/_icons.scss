@@ -1,0 +1,12 @@
+@use "../tools/spacing";
+
+.icon-search {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    margin-top: 16px;
+    margin-left: spacing.get(md);
+    background-image: url(/search.png);
+    background-size: 18px;
+    opacity: 0.5;
+}

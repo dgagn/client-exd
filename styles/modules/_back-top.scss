@@ -1,0 +1,40 @@
+@use "../tools/spacing";
+@use "../tools/shadow";
+@use "../tools/radius";
+
+$back-top-size: spacing.get(lg) !default;
+$back-top-icon-size: 16px !default;
+$back-top-margins: spacing.get(md) !default;
+$back-top-background: #181818 !default;
+$back-top-icon-url: '' !default;
+
+.back-top {
+    --back-top-icon: url('#{$back-top-icon-url}');
+
+    position: fixed;
+    right: $back-top-margins;
+    bottom: $back-top-margins;
+    z-index: 9999;
+    display: inline-block;
+    width: $back-top-size;
+    height: $back-top-size;
+    padding: spacing.get(md);
+    cursor: pointer;
+    visibility: hidden;
+    background: var(--back-top-icon) no-repeat center $back-top-background;
+    background-size: $back-top-icon-size;
+    border-radius: radius.get(lg);
+    box-shadow: shadow.get(md);
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s, background-color 0.3s;
+
+    &:hover {
+        background-color: lighten($back-top-background, 10%);
+        opacity: 1;
+    }
+
+    &--visible {
+        visibility: visible;
+        opacity: 1;
+    }
+}

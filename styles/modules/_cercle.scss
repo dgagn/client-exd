@@ -1,0 +1,27 @@
+@use "../tools/spacing";
+
+.cercle {
+    display: inline-flex;
+    align-content: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    margin-right: spacing.get(sm);
+    border-radius: 50%;
+
+    &--positif {
+        background-color: #10b981;
+    }
+
+    &--faible {
+        background-color: #eab308;
+    }
+
+    &--moyen {
+        background-color: #f97316;
+    }
+
+    &--danger {
+        background-color: #ef4444;
+    }
+}

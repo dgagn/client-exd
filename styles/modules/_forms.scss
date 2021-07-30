@@ -1,0 +1,87 @@
+@use "../tools/spacing";
+@use "../tools/max-width";
+@use "../tools/container";
+@use "../tools/text";
+
+$form-border: #f8f8f8;
+$form-error: #dd4747;
+$form-color: #4c84f6;
+
+.form {
+    @include container.get(lg);
+    @include max-width.get('sm');
+
+    margin-top: spacing.get(xxl);
+
+    &__label {
+        display: block;
+        margin-bottom: spacing.get(xs);
+        font-size: text.get(md);
+    }
+
+    &__item {
+        flex: 1;
+        min-width: 200px;
+        margin-bottom: spacing.get(lg);
+    }
+
+    &__text--error {
+        display: block;
+        margin-bottom: spacing.get(sm);
+        color: $form-error;
+    }
+
+    &__group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: spacing.get(md);
+    }
+
+    &__control {
+        width: 100%;
+        min-height: spacing.get(xl);
+        padding: spacing.get(xs) spacing.get(md);
+        margin-bottom: spacing.get(xs);
+        vertical-align: bottom;
+        border: 1px solid darken($form-border, 15%);
+        border-radius: 3px;
+        outline: none;
+
+        &--search {
+            padding-left: spacing.get(xl);
+        }
+
+        &--small {
+            width: 86px;
+        }
+
+        &:focus {
+            border-color: $form-color;
+            box-shadow: 0 0 0 2px transparentize($form-color, 0.6);
+            transition: all 250ms ease;
+        }
+
+        &--date {
+            padding-top: 16px;
+        }
+
+        &--radio {
+            width: spacing.get(md);
+            height: spacing.get(md);
+            vertical-align: center;
+        }
+
+        &--bouton {
+            width: 100%;
+            min-height: spacing.get(xl);
+            margin-top: spacing.get(xl);
+            font-size: text.get(md);
+            text-align: center;
+            background-color: $form-color;
+
+            &:hover {
+                background-color: darken($form-color, 5%);
+            }
+        }
+    }
+}

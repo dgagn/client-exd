@@ -1,0 +1,10 @@
+@use "../tools/spacing";
+@use "../tools/container";
+@use "../tools/max-width";
+
+.filtre {
+    @include container.get(md);
+    @include max-width.get(xl);
+
+    margin-top: spacing.get(lg);
+}

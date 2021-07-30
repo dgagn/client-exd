@@ -1,0 +1,14 @@
+$_rounded: (
+    sm: 0.125rem,
+    default: 0.25rem,
+    md: 0.375rem,
+    lg: 0.5rem,
+    xl: 0.75rem,
+    2 xl: 1rem,
+    3 xl: 1.5rem,
+    full: 9999px
+);
+
+@function get($radius) {
+    @return map-get($map: $_rounded, $key: $radius);
+}

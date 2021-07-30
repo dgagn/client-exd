@@ -1,0 +1,21 @@
+.texte {
+    &--gras {
+        font-weight: 500;
+    }
+
+    &--positif {
+        color: #065f46;
+    }
+
+    &--faible {
+        color: #854d0e;
+    }
+
+    &--moyen {
+        color: #9a3412;
+    }
+
+    &--danger {
+        color: #991b1b;
+    }
+}
