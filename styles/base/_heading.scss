@@ -1,0 +1,22 @@
+@use "ratio";
+
+$line-height: 1.2;
+$weight: 700;
+$color: black;
+
+:root {
+    --heading-weight: #{$weight};
+    --heading-line-height: #{$line-height};
+    --heading-color: #{$color};
+}
+
+h1, h2, h3, h4 {
+    font-weight: var(--heading-weight, $weight);
+    line-height: var(--heading-line-height, $line-height);
+    color: var(--heading-color, $color);
+}
+
+h1 { @include ratio.get('2xl'); }
+h2 { @include ratio.get('xl'); }
+h3 { @include ratio.get('lg'); }
+h4 { @include ratio.get('md'); }

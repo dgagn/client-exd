@@ -1,0 +1,21 @@
+@use "sass:map";
+@use "sass:string";
+
+$text-shadows: (
+    xs: '0 1px 1px #{rgba(#000, 0.15)}',
+    sm: '0 1px 2px #{rgba(#000, 0.25)}',
+    md: '0 1px 2px #{rgba(#000, 0.1)}, 0 2px 4px #{rgba(#000, 0.2)}',
+    lg: '0 1px 4px #{rgba(#000, 0.1)}, 0 2px 8px #{rgba(#000, 0.15)}, 0 4px 16px #{rgba(#000, 0.2)}',
+    xl: '0 1px 4px #{rgba(#000, 0.1)}, 0 2px 8px #{rgba(#000, 0.15)}, 0 4px 16px #{rgba(#000, 0.2)}, 0 6px 24px #{rgba(#000, 0.25)}',
+    none: 'none'
+);
+
+@each $size, $value in $text-shadows {
+    .text-shadow-#{$size} {
+        text-shadow: string.unquote($value);
+    }
+}
+
+@mixin get($size) { @extend .text-shadow-#{$size}; }
+
+@function get($size) { @return map.get($map: $text-shadows, $key: $size); }
