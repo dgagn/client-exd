@@ -1,0 +1,9 @@
+@use "../colors" as *;
+
+@each $color-type, $color-map in $colors {
+    @each $color-intensity, $hsl in $color-map {
+        .bg-#{$color-type}-#{$color-intensity} {
+            background-color: color-get($color-type, $color-intensity);
+        }
+    }
+}

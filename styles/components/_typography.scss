@@ -1,0 +1,27 @@
+@use "../config/typography" as *;
+@use "../config/breakpoints" as *;
+
+:root {
+    @include breakpoint(md) {
+        --text-base-size: 1.2em;
+        --text-scale-ratio: 1.25;
+    }
+}
+
+body {
+    font-family: base-get(font), sans-serif;
+    font-size: typography-size-get(base-size);
+    line-height: base-get(line-height);
+    color: base-get(color);
+}
+
+h1, h2, h3, h4 {
+    font-weight: heading-get(weight);
+    line-height: heading-get(line-height);
+    color: heading-get(color);
+}
+
+h1 { font-size: typography-size-get('2xl'); }
+h2 { font-size: typography-size-get('xl'); }
+h3 { font-size: typography-size-get('lg'); }
+h4 { font-size: typography-size-get('md'); }

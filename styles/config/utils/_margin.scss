@@ -1,0 +1,74 @@
+@use "../spacing" as *;
+@use "../position" as *;
+
+@each $spacing-key, $space-value in $spacing {
+    .m-#{$spacing-key} {
+        margin: spacing-get($spacing-key);
+    }
+
+    .-m-#{$spacing-key} {
+        margin: calc(#{spacing-get($spacing-key)} * -1);
+    }
+
+    .mx-#{$spacing-key} {
+        margin-right: spacing-get($spacing-key);
+        margin-left: spacing-get($spacing-key);
+    }
+
+    .-mx-#{$spacing-key} {
+        margin-right: calc(#{spacing-get($spacing-key)} * -1);
+        margin-left: calc(#{spacing-get($spacing-key)} * -1);
+    }
+
+    .my-#{$spacing-key} {
+        margin-top: spacing-get($spacing-key);
+        margin-bottom: spacing-get($spacing-key);
+    }
+
+    .-my-#{$spacing-key} {
+        margin-top: calc(#{spacing-get($spacing-key)} * -1);
+        margin-bottom: calc(#{spacing-get($spacing-key)} * -1);
+    }
+
+    @each $position-short, $position-long in $position {
+        .m#{$position-short}-#{$spacing-key} {
+            margin-#{$position-long}: spacing-get($spacing-key);
+        }
+
+        .-m#{$position-short}-#{$spacing-key} {
+            margin-#{$position-long}: calc(#{spacing-get($spacing-key)} * -1);
+        }
+    }
+}
+
+.m-auto { margin: auto; }
+.m-0 { margin: 0; }
+
+.mx-auto {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.mx-0 {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.my-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.my-0 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+@each $position-short, $position-long in $position {
+    .m#{$position-short}-auto {
+        margin-#{$position-long}: auto;
+    }
+    .m#{$position-short}-0 {
+        margin-#{$position-long}: 0;
+    }
+}

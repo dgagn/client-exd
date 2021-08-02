@@ -1,0 +1,7 @@
+@use "../typography" as *;
+
+@each $typography-size-key, $typography-size-value in $typography-sizes {
+    .text-#{$typography-size-key} {
+        font-size: typography-size-get($typography-size-key);
+    }
+}

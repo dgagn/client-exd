@@ -1,0 +1,42 @@
+@use "../position" as *;
+@use "../spacing" as *;
+
+@each $spacing-key, $space-value in $spacing {
+    .p-#{$spacing-key} {
+        padding: spacing-get($spacing-key);
+    }
+
+    .px-#{$spacing-key} {
+        padding-right: spacing-get($spacing-key);
+        padding-left: spacing-get($spacing-key);
+    }
+
+    .py-#{$spacing-key} {
+        padding-top: spacing-get($spacing-key);
+        padding-bottom: spacing-get($spacing-key);
+    }
+
+    @each $position-short, $position-long in $position {
+        .p#{$position-short}-#{$spacing-key} {
+            padding-#{$position-long}: spacing-get($spacing-key);
+        }
+    }
+}
+
+.p-0 { padding: 0; }
+
+.px-0 {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.py-0 {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+@each $position-short, $position-long in $position {
+    .p#{$position-short}-0 {
+        padding-#{$position-long}: 0;
+    }
+}

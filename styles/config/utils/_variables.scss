@@ -1,0 +1,32 @@
+@use "../colors" as *;
+@use "../spacing" as *;
+@use "../max-width" as *;
+@use "../typography" as *;
+
+:root {
+    @each $color-type, $color-map in $colors {
+        @each $color-intensity, $hsl in $color-map {
+            #{$color-prefix}#{$color-type}-#{$color-intensity}: #{$hsl};
+        }
+    }
+
+    @each $spacing-size, $spacing-value in $spacing {
+        #{$spacing-prefix}#{$spacing-size}: #{$spacing-value};
+    }
+
+    @each $max-width-size, $max-width-value in $max-w {
+        #{$max-w-prefix}#{$max-width-size}: #{$max-width-value};
+    }
+
+    @each $base-key, $base-value in $base {
+        #{$base-prefix}#{$base-key}: #{$base-value};
+    }
+
+    @each $heading-key, $heading-value in $heading {
+        #{$heading-prefix}#{$heading-key}: #{$heading-value};
+    }
+
+    @each $text-size, $text-value in $typography-sizes {
+        #{$typography-size-prefix}#{$text-size}: #{$text-value};
+    }
+}

@@ -1,0 +1,7 @@
+@use "../display" as *;
+
+@each $display in $displays {
+    .#{$display} {
+        display: $display;
+    }
+}

@@ -1,0 +1,12 @@
+@use "../config/spacing" as *;
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__list {
+        display: flex;
+        column-gap: spacing-get(xl);
+    }
+}

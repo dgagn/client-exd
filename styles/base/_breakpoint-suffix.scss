@@ -1,9 +1,0 @@
-@function breakpoint-suffix($breakpoint) {
-    $breakpoint-sufix: '';
-
-    @if ($breakpoint != '') {
-        $breakpoint-sufix: \@#{$breakpoint};
-    }
-
-    @return $breakpoint-sufix;
-}

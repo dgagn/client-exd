@@ -1,0 +1,13 @@
+@use "../spacing" as *;
+
+@each $spacing-key, $spacing-value in $spacing {
+    .gap-#{$spacing-key} {
+        gap: spacing-get($spacing-key);
+    }
+    .gap-x-#{$spacing-key} {
+        column-gap: spacing-get($spacing-key);
+    }
+    .gap-y-#{$spacing-key} {
+        row-gap: spacing-get($spacing-key);
+    }
+}

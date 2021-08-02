@@ -1,0 +1,19 @@
+@use "colors/cool-gray" as *;
+@use "colors/blue" as *;
+@use "colors/red" as *;
+@use "colors/green" as *;
+@use "colors/yellow" as *;
+
+$color-prefix: --color- !default;
+
+$colors: (
+    primary: $blue,
+    contrast: $cool-gray,
+    error: $red,
+    success: $green,
+    warning: $yellow,
+) !default;
+
+@function color-get($key, $intensity) {
+    @return var(--color-#{$key}-#{$intensity}, map-get(map-get($colors, $key), $intensity));
+}
