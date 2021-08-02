@@ -1,7 +1,7 @@
 import { QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 import axios from "axios";
-import useDatabase from '../hooks/useDatabase';
+import useDatabase, { Database } from '../hooks/useDatabase';
 
 export async function database() {
     const { data } = await axios.get(
@@ -23,10 +23,12 @@ export async function getStaticProps() {
 
 export default function Home() {
     const database = useDatabase()
-    console.log(database);
     return <>
         <div className='container max-w-adaptive-xl'>
             <div className='mt-xl'>Accueil</div>
+            {database!.map((entry) => (
+                <h1>{entry.date}</h1>
+            ))}
         </div>
     </>;
 }
