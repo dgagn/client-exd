@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import LogoCEFIR from '/LogoCEFIR.png';
+import LogoCEFIR from '../public/LogoCEFIR.png';
 import Link from 'next/link';
 
 export default function Nav() {
