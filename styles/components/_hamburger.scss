@@ -1,0 +1,21 @@
+@use "../config/colors" as *;
+@use "../config/breakpoints" as *;
+@use "../config/spacing" as *;
+
+.hamburger {
+    position: fixed;
+    top: spacing-get(xl);
+    right: spacing-get(xl);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    background-color: color-get(contrast, 900);
+    border-radius: 50%;
+
+    @include breakpoint(sm) {
+        display: none;
+    }
+}

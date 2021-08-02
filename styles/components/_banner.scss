@@ -1,0 +1,14 @@
+@use "../config/colors" as *;
+
+.banner {
+    text-align: center;
+
+    &__link {
+        color: color-get(primary, 600);
+        transition: color 0.5s;
+
+        &:hover {
+            color: color-get(primary, 400);
+        }
+    }
+}

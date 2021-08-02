@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+@use "../../config/colors" as *;
+$hamburger-layer-width         : 24px !default;
+$hamburger-layer-height        : 1px !default;
+$hamburger-layer-spacing       : 6px !default;
+$hamburger-layer-color         : color-get(contrast, 50) !default;
+$hamburger-layer-border-radius : 8px !default;
+$hamburger-hover-opacity       : 0.85 !default;
+$hamburger-active-layer-color  : red !default;
+$hamburger-active-hover-opacity: $hamburger-hover-opacity !default;
+
+$hamburger-hover-use-filter   : false !default;
+$hamburger-hover-filter       : opacity(50%) !default;
+$hamburger-active-hover-filter: $hamburger-hover-filter !default;
+
+$hamburger-types: (
+    elastic,
+) !default;

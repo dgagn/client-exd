@@ -1,5 +1,6 @@
 @use "sass:math";
 @use "colors" as *;
+@use "sass:map";
 
 $typography-size-prefix: --text- !default;
 $base-prefix: --base- !default;
@@ -35,14 +36,14 @@ $typography-sizes: (
 
 @function base-get($key) {
     @if $key == 'font' {
-        @return var(#{$base-prefix}#{$key}, unquote(map-get($base, $key)));
+        @return var(#{$base-prefix}#{$key}, unquote(map.get($base, $key)));
     }
 
-    @return var(#{$base-prefix}#{$key}, map-get($base, $key));
+    @return var(#{$base-prefix}#{$key}, map.get($base, $key));
 }
 
 @function heading-get($key) {
-    @return var(#{$heading-prefix}#{$key}, map-get($heading, $key));
+    @return var(#{$heading-prefix}#{$key}, map.get($heading, $key));
 }
 
 @function typography-size-get($key) {

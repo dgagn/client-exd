@@ -2,30 +2,29 @@ import type { AppProps } from 'next/app';
 import '../styles/main.scss'
 import NProgress from 'nprogress'
 import Router from 'next/router'
-import Image from 'next/image';
-import LogoCEFIR from '../public/LogoCEFIR.png';
-import Link from 'next/link';
+import Head from 'next/head';
+import Nav from '../components/nav';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { Hydrate } from 'react-query/hydration';
+import { useState } from 'react';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }: AppProps) {
-    return <>
-        <div className='container max-w-adaptive-xl mt-xl'>
-            <nav className='nav'>
-                <Image src={LogoCEFIR} />
-                <ul className='nav__list'>
-                    <li>
-                        <Link href={'/'}>Accueil</Link>
-                    </li>
-                    <li>Méthodologie</li>
-                    <Link href={'/bd'}>Base de données</Link>
-                </ul>
-            </nav>
-        </div>
-        <Component {...pageProps} />
-    </>;
+    const [queryClient] = useState(() => new QueryClient());
+
+    return <QueryClientProvider client={queryClient}>
+        <Head>
+            <title>CEFIR - Accueil</title>
+        </Head>
+        <Hydrate state={pageProps.dehydratedState}>
+            <Nav />
+            <Component {...pageProps} />
+            <div className='infinite' />
+        </Hydrate>
+    </QueryClientProvider>;
 }
 
 export default MyApp;
