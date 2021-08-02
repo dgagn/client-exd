@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Nav() {
@@ -7,7 +6,7 @@ export default function Nav() {
             <>
                 <div className='container max-w-adaptive-xl mt-xl'>
                     <nav className='nav'>
-                        <Image src='/LogoCEFIR.png' width={118} height={64} alt={'Logo CEFIR'} />
+                        <img src='/LogoCEFIR.png' alt={'Logo CEFIR'} />
                         <ul className='nav__list' id='zhaoNav'>
                             <li>
                                 <Link href={'/'}>Accueil</Link>
