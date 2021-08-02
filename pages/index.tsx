@@ -5,7 +5,7 @@ import useDatabase from '../hooks/useDatabase';
 
 export async function database() {
     const { data } = await axios.get(
-        'http://localhost:5000/database'
+        'https://server-exd.herokuapp.com/database'
     );
     return data;
 }
