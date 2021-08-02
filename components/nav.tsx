@@ -8,7 +8,7 @@ export default function Nav() {
             <>
                 <div className='container max-w-adaptive-xl mt-xl'>
                     <nav className='nav'>
-                        <Image src={LogoCEFIR} />
+                        <Image src={LogoCEFIR} alt={'Logo CEFIR'} />
                         <ul className='nav__list' id='zhaoNav'>
                             <li>
                                 <Link href={'/'}>Accueil</Link>
