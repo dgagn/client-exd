@@ -27,7 +27,7 @@ export default function Home() {
         <div className='container max-w-adaptive-xl'>
             <div className='mt-xl'>Accueil</div>
             {database!.map((entry) => (
-                <h1>{entry.date}</h1>
+                <h1 key={entry._id}>{entry.date}</h1>
             ))}
         </div>
     </>;
