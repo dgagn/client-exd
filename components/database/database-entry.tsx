@@ -5,7 +5,7 @@ import classNames from 'classnames';
 type DatabaseEntry = {
     database: Database;
 };
-export default function DatabaseEntry({ database, style }: DatabaseEntry) {
+export default function DatabaseEntry({ database }: DatabaseEntry) {
     const degreViolenceClasses = classNames('table__item', {
         'text-success-800': database.degreViolence.includes('Aucune'),
         'text-warning-800': database.degreViolence.includes('faible'),

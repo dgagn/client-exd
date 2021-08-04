@@ -29,9 +29,7 @@ export default function DatabaseTable({ className, database }: DatabaseTableProp
                     <th className="table__heading">Événement</th>
                 </tr>
             </thead>
-            <tbody ref={parentRef} style={{
-            }}>
-
+            <tbody>
                 {database.map((entry) => {
                     return (
                             <DatabaseEntry key={entry._id} database={entry} />
