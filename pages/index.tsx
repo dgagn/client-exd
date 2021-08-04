@@ -234,7 +234,7 @@ export default function Home() {
 
     }, 500)
 
-    useEffect(() => setDatabase(database), [database]);
+    useEffect(() => setDatabase(database), [database, setDatabase]);
 
     const length = useMemo(() => filteredDatabase.length, [filteredDatabase]);
 
