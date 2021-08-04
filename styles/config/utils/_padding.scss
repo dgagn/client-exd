@@ -3,40 +3,40 @@
 
 @each $spacing-key, $space-value in $spacing {
     .p-#{$spacing-key} {
-        padding: spacing-get($spacing-key);
+        padding: spacing-get($spacing-key) !important;
     }
 
     .px-#{$spacing-key} {
-        padding-right: spacing-get($spacing-key);
-        padding-left: spacing-get($spacing-key);
+        padding-right: spacing-get($spacing-key) !important;
+        padding-left: spacing-get($spacing-key) !important;
     }
 
     .py-#{$spacing-key} {
-        padding-top: spacing-get($spacing-key);
-        padding-bottom: spacing-get($spacing-key);
+        padding-top: spacing-get($spacing-key) !important;
+        padding-bottom: spacing-get($spacing-key) !important;
     }
 
     @each $position-short, $position-long in $position {
         .p#{$position-short}-#{$spacing-key} {
-            padding-#{$position-long}: spacing-get($spacing-key);
+            padding-#{$position-long}: spacing-get($spacing-key) !important;
         }
     }
 }
 
-.p-0 { padding: 0; }
+.p-0 { padding: 0 !important; }
 
 .px-0 {
-    padding-right: 0;
-    padding-left: 0;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
 }
 
 .py-0 {
-    padding-top: 0;
-    padding-bottom: 0;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
 
 @each $position-short, $position-long in $position {
     .p#{$position-short}-0 {
-        padding-#{$position-long}: 0;
+        padding-#{$position-long}: 0 !important;
     }
 }

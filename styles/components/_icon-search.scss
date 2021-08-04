@@ -1,0 +1,11 @@
+@use "../config/spacing" as *;
+@use "../config/colors" as *;
+
+.icon-search {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    margin-top: 16px;
+    margin-left: 16px;
+    fill: color-get(contrast, 400);
+}

@@ -4,9 +4,9 @@ import Link from 'next/link';
 export default function Nav() {
     return (
             <>
-                <div className='container max-w-adaptive-xl mt-xl'>
+                <div className='container max-w-xl mt-xl'>
                     <nav className='nav'>
-                        <img src='/LogoCEFIR.png' alt={'Logo CEFIR'} />
+                        <img src='/LogoCEFIR.webp' alt={'Logo CEFIR'} loading='lazy' width={118} height={64} />
                         <ul className='nav__list' id='zhaoNav'>
                             <li>
                                 <Link href={'/'}>Accueil</Link>
@@ -15,11 +15,11 @@ export default function Nav() {
                         </ul>
                     </nav>
                 </div>
-                <div className="hamburger hamburger--elastic mt-2xs" id="zhaoNavOpen">
+                {/*<div className="hamburger hamburger--elastic mt-2xs" id="zhaoNavOpen">
                     <div className="hamburger-box">
                         <div className="hamburger-inner" />
                     </div>
-                </div>
+                </div>*/}
             </>
     );
 }

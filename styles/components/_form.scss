@@ -1,0 +1,27 @@
+@use "../config/spacing" as *;
+@use "../config/colors" as *;
+
+.form__group {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: spacing-get(md);
+}
+
+.form__control {
+    width: 100%;
+    min-height: spacing-get(xl);
+    padding: spacing-get(xs) spacing-get(md);
+    vertical-align: bottom;
+    border: 1px solid color-get(contrast, 300);
+    border-radius: 4px;
+    outline: none;
+
+    &:focus {
+        border-color: color-get(primary, 500);
+        box-shadow: 0 0 0 2px color-get(primary, 200);
+        transition: all 0.3s;
+    }
+}
+
+.form__label {
+}

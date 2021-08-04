@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app';
-import '../styles/main.scss'
-import NProgress from 'nprogress'
-import Router from 'next/router'
+import '../styles/main.scss';
+import NProgress from 'nprogress';
+import Router from 'next/router';
 import Head from 'next/head';
 import Nav from '../components/nav';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -18,13 +18,18 @@ function MyApp({ Component, pageProps }: AppProps) {
     return <QueryClientProvider client={queryClient}>
         <Head>
             <title>CEFIR - Accueil</title>
+            <meta charSet='UTF-8' />
+            <meta name='viewport'
+                  content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' />
+            <meta httpEquiv='X-UA-Compatible' content='ie=edge' />
         </Head>
         <Hydrate state={pageProps.dehydratedState}>
             <Nav />
             <Component {...pageProps} />
-            <div className='infinite' />
         </Hydrate>
     </QueryClientProvider>;
+;
+;
 }
 
 export default MyApp;

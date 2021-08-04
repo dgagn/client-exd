@@ -13,6 +13,16 @@
     }
 }
 
+@each $breakpoint-key, $breakpoint-value in $breakpoints {
+    @each $max-width-key, $max-width-value in $max-w {
+        .max-w-#{$max-width-key}\@#{$breakpoint-key} {
+            @include breakpoint($breakpoint-key) {
+                max-width: max-w-get($max-width-key);
+            }
+        }
+    }
+}
+
 $breakpointsNr: length($breakpoints);
 
 @each $breakpoint, $value in $breakpoints {

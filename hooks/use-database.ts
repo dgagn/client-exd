@@ -14,6 +14,8 @@ export interface Database {
 }
 
 export default function useDatabase() {
-    const { data } = useQuery<Database[]>('database', database);
-    return data
+    const { data } = useQuery<Database[]>('database', database, {
+        staleTime: 30000,
+    });
+    return data || []
 }

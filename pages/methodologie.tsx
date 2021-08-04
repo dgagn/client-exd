@@ -6,8 +6,8 @@ export default function Methodologie() {
         <Head>
             <title>CEFIR - Méthodologie</title>
         </Head>
-        <div className='container max-w-adaptive-xl'>
-            <div className='mt-xl'>Méthodologie</div>
+        <div className='container max-w-xl'>
+            <div className='my-xl'>Méthodologie</div>
         </div>
     </>;
 }

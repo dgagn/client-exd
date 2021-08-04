@@ -5,3 +5,15 @@
         font-size: typography-size-get($typography-size-key);
     }
 }
+
+.font-italic {
+    font-style: italic;
+}
+
+.font-normal {
+    font-weight: 400;
+}
+
+.font-bold {
+    font-weight: 500;
+}

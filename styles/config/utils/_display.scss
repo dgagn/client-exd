@@ -1,7 +1,40 @@
 @use "../display" as *;
+@use "../breakpoints" as *;
 
 @each $display in $displays {
     .#{$display} {
         display: $display;
+    }
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.flex-wrap\@sm {
+    @include breakpoint(sm, "not all") {
+        flex-wrap: wrap;
+    }
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.rounded {
+    border-radius: 8px;
+}
+
+.display\@lg {
+    @include breakpoint(lg, "not all") {
+        display: none;
     }
 }

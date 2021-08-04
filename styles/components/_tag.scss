@@ -1,0 +1,23 @@
+@use "../config/colors" as *;
+
+.tag {
+    transition: 0.5s;
+
+    &:hover {
+        background-color: color-get(contrast, 200);
+    }
+
+    &--selected {
+        &:hover {
+            background-color: color-get(error, 100);
+        }
+    }
+
+    span {
+        transition: 0.5s;
+
+        &:hover {
+            color: color-get(error, 600);
+        }
+    }
+}
