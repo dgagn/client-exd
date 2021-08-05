@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, lazy } from 'react';
+import React, { useCallback, useEffect } from 'react';
+import dynamic from "next/dynamic";
 import Head from 'next/head';
 import useStore from '../store/use-store';
 //import Tags from '../components/tags';
@@ -12,11 +13,11 @@ import useFilter from '../hooks/use-filter';
 //import ShowMore from '../components/show-more';
 //import ShowMoreFilters from '../components/show-more-filters';
 
-const SearchInput = lazy(() => import('../components/search-input'))
-const DatabaseTable = lazy(() => import('../components/database/database-table'));
-const ShowMore = lazy(() => import('../components/show-more'));
-const ShowMoreFilters = lazy(() => import('../components/show-more-filters'));
-const Tags = lazy(() => import('../components/tags'));
+const SearchInput = dynamic(() => import('../components/search-input'))
+const DatabaseTable = dynamic(() => import('../components/database/database-table'));
+const ShowMore = dynamic(() => import('../components/show-more'));
+const ShowMoreFilters = dynamic(() => import('../components/show-more-filters'));
+const Tags = dynamic(() => import('../components/tags'));
 
 export async function database() {
     const { data } = await axios.get('https://server-exd.herokuapp.com/database');
