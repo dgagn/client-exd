@@ -3,10 +3,13 @@ import '../styles/main.scss';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 import Head from 'next/head';
-import Nav from '../components/nav';
+//import Nav from '../components/nav';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Hydrate } from 'react-query/hydration';
 import { useState } from 'react';
+import dynamic from "next/dynamic";
+
+const Nav = dynamic(() => import('../components/nav'));
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());

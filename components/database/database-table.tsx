@@ -1,12 +1,14 @@
-import React, { FC, PropsWithoutRef } from "react";
+import React from 'react';
 import { Database } from '../../hooks/use-database';
 import classNames from 'classnames';
-import DatabaseEntry from './database-entry';
+//import DatabaseEntry from './database-entry';
+import dynamic from "next/dynamic";
+const DatabaseEntry = dynamic(() => import('./database-entry'));
 
 type DatabaseTableProps = {
     className?: string;
     database: Database[];
-}
+};
 
 export default function DatabaseTable({ className, database }: DatabaseTableProps) {
     return (
