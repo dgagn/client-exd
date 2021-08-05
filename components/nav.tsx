@@ -7,7 +7,7 @@ export default function Nav() {
             <>
                 <div className='container max-w-xl mt-xl'>
                     <nav className='nav'>
-                        <img src='https://res.cloudinary.com/cefir/image/upload/f_auto,c_limit,w_128,q_auto/v1628141832/LogoCEFIR_pjt5ic.webp' srcSet='https://res.cloudinary.com/cefir/image/upload/f_auto,c_limit,w_128,q_auto/v1628141832/LogoCEFIR_pjt5ic.webp 1x, https://res.cloudinary.com/cefir/image/upload/f_auto,c_limit,w_256,q_auto/v1628141832/LogoCEFIR_pjt5ic.webp 2x' alt={'Logo CEFIR'} loading='lazy' width={118} height={64} />
+                        <img src='/LogoCEFIR_1x.webp' srcSet='/LogoCEFIR_1x.webp 1x, /LogoCEFIR_2x.webp 2x' alt={'Logo CEFIR'} loading='lazy' width={118} height={64} />
                         <ul className='nav__list' aria-label='Liens de navigation principal du CEFIR'>
                             <li aria-label="Lien vers l'accueil">
                                 <Link href={'/'}>Accueil</Link>
