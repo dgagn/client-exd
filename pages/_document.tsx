@@ -18,7 +18,7 @@ class MyDocument extends Document {
                         content="Base de données sur l'éxtrème droite du CEFIR."
                     />
 
-                    <link rel="apple-touch-icon" href="/apple-icon-180.png" />
+                    {/*<link rel="apple-touch-icon" href="/apple-icon-180.png" />
 
                     <meta name="apple-mobile-web-app-capable" content="yes" />
 
@@ -151,10 +151,12 @@ class MyDocument extends Document {
                         rel="apple-touch-startup-image"
                         href="/apple-splash-1136-640.jpg"
                         media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
-                    />
+                    />*/}
+
+                    {/*<meta name="theme-color" color='#FFFFFF' />
 
                     <link rel="shortcut icon" href="/favicon.ico" />
-                    <link rel="manifest" href="/manifest.json" />
+                    <link rel="manifest" href="/manifest.json" />*/}
                     <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
                 </Head>
                 <body>
