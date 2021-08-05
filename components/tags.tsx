@@ -18,7 +18,7 @@ export default function Tags() {
 
     return (
         <ul
-            className="flex gap-x-md gap-y-xs flex-wrap font-bold"
+            className="flex@md gap-x-md gap-y-xs flex-wrap font-bold"
             aria-label="La liste de boutons pour pouvoir exclure certaines colonnes de la recherche"
         >
             <Tag onClick={toggleFilterByDate} isSelected={filterByDate}>

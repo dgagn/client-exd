@@ -12,7 +12,7 @@ export default function ShowMore() {
     }, [showMoreFilters]);
 
     return (
-        <div className="flex space-between flex-wrap@sm gap-y-xs mb-lg">
+        <div className="flex space-between flex-wrap@sm gap-y-xs mb-lg mt-lg">
             <button
                 className="button-reset text-bg-fx text-bg-fx--scale-y"
                 onClick={toggleShowMoreFilters}

@@ -7,6 +7,16 @@
     }
 }
 
+@each $breakpoint-key, $breakpoint-value in $breakpoints {
+    @each $display in $displays {
+        .#{$display}\@#{$breakpoint-key} {
+            @include breakpoint($breakpoint-key) {
+                display: $display;
+            }
+        }
+    }
+}
+
 .flex-wrap {
     flex-wrap: wrap;
 }

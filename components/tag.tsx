@@ -6,14 +6,14 @@ type TagProps = {
     isSelected: boolean;
 };
 export default function Tag({ children, onClick, isSelected }: PropsWithChildren<TagProps>) {
-    const classes = classNames('rounded px-sm py-3xs tag pointer', {
+    const classes = classNames('rounded px-sm py-xs tag pointer', {
         'bg-contrast-100': isSelected,
         'tag--selected': !isSelected,
         'bg-error-200': !isSelected,
     });
 
     return (
-        <li aria-label={`Tag pour exclure ${children}`}>
+        <li aria-label={`Tag pour exclure ${children}`} className='mb-sm' >
             <button onClick={onClick} className={classes}>
                 {children}
             </button>
