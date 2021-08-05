@@ -1,5 +1,4 @@
-const withPWA = require('next-pwa')
-
+/*const withPWA = require('next-pwa')*/
 module.exports = {
     reactStrictMode: true,
     /*pwa: {
