@@ -35,7 +35,6 @@ export default function Home() {
     const database = useDatabase();
     useEffect(() => loadDatabase(database), [database, loadDatabase]);
     const filters = useFilter();
-    const toggleShowMoreFilters = useStore((state) => state.toggleShowMoreFilters);
 
     return (
         <>
