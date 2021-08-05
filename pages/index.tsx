@@ -1,16 +1,22 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, lazy } from 'react';
 import Head from 'next/head';
 import useStore from '../store/use-store';
-import Tags from '../components/tags';
+//import Tags from '../components/tags';
 import axios from 'axios';
 import { QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 import useDatabase from '../hooks/use-database';
-import SearchInput from '../components/search-input';
+//import SearchInput from '../components/search-input';
 import useFilter from '../hooks/use-filter';
-import DatabaseTable from '../components/database/database-table';
-import ShowMore from '../components/show-more';
-import ShowMoreFilters from '../components/show-more-filters';
+//import DatabaseTable from '../components/database/database-table';
+//import ShowMore from '../components/show-more';
+//import ShowMoreFilters from '../components/show-more-filters';
+
+const SearchInput = lazy(() => import('../components/search-input'))
+const DatabaseTable = lazy(() => import('../components/database/database-table'));
+const ShowMore = lazy(() => import('../components/show-more'));
+const ShowMoreFilters = lazy(() => import('../components/show-more-filters'));
+const Tags = lazy(() => import('../components/tags'));
 
 export async function database() {
     const { data } = await axios.get('https://server-exd.herokuapp.com/database');
