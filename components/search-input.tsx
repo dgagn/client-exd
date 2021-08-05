@@ -13,7 +13,10 @@ export default function SearchInput({ className }: SearchInputProps) {
     return (
             <div className={className}>
                 <BiSearchAlt className='icon-search' />
-                <input type='text' className='form__control pl-xl' onChange={handleFilterSearch} value={filterSearch} />
+                <div>
+                    <label htmlFor="filterSearch">Barre de recherche</label>
+                    <input type='text' className='form__control pl-xl mt-2xs' onChange={handleFilterSearch} value={filterSearch} id='filterSearch' />
+                </div>
             </div>
     );
 }

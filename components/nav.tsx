@@ -6,7 +6,7 @@ export default function Nav() {
             <>
                 <div className='container max-w-xl mt-xl'>
                     <nav className='nav'>
-                        <img src='/LogoCEFIR.webp' alt={'Logo CEFIR'} loading='lazy' width={118} height={64} />
+                        <img srcSet='/LogoCEFIR.webp' alt={'Logo CEFIR'} loading='lazy' width={118} height={64} />
                         <ul className='nav__list' aria-label='Liens de navigation principal du CEFIR'>
                             <li aria-label="Lien vers l'accueil">
                                 <Link href={'/'}>Accueil</Link>
