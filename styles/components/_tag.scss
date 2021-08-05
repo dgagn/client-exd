@@ -1,6 +1,7 @@
 @use "../config/colors" as *;
 
 .tag {
+    border: 0;
     transition: 0.5s;
 
     &:hover {

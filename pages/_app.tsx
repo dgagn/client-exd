@@ -15,21 +15,23 @@ Router.events.on('routeChangeError', () => NProgress.done());
 function MyApp({ Component, pageProps }: AppProps) {
     const [queryClient] = useState(() => new QueryClient());
 
-    return <QueryClientProvider client={queryClient}>
-        <Head>
-            <title>CEFIR - Accueil</title>
-            <meta charSet='UTF-8' />
-            <meta name='viewport'
-                  content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' />
-            <meta httpEquiv='X-UA-Compatible' content='ie=edge' />
-        </Head>
-        <Hydrate state={pageProps.dehydratedState}>
-            <Nav />
-            <Component {...pageProps} />
-        </Hydrate>
-    </QueryClientProvider>;
-;
-;
+    return (
+        <QueryClientProvider client={queryClient}>
+            <Head>
+                <title>CEFIR - Accueil</title>
+                <meta charSet="UTF-8" />
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0"
+                />
+                <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
+            </Head>
+            <Hydrate state={pageProps.dehydratedState}>
+                <Nav />
+                <Component {...pageProps} />
+            </Hydrate>
+        </QueryClientProvider>
+    );
 }
 
 export default MyApp;

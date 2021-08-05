@@ -1,23 +1,14 @@
-import React, { useCallback, useRef } from 'react';
+import React, { FC, PropsWithoutRef } from "react";
 import { Database } from '../../hooks/use-database';
-import { useVirtual } from 'react-virtual';
 import classNames from 'classnames';
 import DatabaseEntry from './database-entry';
 
 type DatabaseTableProps = {
-    className: string;
+    className?: string;
     database: Database[];
-};
+}
+
 export default function DatabaseTable({ className, database }: DatabaseTableProps) {
-    const parentRef = useRef();
-
-    const rowVirtualizer = useVirtual({
-        size: database.length,
-        parentRef: parentRef,
-        estimateSize: useCallback(() => 100, []),
-        overscan: 5,
-    });
-
     return (
         <table className={classNames('table', className)}>
             <thead>
@@ -31,9 +22,7 @@ export default function DatabaseTable({ className, database }: DatabaseTableProp
             </thead>
             <tbody>
                 {database.map((entry) => {
-                    return (
-                            <DatabaseEntry key={entry._id} database={entry} />
-                    )
+                    return <DatabaseEntry key={entry._id} database={entry} />;
                 })}
             </tbody>
         </table>

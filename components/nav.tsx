@@ -7,11 +7,13 @@ export default function Nav() {
                 <div className='container max-w-xl mt-xl'>
                     <nav className='nav'>
                         <img src='/LogoCEFIR.webp' alt={'Logo CEFIR'} loading='lazy' width={118} height={64} />
-                        <ul className='nav__list' id='zhaoNav'>
-                            <li>
+                        <ul className='nav__list' aria-label='Liens de navigation principal du CEFIR'>
+                            <li aria-label="Lien vers l'accueil">
                                 <Link href={'/'}>Accueil</Link>
                             </li>
-                            <Link href={'/methodologie'}>Méthodologie</Link>
+                            {/*<li aria-label='Lien vers la méthodologie'>
+                                <Link href={'/test'}>Méthodologie</Link>
+                            </li>*/}
                         </ul>
                     </nav>
                 </div>
