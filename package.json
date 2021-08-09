@@ -8,11 +8,13 @@
         "export": "next export",
         "start": "next start",
         "lint": "next lint",
-        "lint:styles": "stylelint styles/**/*.scss --fix"
+        "lint:styles": "stylelint styles/**/*.scss --fix",
+        "run": "yarn build && yarn export && npx serve out"
     },
     "dependencies": {
         "@react-hook/media-query": "^1.1.1",
         "axios": "^0.21.1",
+        "chart.js": "^3.5.0",
         "classnames": "^2.3.1",
         "dayjs": "^1.10.6",
         "lodash": "^4.17.21",
@@ -20,6 +22,7 @@
         "next-pwa": "^5.2.24",
         "nprogress": "^0.2.0",
         "react": "^17.0.2",
+        "react-chartjs-2": "^3.0.4",
         "react-device-detect": "^1.17.0",
         "react-dom": "^17.0.2",
         "react-icons": "^4.2.0",
@@ -28,6 +31,7 @@
         "react-virtual": "^2.8.0",
         "react-virtualized": "^9.22.3",
         "react-window": "^1.8.6",
+        "recharts": "^2.0.10",
         "zustand": "^3.5.7"
     },
     "devDependencies": {

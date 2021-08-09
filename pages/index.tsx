@@ -1,17 +1,13 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import useStore from "../store/use-store";
-//import Tags from '../components/tags';
 import axios from "axios";
 import { QueryClient } from "react-query";
 import { dehydrate } from "react-query/hydration";
 import useDatabase from "../hooks/use-database";
-//import SearchInput from '../components/search-input';
 import useFilter from "../hooks/use-filter";
-//import DatabaseTable from '../components/database/database-table';
-//import ShowMore from '../components/show-more';
-//import ShowMoreFilters from '../components/show-more-filters';
+import { flatten, uniq } from 'lodash';
 
 const SearchInput = dynamic(() => import("../components/search-input"));
 const DatabaseTable = dynamic(() => import("../components/database/database-table"));
@@ -65,7 +61,6 @@ export default function Home() {
                         <SearchInput className={"mt-md"} />
                         <ShowMore />
                         <ShowMoreFilters />
-
                         <DatabaseTable database={filteredDatabase.slice(0, 50)} className={"mb-2xl"} />
                     </div>
                 </div>

@@ -29,4 +29,30 @@
     @each $text-size, $text-value in $typography-sizes {
         #{$typography-size-prefix}#{$text-size}: #{$text-value};
     }
+
+    --logo-srcset: "/LogoCEFIR_1x.webp 1x, /LogoCEFIR_2x.webp 2x";
+    --logo-src: '/LogoCEFIR_1x.webp';
+}
+
+body[data-theme="dark"] {
+    --color-bg: #{color-pure-get(contrast, 900)};
+    --heading-color: #{color-pure-get(contrast, 200)};
+    --base-color: #{color-pure-get(contrast, 200)};
+    --color-contrast-50: #{color-pure-get(contrast, 800)};
+    --color-contrast-100: #{color-pure-get(contrast, 700)};
+    --color-contrast-200: #{color-pure-get(contrast, 600)};
+    --color-contrast-300: #{color-pure-get(contrast, 600)};
+    --color-contrast-400: #{color-pure-get(contrast, 500)};
+    --color-success-500: #{color-pure-get(success, 300)};
+    --color-success-800: #{color-pure-get(success, 500)};
+    --color-error-100: #{color-pure-get(error, 800)};
+    --color-error-200: #{color-pure-get(error, 700)};
+    --color-error-500: #{color-pure-get(error, 300)};
+    --color-error-800: #{color-pure-get(error, 500)};
+    --color-warning-500: #{color-pure-get(warning, 300)};
+    --color-warning-800: #{color-pure-get(warning, 500)};
+    --color-caution-500: #{color-pure-get(caution, 300)};
+    --color-caution-800: #{color-pure-get(caution, 500)};
+    --color-primary-200: #{color-pure-get(primary, 700)};
+    --color-primary-50: #{color-pure-get(primary, 700)};
 }

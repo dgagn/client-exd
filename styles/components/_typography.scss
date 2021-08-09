@@ -19,7 +19,7 @@ body {
 h1, h2, h3, h4 {
     font-weight: heading-get(weight);
     line-height: heading-get(line-height);
-    color: heading-get(color);
+    color: var(--heading-color);
 }
 
 h1 { font-size: typography-size-get('2xl'); }

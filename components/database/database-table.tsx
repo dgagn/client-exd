@@ -1,8 +1,9 @@
 import React from 'react';
-import { Database } from '../../hooks/use-database';
+import useDatabase, { Database } from '../../hooks/use-database';
 import classNames from 'classnames';
 //import DatabaseEntry from './database-entry';
-import dynamic from "next/dynamic";
+import dynamic from 'next/dynamic';
+
 const DatabaseEntry = dynamic(() => import('./database-entry'));
 
 type DatabaseTableProps = {
@@ -11,7 +12,9 @@ type DatabaseTableProps = {
 };
 
 export default function DatabaseTable({ className, database }: DatabaseTableProps) {
-    return (
+    const db = useDatabase();
+
+    return database.length > 0 ? (
         <table className={classNames('table', className)}>
             <thead>
                 <tr className="table__heading-group">
@@ -25,8 +28,10 @@ export default function DatabaseTable({ className, database }: DatabaseTableProp
             <tbody>
                 {database.map((entry) => {
                     return <DatabaseEntry key={entry._id} database={entry} />;
-                })}
+                  })}
             </tbody>
         </table>
+    ) : (
+        <div>Aucun résultat <span aria-label='Emoji visage confus' role='img'>😕</span></div>
     );
 }

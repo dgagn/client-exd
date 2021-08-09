@@ -5,7 +5,6 @@
 
 .table {
     width: 100%;
-
     &__group, &__item { display: block; }
 
     &__heading-group {
@@ -65,7 +64,7 @@
         }
 
         &__item {
-            padding: spacing-get(sm);
+            padding: spacing-get(md);
             overflow: visible;
             text-overflow: unset;
             white-space: unset;

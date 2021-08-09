@@ -11,7 +11,9 @@
     width: 100%;
     min-height: spacing-get(xl);
     padding: spacing-get(xs) spacing-get(md);
+    color: var(--base-color);
     vertical-align: bottom;
+    background-color: var(--color-bg);
     border: 1px solid color-get(contrast, 300);
     border-radius: 4px;
     outline: none;

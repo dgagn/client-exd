@@ -1,28 +1,51 @@
-import React from 'react';
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Link from 'next/link';
-import Image from 'next/image'
+import { FiMoon, FiSun } from 'react-icons/fi';
+import useLocalStorage from "../hooks/use-local-storage";
 
 export default function Nav() {
+    const [isDark, toggleDarkMode] = useState(false);
+
+    useEffect(() => {
+        document.body.setAttribute('data-theme', isDark ? 'dark' : 'light')
+    }, [isDark])
+
     return (
-            <>
-                <div className='container max-w-xl mt-xl'>
-                    <nav className='nav'>
-                        <img src='/LogoCEFIR_1x.webp' srcSet='/LogoCEFIR_1x.webp 1x, /LogoCEFIR_2x.webp 2x' alt={'Logo CEFIR'} loading='lazy' width={118} height={64} />
-                        <ul className='nav__list' aria-label='Liens de navigation principal du CEFIR'>
-                            <li aria-label="Lien vers l'accueil">
-                                <Link href={'/'}>Accueil</Link>
-                            </li>
-                            {/*<li aria-label='Lien vers la méthodologie'>
-                                <Link href={'/test'}>Méthodologie</Link>
-                            </li>*/}
-                        </ul>
-                    </nav>
-                </div>
-                {/*<div className="hamburger hamburger--elastic mt-2xs" id="zhaoNavOpen">
+        <>
+            <div className="container max-w-xl mt-xl">
+                <nav className="nav">
+                    <img
+                        className='logo'
+                        src={isDark ? '/LogoCEFIR_1x_dark.webp' : "/LogoCEFIR_1x.webp"}
+                        srcSet={isDark ? '/LogoCEFIR_1x_dark.webp 1x, /LogoCEFIR_2x_dark.webp 2x' : "/LogoCEFIR_1x.webp 1x, /LogoCEFIR_2x.webp 2x"}
+                        alt={'Logo CEFIR'}
+                        loading="lazy"
+                        width={118}
+                        height={64}
+                    />
+                    <ul className="nav__list" aria-label="Liens de navigation principal du CEFIR">
+                        <li aria-label="Lien vers l'accueil">
+                            <Link href={'/'}>Accueil</Link>
+                        </li>
+                        <li aria-label="Lien vers les incidents par groupes">
+                            <Link href={'/incidentParGroupes'}>Incidents par groupes</Link>
+                        </li>
+                        <li aria-label="Lien vers les incidents par groupes">
+                            <Link href={'/incidentParAnnee'}>Incidents par année</Link>
+                        </li>
+                        <li>
+                            <button aria-label='Bouton pour changer de thème' onClick={() => toggleDarkMode(!isDark)} className='pointer'>
+                                {isDark ? <FiSun/> : <FiMoon />}
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            {/*<div className="hamburger hamburger--elastic mt-2xs" id="zhaoNavOpen">
                     <div className="hamburger-box">
                         <div className="hamburger-inner" />
                     </div>
                 </div>*/}
-            </>
+        </>
     );
 }

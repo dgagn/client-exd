@@ -3,6 +3,7 @@ import { GetState, SetState } from "zustand";
 import { StoreState } from "./use-store";
 import { ChangeEvent } from "react";
 import { filterDatabase, FilterDatabaseProps } from "./filter-database";
+import { flatten, uniq } from "lodash";
 
 export interface FilterSlice {
     database: Database[]
@@ -22,6 +23,7 @@ export interface FilterSlice {
     toggleFilterByEvents: () => void
 
     filterSearch: string
+    setFilterSearch: (value: string) => void
     handleFilterSearch: (e: ChangeEvent<HTMLInputElement>) => void
 
     resetFilters: () => void
@@ -38,6 +40,7 @@ const createFilterSlice = (set: SetState<StoreState>, get: GetState<StoreState>)
     loadDatabase: (database: Database[]) => {
         set({ database: database, filteredDatabase: database })
     },
+
     filterByDate: true,
     filterByType: true,
     filterByDegreeOfViolence: true,
@@ -52,7 +55,10 @@ const createFilterSlice = (set: SetState<StoreState>, get: GetState<StoreState>)
 
     filterSearch: '',
     handleFilterSearch: (e: ChangeEvent<HTMLInputElement>) => {
-        set({ filterSearch: e.target.value })
+        get().setFilterSearch(e.target.value)
+    },
+    setFilterSearch: (value: string) => {
+        set({ filterSearch: value })
     },
 
     filterDatabase: (options: FilterDatabaseProps) => {

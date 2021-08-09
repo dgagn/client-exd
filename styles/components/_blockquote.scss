@@ -1,0 +1,5 @@
+@use "../config/colors" as *;
+
+.blockquote {
+    border-left: 3px solid color-get(primary, 500);
+}

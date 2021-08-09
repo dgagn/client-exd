@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { Database } from '../../hooks/use-database';
 import classNames from 'classnames';
+import Link from "next/link";
 
 type DatabaseEntry = {
     database: Database;
@@ -26,32 +27,34 @@ export default function DatabaseEntry({ database }: DatabaseEntry) {
     );
 
     return (
-        <tr className="table__group">
-            <td className="table__item" data-title={'Date'}>
-                {database.date}
-            </td>
-            <td className="table__item" data-title={'Type'}>
-                {database.type}
-            </td>
-            <td data-title={'Degré'} className={degreeOfViolenceClasses}>
-                <div className={circle} />
-                {database.degreViolence}
-            </td>
-            <td className="table__item" data-title={'Groupes'}>
-                {involvedGroups.map((groupe, index) => (
-                    <div
-                        key={index}
-                        className={classNames({
-                            'font-italic': index === 0,
-                        })}
-                    >
-                        {groupe}
-                    </div>
-                ))}
-            </td>
-            <td className="table__item" data-title={'Événement'}>
-                {database.evenement}
-            </td>
-        </tr>
+        <Link href={`/incident/${database._id}`} passHref>
+            <tr className="table__group">
+                <td className="table__item" data-title={'Date'}>
+                    {database.date}
+                </td>
+                <td className="table__item" data-title={'Type'}>
+                    {database.type}
+                </td>
+                <td data-title={'Degré'} className={degreeOfViolenceClasses}>
+                    <div className={circle} />
+                    {database.degreViolence}
+                </td>
+                <td className="table__item" data-title={'Groupes'}>
+                    {involvedGroups.map((groupe, index) => (
+                            <div
+                                    key={index}
+                                    className={classNames({
+                                        'font-italic': index === 0,
+                                    })}
+                            >
+                                {groupe}
+                            </div>
+                    ))}
+                </td>
+                <td className="table__item" data-title={'Événement'}>
+                    {database.evenement}
+                </td>
+            </tr>
+        </Link>
     );
 }
