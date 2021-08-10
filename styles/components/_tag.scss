@@ -1,9 +1,25 @@
 @use "../config/colors" as *;
 @use "../config/breakpoints" as *;
+@use "../config/spacing" as *;
 
 .tag-list {
     @include breakpoint(md, 'not all') {
         height: 218px;
+    }
+}
+
+.resultat {
+    &::before {
+        content: '- ';
+    }
+
+    @include breakpoint(sm, 'not all') {
+        display: block;
+        margin-top: spacing-get('2xs');
+
+        &::before {
+            content: '';
+        }
     }
 }
 

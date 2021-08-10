@@ -36,7 +36,7 @@ export default function Home({ database }: HomeProps) {
     console.log('render home');
     useEffect(() => loadDatabase(database), []);
 
-    return db.length > 0 ? (
+    return (db.length > 0 && database.length > 0) ? (
         <>
             <Head>
                 <title>CEFIR - Accueil</title>
@@ -47,7 +47,7 @@ export default function Home({ database }: HomeProps) {
                         <span role="img" aria-label="Un pictogramme de recherche">
                             🔍{' '}
                         </span>
-                        Rechercher - {filteredDatabase?.length} résultats
+                        Rechercher <span className='resultat'>{filteredDatabase?.length} résultats</span>
                     </h3>
                     <p className="mt-md mb-lg" aria-label="Informations sur la recherche">
                         Par défaut, la recherche va inclure toutes les colonnes. Vous pouvez cliquer
@@ -73,7 +73,7 @@ export default function Home({ database }: HomeProps) {
                         <span role="img" aria-label="Un pictogramme de recherche">
                             🔍{' '}
                         </span>
-                        Rechercher - {database.length} résultats
+                        Rechercher <span className='resultat'>{database?.length} résultats</span>
                     </h3>
                     <p className="mt-md mb-lg" aria-label="Informations sur la recherche">
                         Par défaut, la recherche va inclure toutes les colonnes. Vous pouvez cliquer
