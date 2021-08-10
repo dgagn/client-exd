@@ -1,5 +1,7 @@
 @use "../config/typography" as *;
 @use "../config/breakpoints" as *;
+@use "../config/colors" as *;
+@use "../config/spacing" as *;
 
 :root {
     @include breakpoint(xl) {
@@ -22,7 +24,41 @@ h1, h2, h3, h4 {
     color: var(--heading-color);
 }
 
-h1 { font-size: typography-size-get('2xl'); }
-h2 { font-size: typography-size-get('xl'); }
-h3 { font-size: typography-size-get('lg'); }
-h4 { font-size: typography-size-get('md'); }
+h1 {
+    font-size: typography-size-get('2xl');
+}
+
+h2 {
+    font-size: typography-size-get('xl');
+}
+
+h3 {
+    font-size: typography-size-get('lg');
+}
+
+h4 {
+    font-size: typography-size-get('md');
+}
+
+mark {
+    background:
+        linear-gradient(
+            transparent 50%,
+            color-get(primary, 200)
+        );
+}
+
+code {
+    margin: spacing-get(xs);
+}
+
+.list {
+    li {
+        padding-bottom: spacing-get(sm);
+
+        &::before {
+            margin-right: spacing-get(sm);
+            content: '🔹';
+        }
+    }
+}
