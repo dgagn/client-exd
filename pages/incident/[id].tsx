@@ -76,7 +76,7 @@ export default function Id({ entry }: { entry: Database }) {
 
     return (
             <>
-                <div className='p-xl mt-lg bg-article'>
+                <div className='p-xl mt-lg bg-article text-center'>
                     <div className='blur p-xl max-w-md mx-auto text-contrast-50 bg-blur'>
                         <h2 className='text-contrast-50'>{entry.evenement}</h2>
                         <p className='text-contrast-50 mt-sm text-center'>{dayjs(entry.date).locale(frCa).format('le D MMMM, YYYY')}</p>
@@ -87,7 +87,7 @@ export default function Id({ entry }: { entry: Database }) {
                         <div className="max-w-prose mx-auto">
                             <Link href="/">Retour à l&apos;accueil</Link>
                             <p className='mt-lg'>{entry.description}</p>
-                            <ul className='flex gap-x-md mt-md'>
+                            <ul className='flex gap-x-md flex-wrap mt-md'>
                                 {entry.groupeImplique.split('\n').map(group => {
                                     return (
                                         <Tag onClick={() => {}} isSelected={true} key={group}>{group}</Tag>
