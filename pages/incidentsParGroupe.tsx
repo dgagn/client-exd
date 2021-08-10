@@ -7,6 +7,7 @@ import { database } from './index';
 import { flatten, orderBy, uniq } from 'lodash';
 import GroupsTable from "../components/groups/groups-table";
 import SearchInput from "../components/search-input";
+import Head from "next/head";
 
 export async function getStaticProps() {
     const queryClient = new QueryClient();
@@ -19,7 +20,7 @@ export async function getStaticProps() {
     };
 }
 
-export default function IncidentParGroupes() {
+export default function IncidentsParGroupe() {
     const database = useDatabase();
 
     const groupsDatabase = uniq(flatten(database.map((entry) => entry.groupeImplique.split('\n'))));
@@ -39,16 +40,21 @@ export default function IncidentParGroupes() {
     );
 
     return (
-        <div className="container max-w-xl">
-            <div className="mt-2xl mb-lg">
-                <h3>
-                    Incidents par groupe - {filteredGroupsData?.length == 0 ? 88 : filteredGroupsData.length} résultats
-                </h3>
-                <p className="mt-md mb-lg" aria-label="Informations sur la recherche">
-                    Vous pouvez cliquer sur un groupe pour appliquer le filtre.
-                </p>
-                <GroupsTable groupObj={filterObj} />
-            </div>
-        </div>
+            <>
+                <Head>
+                    <title>CEFIR - Incident par groupe</title>
+                </Head>
+                <div className="container max-w-xl">
+                    <div className="mt-2xl mb-lg">
+                        <h3>
+                            Incidents par groupe - {filteredGroupsData?.length == 0 ? 0 : filteredGroupsData.length} résultats
+                        </h3>
+                        <p className="mt-md mb-lg" aria-label="Informations sur la recherche">
+                            Vous pouvez cliquer sur un groupe pour appliquer le filtre.
+                        </p>
+                        <GroupsTable groupObj={filterObj} />
+                    </div>
+                </div>
+            </>
     );
 }

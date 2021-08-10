@@ -1,23 +1,26 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FiMoon, FiSun } from 'react-icons/fi';
-import useLocalStorage from "../hooks/use-local-storage";
 
 export default function Nav() {
     const [isDark, toggleDarkMode] = useState(false);
 
     useEffect(() => {
-        document.body.setAttribute('data-theme', isDark ? 'dark' : 'light')
-    }, [isDark])
+        document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    }, [isDark]);
 
     return (
         <>
             <div className="container max-w-xl mt-xl">
                 <nav className="nav">
                     <img
-                        className='logo'
-                        src={isDark ? '/LogoCEFIR_1x_dark.webp' : "/LogoCEFIR_1x.webp"}
-                        srcSet={isDark ? '/LogoCEFIR_1x_dark.webp 1x, /LogoCEFIR_2x_dark.webp 2x' : "/LogoCEFIR_1x.webp 1x, /LogoCEFIR_2x.webp 2x"}
+                        className="logo"
+                        src={isDark ? '/LogoCEFIR_1x_dark.webp' : '/LogoCEFIR_1x.webp'}
+                        srcSet={
+                            isDark
+                                ? '/LogoCEFIR_1x_dark.webp 1x, /LogoCEFIR_2x_dark.webp 2x'
+                                : '/LogoCEFIR_1x.webp 1x, /LogoCEFIR_2x.webp 2x'
+                        }
                         alt={'Logo CEFIR'}
                         loading="lazy"
                         width={118}
@@ -28,14 +31,18 @@ export default function Nav() {
                             <Link href={'/'}>Accueil</Link>
                         </li>
                         <li aria-label="Lien vers les incidents par groupes">
-                            <Link href={'/incidentParGroupes'}>Incidents par groupes</Link>
+                            <Link href={'/incidentsParGroupe'}>Incidents par groupe</Link>
                         </li>
                         <li aria-label="Lien vers les incidents par groupes">
-                            <Link href={'/incidentParAnnee'}>Incidents par année</Link>
+                            <Link href={'/incidentsParAnnee'}>Incidents par année</Link>
                         </li>
                         <li>
-                            <button aria-label='Bouton pour changer de thème' onClick={() => toggleDarkMode(!isDark)} className='pointer'>
-                                {isDark ? <FiSun/> : <FiMoon />}
+                            <button
+                                aria-label="Bouton pour changer de thème"
+                                onClick={() => toggleDarkMode(!isDark)}
+                                className="pointer"
+                            >
+                                {isDark ? <FiSun /> : <FiMoon />}
                             </button>
                         </li>
                     </ul>

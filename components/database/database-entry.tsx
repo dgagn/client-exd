@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
 import { Database } from '../../hooks/use-database';
 import classNames from 'classnames';
-import Link from "next/link";
+import Link from 'next/link';
+import useStore from "../../store/use-store";
 
 type DatabaseEntry = {
     database: Database;
@@ -26,6 +27,7 @@ export default function DatabaseEntry({ database }: DatabaseEntry) {
         [database.groupeImplique]
     );
 
+
     return (
         <Link href={`/incident/${database._id}`} passHref>
             <tr className="table__group">
@@ -41,14 +43,14 @@ export default function DatabaseEntry({ database }: DatabaseEntry) {
                 </td>
                 <td className="table__item" data-title={'Groupes'}>
                     {involvedGroups.map((groupe, index) => (
-                            <div
-                                    key={index}
-                                    className={classNames({
-                                        'font-italic': index === 0,
-                                    })}
-                            >
-                                {groupe}
-                            </div>
+                        <div
+                            key={index}
+                            className={classNames({
+                                'font-italic': index === 0,
+                            })}
+                        >
+                            {groupe}
+                        </div>
                     ))}
                 </td>
                 <td className="table__item" data-title={'Événement'}>

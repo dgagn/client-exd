@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from 'react';
 import classNames from 'classnames';
 import useStore from '../../store/use-store';
 import Link from 'next/link';

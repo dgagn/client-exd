@@ -15,7 +15,6 @@
 
     &__item {
         padding: spacing-get(sm) spacing-get(sm) spacing-get(sm) 45%;
-
         &::before {
             position: absolute;
             left: spacing-get(md);
@@ -53,6 +52,7 @@
             top: 0;
             left: 0;
             white-space: nowrap;
+            cursor: pointer;
             background-color: color-get(contrast, 50);
         }
 
@@ -70,6 +70,8 @@
             white-space: unset;
 
             &:first-child { white-space: nowrap; }
+
+            cursor: pointer;
         }
     }
 }

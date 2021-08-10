@@ -42,7 +42,7 @@ export default function Home() {
     return (
             <>
                 <Head>
-                    <title>CEFIR - Méthodologie</title>
+                    <title>CEFIR - Accueil</title>
                 </Head>
                 <div className="container max-w-xl">
                     <div className="mt-2xl mb-lg">

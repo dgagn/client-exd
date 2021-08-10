@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from 'react';
 import classNames from 'classnames';
 import useStore from '../../store/use-store';
 import Link from 'next/link';
@@ -27,7 +27,11 @@ export default function YearTable({ className, groupObj }: GroupsTableProps) {
                     {groupObj.map((group) => {
                         return (
                             <Link href="/" key={group.label} passHref>
-                                <tr key={group.label} onClick={() => setFilterSearch(group.label)} className='pointer table__group'>
+                                <tr
+                                    key={group.label}
+                                    onClick={() => setFilterSearch(group.label)}
+                                    className="pointer table__group"
+                                >
                                     <td className="table__item" data-title={'Groupe'}>
                                         {group.label}
                                     </td>
