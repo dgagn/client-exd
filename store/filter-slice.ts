@@ -40,18 +40,18 @@ export interface FilterSlice {
     orderDatabase: () => void;
 
     toggleOrderByDate: () => void
-    orderByDate: OrderByValues
+    orderByDate: string
 
     toggleOrderByType: () => void
-    orderByType: OrderByValues
+    orderByType: string
 
-    orderByDegreeOfViolence: OrderByValues
+    orderByDegreeOfViolence: string
     toggleOrderByDegreeOfViolence: () => void;
 
-    orderByGroupsInvolved: OrderByValues
+    orderByGroupsInvolved: string
     toggleOrderByGroupsInvolved: () => void;
 
-    orderByEvents: OrderByValues
+    orderByEvents: string
     toggleOrderByEvents: () => void;
 }
 
