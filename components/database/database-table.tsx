@@ -1,9 +1,9 @@
 import React from 'react';
-import useDatabase, { Database } from '../../hooks/use-database';
 import classNames from 'classnames';
 import dynamic from 'next/dynamic';
 import useStore from "../../store/use-store";
 import { BiChevronUp, BiChevronDown } from "react-icons/bi";
+import { Database } from '../../utils/database-fetch';
 
 const DatabaseEntry = dynamic(() => import('./database-entry'));
 

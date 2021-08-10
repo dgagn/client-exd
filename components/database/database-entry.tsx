@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react';
-import { Database } from '../../hooks/use-database';
+import { Database } from '../../utils/database-fetch';
 import classNames from 'classnames';
 import Link from 'next/link';
-import useStore from "../../store/use-store";
 
 type DatabaseEntry = {
     database: Database;
@@ -26,7 +25,6 @@ export default function DatabaseEntry({ database }: DatabaseEntry) {
         () => database.groupeImplique.split('\n'),
         [database.groupeImplique]
     );
-
 
     return (
         <Link href={`/incident/${database._id}`} passHref>

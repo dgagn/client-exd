@@ -2,21 +2,14 @@ import React, { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import useStore from '../store/use-store';
-import axios from 'axios';
-import { Database } from '../hooks/use-database';
 import useFilter from '../hooks/use-filter';
-import getDatabase from "../utils/database-fetch";
+import getDatabase, { Database } from '../utils/database-fetch';
 
 const SearchInput = dynamic(() => import('../components/search-input'));
 const DatabaseTable = dynamic(() => import('../components/database/database-table'));
 const ShowMore = dynamic(() => import('../components/show-more'));
 const ShowMoreFilters = dynamic(() => import('../components/show-more-filters'));
 const Tags = dynamic(() => import('../components/tags'));
-
-export async function database() {
-    const { data } = await axios.get('https://server-exd.herokuapp.com/database');
-    return data;
-}
 
 interface HomeProps {
     database: Database[];

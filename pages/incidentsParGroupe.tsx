@@ -1,9 +1,8 @@
 import React from 'react';
-import { Database } from '../hooks/use-database';
 import { flatten, orderBy, uniq } from 'lodash';
 import GroupsTable from '../components/groups/groups-table';
 import Head from 'next/head';
-import getDatabase from '../utils/database-fetch';
+import getDatabase, { Database } from '../utils/database-fetch';
 
 interface IncidentsParGroupeProps {
     database: Database[];

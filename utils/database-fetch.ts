@@ -2,6 +2,18 @@ import fs from 'fs'
 import path from 'path'
 import axios from "axios";
 
+export interface Database {
+    _id: string;
+    date: string;
+    type: string;
+    typeCrime: string;
+    degreViolence: string;
+    groupeImplique: string;
+    evenement: string;
+    description: string;
+    source: string;
+}
+
 async function fetchDatabase() {
     console.log(`Fetching CEFIR database`);
     const { data } = await axios.get("https://server-exd.herokuapp.com/database");

@@ -1,9 +1,8 @@
 import React from 'react';
-import { Database } from '../hooks/use-database';
 import YearTable from '../components/year/year-table';
 import { sortBy, uniq } from 'lodash';
 import Head from 'next/head';
-import getDatabase from '../utils/database-fetch';
+import getDatabase, { Database } from '../utils/database-fetch';
 
 interface IncidentsParAnneeProps {
     database: Database[];

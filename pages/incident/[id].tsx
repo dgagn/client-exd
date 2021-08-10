@@ -73,7 +73,7 @@ export default function Id({ entry }: { entry: Database }) {
         setHtml({
             __html: purify.sanitize(source, { ADD_ATTR: ['target'] }),
         });
-    }, []);
+    }, [entry.source, urls]);
 
     return (
         <>
