@@ -50,7 +50,7 @@ export default function Home() {
                         <span role="img" aria-label="Un pictogramme de recherche">
                             🔍{" "}
                         </span>
-                            Rechercher - {filteredDatabase?.length == 0 ? 516 : filteredDatabase.length} résultats
+                            Rechercher - {filteredDatabase?.length == 0 ? 0 : filteredDatabase.length} résultats
                         </h3>
                         <p className="mt-md mb-lg" aria-label="Informations sur la recherche">
                             Par défaut, la recherche va inclure toutes les colonnes. Vous pouvez cliquer

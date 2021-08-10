@@ -40,8 +40,6 @@ export async function getStaticProps(ctx: any) {
 export default function Id({ entry }: { entry: Database }) {
     const [html, setHtml] = useState<any>(null)
 
-
-
     const degreeOfViolenceClasses = classNames('', {
         'text-success-800': entry.degreViolence.includes('Aucune'),
         'text-warning-800': entry.degreViolence.includes('faible'),
@@ -59,18 +57,22 @@ export default function Id({ entry }: { entry: Database }) {
     const urlRegex = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm
     const urls = entry.source.match(urlRegex)
 
-    let source = entry.source
-    urls!.forEach((url) => {
-        source = source.replace(url, `<a href="${url}" target="_blank" rel="noreferrer" class='text-bg-fx text-bg-fx--scale-y'>${url}</a>`)
-    })
+
 
     useEffect(() => {
+        let source = entry.source
+        if(urls) {
+            urls.forEach((url) => {
+                source = source.replace(url, `<a href="${url}" target="_blank" rel="noreferrer" class='text-bg-fx text-bg-fx--scale-y'>${url}</a>`)
+            })
+        }
+
         const purify = DOMPurify(window)
 
         setHtml({
             __html: purify.sanitize(source, { ADD_ATTR: ['target'] })
         })
-    }, [source])
+    }, [entry.source, urls])
 
 
 
