@@ -1,6 +1,12 @@
 @use "../config/colors" as *;
 @use "../config/breakpoints" as *;
 
+.tag-list {
+    @include breakpoint(md, 'not all') {
+        height: 218px;
+    }
+}
+
 .tag {
     border: 0;
     transition: 0.5s;
