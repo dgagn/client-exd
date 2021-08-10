@@ -29,6 +29,10 @@
     width: 100%;
 }
 
+.blur {
+    backdrop-filter: blur(10px);
+}
+
 .flex-wrap\@sm {
     @include breakpoint(sm, "not all") {
         flex-wrap: wrap;
@@ -41,6 +45,10 @@
 
 .flex-1 {
     flex: 1;
+}
+
+.text-center {
+    text-align: center;
 }
 
 .rounded {

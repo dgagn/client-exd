@@ -1,5 +1,21 @@
 @use "../config/colors" as *;
+@use "../config/spacing" as *;
+@use "../config/breakpoints" as *;
 
 .blockquote {
     border-left: 3px solid color-get(primary, 500);
+}
+
+.bg-blur {
+    @include breakpoint(sm) {
+        padding: spacing-get(xl);
+
+    }
+    background-color: hsla(240, 6, 10, 0.3);
+    border-radius: 16px;
+}
+
+.bg-article {
+    background: url(/test.jpg) no-repeat center top;
+    background-size: cover;
 }
