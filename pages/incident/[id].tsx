@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Database } from '../../hooks/use-database';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 import frCa from 'dayjs/locale/fr-ca';
 import Tag from '../../components/tag';
 import classNames from 'classnames';
 import DOMPurify from 'dompurify';
-import getDatabase from '../../utils/database-fetch';
+import getDatabase, { Database } from '../../utils/database-fetch';
 
 export async function getStaticPaths() {
     const db = await getDatabase();
