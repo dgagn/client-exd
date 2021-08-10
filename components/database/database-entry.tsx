@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Database } from '../../utils/database-fetch';
+import { Database } from '../../utils/fetch-database';
 import classNames from 'classnames';
 import Link from 'next/link';
 

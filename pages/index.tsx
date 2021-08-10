@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import useStore from '../store/use-store';
-import useFilter from '../hooks/use-filter';
-import getDatabase, { Database } from '../utils/database-fetch';
+import useStore, { StoreState } from '../store/use-store';
+import getDatabase, { Database } from '../utils/fetch-database';
+import shallow from "zustand/shallow";
 
 const SearchInput = dynamic(() => import('../components/search-input'));
 const DatabaseTable = dynamic(() => import('../components/database/database-table'));
@@ -25,12 +25,14 @@ export async function getStaticProps() {
     };
 }
 
+const homeState = ({ filteredDatabase, loadDatabase }: StoreState) => ({ filteredDatabase, loadDatabase });
+
 export default function Home({ database }: HomeProps) {
-    const { filteredDatabase, loadDatabase } = useStore();
+    const { filteredDatabase, loadDatabase } = useStore(homeState, shallow);
 
-    useEffect(() => loadDatabase(database), [database, loadDatabase]);
+    useEffect(() => { loadDatabase(database) }, [database])
 
-    const filters = useFilter();
+    console.log('render home');
 
     return (
         <>

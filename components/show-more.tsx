@@ -1,9 +1,11 @@
 import React, { useMemo } from 'react';
-import useStore from '../store/use-store';
+import useStore, { StoreState } from "../store/use-store";
+import shallow from "zustand/shallow";
+
+const showMoreSelector = ({ showMoreFilters, toggleShowMoreFilters }: StoreState) => ({ showMoreFilters, toggleShowMoreFilters })
 
 export default function ShowMore() {
-    const showMoreFilters = useStore((state) => state.showMoreFilters);
-    const toggleShowMoreFilters = useStore((state) => state.toggleShowMoreFilters);
+    const { showMoreFilters, toggleShowMoreFilters } = useStore(showMoreSelector, shallow);
 
     const showMoreText = useMemo(() => {
         return showMoreFilters

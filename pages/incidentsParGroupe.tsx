@@ -2,7 +2,7 @@ import React from 'react';
 import { flatten, orderBy, uniq } from 'lodash';
 import GroupsTable from '../components/groups/groups-table';
 import Head from 'next/head';
-import getDatabase, { Database } from '../utils/database-fetch';
+import getDatabase, { Database } from '../utils/fetch-database';
 
 interface IncidentsParGroupeProps {
     database: Database[];

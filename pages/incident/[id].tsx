@@ -5,7 +5,7 @@ import frCa from 'dayjs/locale/fr-ca';
 import Tag from '../../components/tag';
 import classNames from 'classnames';
 import DOMPurify from 'dompurify';
-import getDatabase, { Database } from '../../utils/database-fetch';
+import getDatabase, { Database } from '../../utils/fetch-database';
 
 export async function getStaticPaths() {
     const db = await getDatabase();
@@ -72,7 +72,8 @@ export default function Id({ entry }: { entry: Database }) {
         setHtml({
             __html: purify.sanitize(source, { ADD_ATTR: ['target'] }),
         });
-    }, [entry.source, urls]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <>

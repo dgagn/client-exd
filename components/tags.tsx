@@ -1,6 +1,32 @@
 import React from 'react';
 import Tag from './tag';
-import useStore from '../store/use-store';
+import useStore, { StoreState } from '../store/use-store';
+import useFilter from '../hooks/use-filter';
+import shallow from 'zustand/shallow';
+
+const tagsSelector = ({
+    filterByDate,
+    toggleFilterByDate,
+    toggleFilterByType,
+    toggleFilterByEvents,
+    toggleFilterByGroupsInvolved,
+    toggleFilterByDegreeOfViolence,
+    filterByType,
+    filterByGroupsInvolved,
+    filterByEvents,
+    filterByDegreeOfViolence,
+}: StoreState) => ({
+    filterByDate,
+    toggleFilterByDate,
+    toggleFilterByType,
+    toggleFilterByEvents,
+    toggleFilterByGroupsInvolved,
+    toggleFilterByDegreeOfViolence,
+    filterByType,
+    filterByGroupsInvolved,
+    filterByEvents,
+    filterByDegreeOfViolence,
+});
 
 export default function Tags() {
     const {
@@ -14,7 +40,9 @@ export default function Tags() {
         filterByGroupsInvolved,
         filterByEvents,
         filterByDegreeOfViolence,
-    } = useStore();
+    } = useStore(tagsSelector, shallow);
+
+    useFilter();
 
     return (
         <ul

@@ -2,7 +2,7 @@ import React from 'react';
 import YearTable from '../components/year/year-table';
 import { sortBy, uniq } from 'lodash';
 import Head from 'next/head';
-import getDatabase, { Database } from '../utils/database-fetch';
+import getDatabase, { Database } from '../utils/fetch-database';
 
 interface IncidentsParAnneeProps {
     database: Database[];

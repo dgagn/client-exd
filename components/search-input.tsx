@@ -1,14 +1,16 @@
 import React, { useCallback } from 'react';
 import { BiSearchAlt } from 'react-icons/bi';
-import useStore from '../store/use-store';
+import useStore, { StoreState } from "../store/use-store";
+import shallow from "zustand/shallow";
 
 type SearchInputProps = {
     className?: string;
 };
 
+const searchFilters = ({ filterSearch, handleFilterSearch }: StoreState) => ({ filterSearch, handleFilterSearch })
+
 export default function SearchInput({ className }: SearchInputProps) {
-    const filterSearch = useStore((state) => state.filterSearch);
-    const handleFilterSearch = useStore(useCallback((state) => state.handleFilterSearch, []));
+    const { filterSearch, handleFilterSearch } = useStore(searchFilters, shallow);
 
     return (
         <div className={className}>
