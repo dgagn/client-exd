@@ -39,7 +39,7 @@ export default function IncidentsParAnnee({ database }: IncidentsParAnneeProps) 
                         Incidents par année{' '}
                         <span className='resultat'>{filteredGroupsData?.length} résultats</span>
                     </h3>
-                    <p className="mt-md" aria-label="Informations sur la recherche">
+                    <p className="mt-md mb-lg" aria-label="Informations sur la recherche">
                         Vous pouvez cliquer sur une année pour appliquer le filtre.
                     </p>
                     <YearTable groupObj={filteredGroupsData} />

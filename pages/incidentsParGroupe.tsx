@@ -40,7 +40,7 @@ export default function IncidentsParGroupe({ database }: IncidentsParGroupeProps
                         Incidents par groupe{' '}
                         <span className='resultat'>{filteredGroupsData?.length} résultats</span>
                     </h3>
-                    <p className="mt-md" aria-label="Informations sur la recherche">
+                    <p className="mt-md mb-lg" aria-label="Informations sur la recherche">
                         Vous pouvez cliquer sur un groupe pour appliquer le filtre.
                     </p>
                     <GroupsTable groupObj={filterObj} />
