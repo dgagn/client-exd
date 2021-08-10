@@ -81,14 +81,14 @@ export default function DatabaseTable({ className, database }: DatabaseTableProp
                         Type d’événement{' '}
                         <span>
                             {orderByType === 'desc' ? (
-                                <BiChevronUp />
+                                <BiChevronUp className="icon" />
                             ) : orderByType === 'asc' ? (
-                                <BiChevronDown />
-                            ) : null}
+                                <BiChevronDown className="icon" />
+                            ) : <BiChevronDown className="icon hidden" />}
                         </span>
                     </th>
                     <th
-                        className="table__heading"
+                        className="table__heading degree-violence"
                         onClick={() => {
                             toggleOrderByDegreeOfViolence();
                         }}
@@ -96,14 +96,14 @@ export default function DatabaseTable({ className, database }: DatabaseTableProp
                         Degré de violence{' '}
                         <span>
                             {orderByDegreeOfViolence === 'desc' ? (
-                                <BiChevronUp />
+                                <BiChevronUp className="icon" />
                             ) : orderByDegreeOfViolence === 'asc' ? (
-                                <BiChevronDown />
-                            ) : null}
+                                <BiChevronDown className="icon" />
+                            ) : <BiChevronDown className="icon hidden" />}
                         </span>
                     </th>
                     <th
-                        className="table__heading"
+                        className="table__heading groups-involved"
                         onClick={() => {
                             toggleOrderByGroupsInvolved();
                         }}
@@ -111,14 +111,14 @@ export default function DatabaseTable({ className, database }: DatabaseTableProp
                         Groupe(s) impliqué(s){' '}
                         <span>
                             {orderByGroupsInvolved === 'desc' ? (
-                                <BiChevronUp />
+                                <BiChevronUp className="icon" />
                             ) : orderByGroupsInvolved === 'asc' ? (
-                                <BiChevronDown />
-                            ) : null}
+                                <BiChevronDown className="icon" />
+                            ) : <BiChevronDown className="icon hidden" />}
                         </span>
                     </th>
                     <th
-                        className="table__heading"
+                        className="table__heading events"
                         onClick={() => {
                             toggleOrderByEvents();
                         }}
@@ -126,10 +126,10 @@ export default function DatabaseTable({ className, database }: DatabaseTableProp
                         Événement{' '}
                         <span>
                             {orderByEvents === 'desc' ? (
-                                <BiChevronUp />
+                                <BiChevronUp className="icon" />
                             ) : orderByEvents === 'asc' ? (
-                                <BiChevronDown />
-                            ) : null}
+                                <BiChevronDown className="icon" />
+                            ) : <BiChevronDown className="icon hidden" />}
                         </span>
                     </th>
                 </tr>

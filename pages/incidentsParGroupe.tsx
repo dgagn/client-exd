@@ -37,8 +37,8 @@ export default function IncidentsParGroupe({ database }: IncidentsParGroupeProps
             <div className="container max-w-xl">
                 <div className="mt-2xl mb-lg">
                     <h3>
-                        Incidents par groupe -{' '}
-                        {filteredGroupsData?.length == 0 ? 0 : filteredGroupsData.length} résultats
+                        Incidents par groupe{' '}
+                        <span className='resultat'>{filteredGroupsData?.length} résultats</span>
                     </h3>
                     <p className="mt-md mb-lg" aria-label="Informations sur la recherche">
                         Vous pouvez cliquer sur un groupe pour appliquer le filtre.

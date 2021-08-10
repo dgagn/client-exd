@@ -1,5 +1,6 @@
 @use "../config/spacing" as *;
 @use "../config/colors" as *;
+@use "../config/breakpoints" as *;
 
 .icon-search {
     position: absolute;
@@ -8,4 +9,8 @@
     margin-top: 48px;
     margin-left: 16px;
     fill: color-get(contrast, 400);
+
+    @include breakpoint(xl, 'not all') {
+        margin-top: 44px;
+    }
 }

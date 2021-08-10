@@ -36,8 +36,8 @@ export default function IncidentsParAnnee({ database }: IncidentsParAnneeProps) 
             <div className="container max-w-xl">
                 <div className="mt-2xl mb-lg">
                     <h3>
-                        Incidents par année -{' '}
-                        {filteredGroupsData?.length == 0 ? 0 : filteredGroupsData.length} résultats
+                        Incidents par année{' '}
+                        <span className='resultat'>{filteredGroupsData?.length} résultats</span>
                     </h3>
                     <p className="mt-md mb-lg" aria-label="Informations sur la recherche">
                         Vous pouvez cliquer sur une année pour appliquer le filtre.
