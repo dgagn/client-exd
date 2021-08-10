@@ -25,16 +25,14 @@ export async function getStaticProps() {
     };
 }
 
-const homeState = ({ filteredDatabase, loadDatabase }: StoreState) => ({ filteredDatabase, loadDatabase });
+const homeState = ({ filteredDatabase, loadDatabase, database }: StoreState) => ({ filteredDatabase, loadDatabase, database });
 
 export default function Home({ database }: HomeProps) {
-    const { filteredDatabase, loadDatabase } = useStore(homeState, shallow);
-
-    useEffect(() => { loadDatabase(database) }, [database])
-
+    const { filteredDatabase, loadDatabase, database: db } = useStore(homeState, shallow);
+    useEffect(() => { loadDatabase(database) }, [database, loadDatabase])
     console.log('render home');
 
-    return (
+    return db.length > 0 ? (
         <>
             <Head>
                 <title>CEFIR - Accueil</title>
@@ -45,7 +43,7 @@ export default function Home({ database }: HomeProps) {
                         <span role="img" aria-label="Un pictogramme de recherche">
                             🔍{' '}
                         </span>
-                        Rechercher - {filteredDatabase?.length == 0 ? 0 : filteredDatabase.length}{' '}
+                        Rechercher - {filteredDatabase?.length}{' '}
                         résultats
                     </h3>
                     <p className="mt-md mb-lg" aria-label="Informations sur la recherche">
@@ -61,6 +59,6 @@ export default function Home({ database }: HomeProps) {
                 </div>
             </div>
         </>
-    );
+    ) : null;
 }
 
