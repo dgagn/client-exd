@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { database } from '../index';
 import { Database } from '../../hooks/use-database';
 import Link from 'next/link';
 import dayjs from 'dayjs';
@@ -7,9 +6,10 @@ import frCa from 'dayjs/locale/fr-ca';
 import Tag from '../../components/tag';
 import classNames from 'classnames';
 import DOMPurify from 'dompurify';
+import getDatabase from '../../utils/database-fetch';
 
 export async function getStaticPaths() {
-    const db = await database();
+    const db = await getDatabase();
     const paths = db.map((entry: Database) => {
         return {
             params: { id: entry._id },
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(ctx: any) {
-    const db: Database[] = await database();
+    const db: Database[] = await getDatabase();
     const id = ctx.params.id;
 
     const entry = db.filter((entry: Database) => {
@@ -89,7 +89,9 @@ export default function Id({ entry }: { entry: Database }) {
                 <div className="mt-2xl mb-2xl">
                     <div className="max-w-prose mx-auto">
                         <Link href="/" passHref>
-                            <button className='button-reset text-bg-fx text-bg-fx--scale-y'>Retour à l&apos;accueil</button>
+                            <button className="button-reset text-bg-fx text-bg-fx--scale-y">
+                                Retour à l&apos;accueil
+                            </button>
                         </Link>
                         <p className="mt-lg">{entry.description}</p>
                         <ul className="flex gap-x-md flex-wrap mt-md">

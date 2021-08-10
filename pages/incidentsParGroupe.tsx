@@ -1,60 +1,52 @@
-import React, { useEffect } from 'react';
-import useStore from '../store/use-store';
-import useDatabase from '../hooks/use-database';
-import { QueryClient } from 'react-query';
-import { dehydrate } from 'react-query/hydration';
-import { database } from './index';
+import React from 'react';
+import { Database } from '../hooks/use-database';
 import { flatten, orderBy, uniq } from 'lodash';
-import GroupsTable from "../components/groups/groups-table";
-import SearchInput from "../components/search-input";
-import Head from "next/head";
+import GroupsTable from '../components/groups/groups-table';
+import Head from 'next/head';
+import getDatabase from '../utils/database-fetch';
+
+interface IncidentsParGroupeProps {
+    database: Database[];
+}
 
 export async function getStaticProps() {
-    const queryClient = new QueryClient();
-    await queryClient.prefetchQuery('database', database, { staleTime: 30000 });
+    const db = await getDatabase();
 
     return {
         props: {
-            dehydratedState: dehydrate(queryClient),
+            database: db,
         },
     };
 }
 
-export default function IncidentsParGroupe() {
-    const database = useDatabase();
-
+export default function IncidentsParGroupe({ database }: IncidentsParGroupeProps) {
     const groupsDatabase = uniq(flatten(database.map((entry) => entry.groupeImplique.split('\n'))));
-
     const filteredGroupsData = groupsDatabase.map((group) => {
         const filtered = database.filter((entry) => entry.groupeImplique.includes(group));
         return {
             data: filtered.length,
-            label: group
+            label: group,
         };
     });
-
-    const filterObj = orderBy(
-        filteredGroupsData,
-        'data',
-        'desc'
-    );
+    const filterObj = orderBy(filteredGroupsData, 'data', 'desc');
 
     return (
-            <>
-                <Head>
-                    <title>CEFIR - Incident par groupe</title>
-                </Head>
-                <div className="container max-w-xl">
-                    <div className="mt-2xl mb-lg">
-                        <h3>
-                            Incidents par groupe - {filteredGroupsData?.length == 0 ? 0 : filteredGroupsData.length} résultats
-                        </h3>
-                        <p className="mt-md mb-lg" aria-label="Informations sur la recherche">
-                            Vous pouvez cliquer sur un groupe pour appliquer le filtre.
-                        </p>
-                        <GroupsTable groupObj={filterObj} />
-                    </div>
+        <>
+            <Head>
+                <title>CEFIR - Incident par groupe</title>
+            </Head>
+            <div className="container max-w-xl">
+                <div className="mt-2xl mb-lg">
+                    <h3>
+                        Incidents par groupe -{' '}
+                        {filteredGroupsData?.length == 0 ? 0 : filteredGroupsData.length} résultats
+                    </h3>
+                    <p className="mt-md mb-lg" aria-label="Informations sur la recherche">
+                        Vous pouvez cliquer sur un groupe pour appliquer le filtre.
+                    </p>
+                    <GroupsTable groupObj={filterObj} />
                 </div>
-            </>
+            </div>
+        </>
     );
 }

@@ -2,6 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import useStore from '../../store/use-store';
 import Link from 'next/link';
+import { BiChevronDown, BiChevronUp } from "react-icons/bi";
+import { orderBy } from 'lodash';
 
 type GroupsTableProps = {
     className?: string;
@@ -13,14 +15,22 @@ type GroupsTableProps = {
 
 export default function GroupsTable({ className, groupObj }: GroupsTableProps) {
     const setFilterSearch = useStore((state) => state.setFilterSearch);
+    const toggleOrderIncidentByGroup = useStore((state) => state.toggleOrderIncidentByGroup);
+    const orderIncidentByGroup = useStore((state) => state.orderIncidentByGroup);
+    const toggleOrderGroupByIncident = useStore((state) => state.toggleOrderGroupByIncident);
+    const orderGroupByIncident = useStore((state) => state.orderGroupByIncident);
+
+    const keys = []
+    const orders = []
+
 
     return (
         <>
             <table className={classNames('table', className)}>
                 <thead>
                     <tr className="table__heading-group">
-                        <th className="table__heading w-full">Groupe</th>
-                        <th className="table__heading pr-3xl">Nombre d&apos;incidents</th>
+                        <th className="table__heading w-full" onClick={toggleOrderIncidentByGroup}>Groupe <span>{orderIncidentByGroup === 'desc' ? <BiChevronUp /> : orderIncidentByGroup === 'asc' ? <BiChevronDown /> : null}</span></th>
+                        <th className="table__heading pr-3xl" onClick={toggleOrderGroupByIncident}>Nombre d&apos;incidents <span>{orderGroupByIncident === 'desc' ? <BiChevronUp /> : orderGroupByIncident === 'asc' ? <BiChevronDown /> : null}</span></th>
                     </tr>
                 </thead>
                 <tbody>

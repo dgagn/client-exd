@@ -1,28 +1,26 @@
 import React from 'react';
-import { QueryClient } from 'react-query';
-import { database } from './index';
-import { dehydrate } from 'react-query/hydration';
-import useDatabase from '../hooks/use-database';
+import { Database } from '../hooks/use-database';
 import YearTable from '../components/year/year-table';
 import { sortBy, uniq } from 'lodash';
-import Head from "next/head";
+import Head from 'next/head';
+import getDatabase from '../utils/database-fetch';
+
+interface IncidentsParAnneeProps {
+    database: Database[];
+}
 
 export async function getStaticProps() {
-    const queryClient = new QueryClient();
-    await queryClient.prefetchQuery('database', database, { staleTime: 30000 });
+    const db = await getDatabase();
 
     return {
         props: {
-            dehydratedState: dehydrate(queryClient),
+            database: db,
         },
     };
 }
 
-export default function IncidentsParAnnee() {
-    const database = useDatabase();
-
+export default function IncidentsParAnnee({ database }: IncidentsParAnneeProps) {
     const yearDatabase = sortBy(uniq(database.map((entry) => new Date(entry.date).getFullYear())));
-
     const filteredGroupsData = yearDatabase.map((year) => {
         const filtered = database.filter((entry) => entry.date.includes(`${year}`));
         return {
