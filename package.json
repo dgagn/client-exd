@@ -17,6 +17,7 @@
         "chart.js": "^3.5.0",
         "classnames": "^2.3.1",
         "dayjs": "^1.10.6",
+        "dompurify": "^2.3.0",
         "lodash": "^4.17.21",
         "next": "11.0.1",
         "next-pwa": "^5.2.24",
@@ -26,6 +27,7 @@
         "react-device-detect": "^1.17.0",
         "react-dom": "^17.0.2",
         "react-icons": "^4.2.0",
+        "react-linkify": "^1.0.0-alpha",
         "react-query": "^3.19.1",
         "react-select": "^4.3.1",
         "react-virtual": "^2.8.0",
@@ -35,9 +37,11 @@
         "zustand": "^3.5.7"
     },
     "devDependencies": {
+        "@types/dompurify": "^2.2.3",
         "@types/lodash": "^4.14.172",
         "@types/nprogress": "^0.2.0",
         "@types/react": "17.0.15",
+        "@types/react-linkify": "^1.0.1",
         "@types/react-select": "^4.0.17",
         "@types/react-virtualized": "^9.21.13",
         "@types/react-window": "^1.8.5",

@@ -2,12 +2,9 @@ import React, { useEffect } from "react";
 import { QueryClient } from "react-query";
 import { database } from "./index";
 import { dehydrate } from "react-query/hydration";
-import useStore from "../store/use-store";
 import useDatabase from "../hooks/use-database";
-import GroupsTable from "../components/groups/groups-table";
 import YearTable from "../components/year/year-table";
 import { flatten, orderBy, sortBy, uniq } from 'lodash';
-import SearchInput from "../components/search-input";
 
 export async function getStaticProps() {
     const queryClient = new QueryClient();
