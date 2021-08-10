@@ -1,4 +1,4 @@
-import { Database } from '../hooks/use-database';
+import { Database } from '../utils/database-fetch';
 import { GetState, SetState } from 'zustand';
 import { StoreState } from './use-store';
 import { ChangeEvent } from 'react';

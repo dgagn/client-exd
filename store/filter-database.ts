@@ -1,5 +1,5 @@
 import { deburr, trim } from 'lodash';
-import { Database } from '../hooks/use-database';
+import { Database } from '../utils/database-fetch';
 
 export type FilterDatabaseProps = {
     database: Database[];

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Dispatch, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { store } from '../pages';
 import { Database } from './use-database';
 
@@ -8,8 +8,8 @@ interface Pagination {
     currentPage: number;
     perPage: number;
     paginatedDatabase: Database[];
-    setPaginationValue: (num: number | string) => any,
-    paginationValue: string | number
+    setPaginationValue: (num: number | string) => any;
+    paginationValue: string | number;
 }
 
 interface DefaultOptions {
@@ -22,13 +22,13 @@ export default function usePagination(): Pagination {
     const database = store((state) => state.database);
     const filteredDatabase = store((state) => state.filteredDatabase);
     const perPage = store((state) => state.perPage);
-    const currentPage = store(state => state.currentPage)
-    const setCurrentPage = store(state => state.setCurrentPage)
-    const paginationValue = store(state => state.paginationValue)
-    const setPaginationValue = store(state => state.setPaginationValue)
-    const setPaginatedDatabase = store(state => state.setPaginatedDatabase)
-    const paginatedDatabase = store(state => state.paginatedDatabase)
-    const setNumberOfPages = store(state => state.setNumberOfPages)
+    const currentPage = store((state) => state.currentPage);
+    const setCurrentPage = store((state) => state.setCurrentPage);
+    const paginationValue = store((state) => state.paginationValue);
+    const setPaginationValue = store((state) => state.setPaginationValue);
+    const setPaginatedDatabase = store((state) => state.setPaginatedDatabase);
+    const paginatedDatabase = store((state) => state.paginatedDatabase);
+    const setNumberOfPages = store((state) => state.setNumberOfPages);
 
     useEffect(() => {
         if (typeof paginationValue !== 'string' && !Number.isNaN(paginationValue)) {
@@ -42,10 +42,14 @@ export default function usePagination(): Pagination {
 
     const indexOfLast = useMemo(() => currentPage * perPage, [currentPage, perPage]);
     const indexOfFirst = useMemo(() => indexOfLast - perPage, [indexOfLast, perPage]);
-    const numberOfPages = useMemo(() => setNumberOfPages(Math.ceil(filteredDatabase!.length / perPage)), [filteredDatabase, perPage, setNumberOfPages]);
+    const numberOfPages = useMemo(
+        () => setNumberOfPages(Math.ceil(filteredDatabase!.length / perPage)),
+        [filteredDatabase, perPage, setNumberOfPages]
+    );
 
     useEffect(() => {
-        if (filteredDatabase) setPaginatedDatabase(filteredDatabase.slice(indexOfFirst, indexOfLast));
+        if (filteredDatabase)
+            setPaginatedDatabase(filteredDatabase.slice(indexOfFirst, indexOfLast));
     }, [database, filteredDatabase, indexOfFirst, indexOfLast, setPaginatedDatabase]);
 
     return {
@@ -54,6 +58,6 @@ export default function usePagination(): Pagination {
         currentPage,
         paginatedDatabase,
         setPaginationValue,
-        paginationValue
-    }
+        paginationValue,
+    };
 }
