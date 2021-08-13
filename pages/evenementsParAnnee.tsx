@@ -18,7 +18,7 @@ export async function getStaticProps() {
     };
 }
 
-export default function IncidentsParAnnee({ database }: IncidentsParAnneeProps) {
+export default function EvenementsParAnnee({ database }: IncidentsParAnneeProps) {
     const yearDatabase = sortBy(uniq(database.map((entry) => new Date(entry.date).getFullYear())));
     const filteredGroupsData = yearDatabase.map((year) => {
         const filtered = database.filter((entry) => entry.date.includes(`${year}`));
@@ -31,12 +31,12 @@ export default function IncidentsParAnnee({ database }: IncidentsParAnneeProps) 
     return (
         <>
             <Head>
-                <title>CEFIR - Incident par année</title>
+                <title>CEFIR - Événements par année</title>
             </Head>
             <div className="container max-w-xl">
                 <div className="mt-2xl mb-lg">
                     <h3>
-                        Incidents par année{' '}
+                        Événements par année{' '}
                         <span className='resultat'>{filteredGroupsData?.length} résultats</span>
                     </h3>
                     <p className="mt-md mb-lg" aria-label="Informations sur la recherche">

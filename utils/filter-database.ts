@@ -46,13 +46,6 @@ export default function filterDatabase({
                     return true;
                 }
                 if (hasExclude) {
-                    console.log(
-                        !normalizedEvenement.includes(finalSearch) &&
-                            !normalizedGroupeImplique.includes(finalSearch) &&
-                            !normalizedDegreViolence.includes(finalSearch) &&
-                            !normalizedDate.includes(finalSearch) &&
-                            !normalizedType.includes(finalSearch)
-                    );
                     return (
                         !normalizedEvenement.includes(finalSearch) &&
                         !normalizedGroupeImplique.includes(finalSearch) &&

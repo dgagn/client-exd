@@ -18,6 +18,13 @@
 .bg-article {
     background: url(/test.jpg?) no-repeat center top;
     background-size: cover;
+    height: 500px;
+    display: flex;
+
+    @include breakpoint(md, 'not all') {
+        display: block;
+        height: auto;
+    }
 }
 
 .hidden {

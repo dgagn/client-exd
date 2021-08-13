@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import axios from 'axios';
+import { orderBy } from 'lodash';
 
 export interface Database {
     _id: string;
@@ -49,6 +50,6 @@ export default async function getDatabase() {
         cachedData = data;
     }
 
-    return cachedData;
+    return orderBy(cachedData, 'date', 'asc');
 }
 

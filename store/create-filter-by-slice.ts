@@ -1,6 +1,7 @@
 import { GetState, SetState } from 'zustand';
 import { StoreState } from './use-store';
 import filterDatabase, { FilterDatabaseProps } from "../utils/filter-database";
+import { deburr, trim } from 'lodash';
 
 export interface FilterBySlice {
     filterByDate: boolean;
@@ -16,6 +17,8 @@ export interface FilterBySlice {
     toggleFilterByEvents: () => void;
 
     filterDatabase: (options: FilterDatabaseProps) => void;
+
+    filterSubDatabase: () => void;
 }
 
 export default function createFilterBySlice(set: SetState<StoreState>, get: GetState<StoreState>): FilterBySlice {
@@ -32,6 +35,19 @@ export default function createFilterBySlice(set: SetState<StoreState>, get: GetS
         toggleFilterByGroupsInvolved: () => set({ filterByGroupsInvolved: !get().filterByGroupsInvolved }),
         toggleFilterByType: () => set({ filterByType: !get().filterByType }),
 
-        filterDatabase: (options) => set({ filteredDatabase: filterDatabase(options) })
+        filterDatabase: (options) => set({ filteredDatabase: get().orderDatabase(filterDatabase(options)) }),
+
+        filterSubDatabase: () => {
+            const search = get().groupsFilterSearch
+            const database = get().databaseByGroups
+
+            const filtered = database.filter((entry) => {
+                const normalizedLabel = deburr(trim(entry.label.toLowerCase()))
+                const normalizedSearch = deburr(trim(search.toLowerCase()))
+                return normalizedLabel.includes(normalizedSearch)
+            })
+
+            set({ filteredDatabaseByGroups: get().orderSubDatabase(filtered) })
+        }
     };
 };

@@ -1,11 +1,67 @@
 import React, { useMemo } from 'react';
-import useStore, { StoreState } from "../store/use-store";
-import shallow from "zustand/shallow";
+import useStore, { StoreState } from '../store/use-store';
+import shallow from 'zustand/shallow';
 
-const showMoreSelector = ({ showMoreFilters, toggleShowMoreFilters, resetFilters }: StoreState) => ({ showMoreFilters, toggleShowMoreFilters, resetFilters })
+const showMoreSelector = ({
+    showMoreFilters,
+    toggleShowMoreFilters,
+    resetFilters,
+    filterSearch,
+    filterByDate,
+    filterByType,
+    filterByEvents,
+    filteredDatabase,
+    database,
+    filterByGroupsInvolved,
+    filterByDegreeOfViolence,
+}: StoreState) => ({
+    showMoreFilters,
+    toggleShowMoreFilters,
+    resetFilters,
+    filterSearch,
+    filterByDate,
+    filterByType,
+    filterByEvents,
+    filteredDatabase,
+    database,
+    filterByGroupsInvolved,
+    filterByDegreeOfViolence,
+});
 
 export default function ShowMore() {
-    const { showMoreFilters, toggleShowMoreFilters, resetFilters } = useStore(showMoreSelector, shallow);
+    const {
+        showMoreFilters,
+        toggleShowMoreFilters,
+        resetFilters,
+        filterSearch,
+        filterByDate,
+        filterByType,
+        filterByEvents,
+        filteredDatabase,
+        database,
+        filterByGroupsInvolved,
+        filterByDegreeOfViolence,
+    } = useStore(showMoreSelector, shallow);
+    const canReset = useMemo(
+        () =>
+            filterSearch !== '' ||
+            !filterByDate ||
+            !filterByType ||
+            !filterByEvents ||
+            filteredDatabase === database ||
+            !filterByGroupsInvolved ||
+            !filterByDegreeOfViolence,
+        [
+            filterSearch,
+            filterByDate,
+            filterByType,
+            filterByEvents,
+            filteredDatabase,
+            database,
+            filterByGroupsInvolved,
+            filterByDegreeOfViolence,
+        ]
+    );
 
     const showMoreText = useMemo(() => {
         return showMoreFilters
@@ -21,12 +77,16 @@ export default function ShowMore() {
             >
                 {showMoreText}
             </button>
-            <button
+            {canReset ? (
+                <button
                     className="button-reset text-bg-fx text-bg-fx--scale-y"
                     onClick={resetFilters}
-            >
-                Reinitialiser les filtres
-            </button>
+                >
+                    Reinitialiser les filtres
+                </button>
+            ) : (
+                <div />
+            )}
         </div>
     );
 }

@@ -25,7 +25,7 @@ export default function useFilter() {
                 degreeOfViolence: filterByDegreeOfViolence,
                 database,
             });
-        }, 300),
+        }, 50),
         [
             filterSearch,
             filterByDate,

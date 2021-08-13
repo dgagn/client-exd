@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo, MouseEvent } from "react";
 import { Database } from '../../utils/fetch-database';
 import classNames from 'classnames';
 import Link from 'next/link';
@@ -26,9 +26,16 @@ export default function DatabaseEntry({ database }: DatabaseEntry) {
         [database.groupeImplique]
     );
 
+    const handleMiddleMouseClick = useCallback((e: MouseEvent<HTMLTableRowElement>) => {
+        const middleClick = e.button === 1
+        if(middleClick) {
+            window.open(`/evenement/${database._id}`, '_blank')
+        }
+    }, [database._id])
+
     return (
-        <Link href={`/incident/${database._id}`} passHref>
-            <tr className="table__group">
+        <Link href={`/evenement/${database._id}`} passHref>
+            <tr className="table__group" onMouseDown={handleMiddleMouseClick}>
                 <td className="table__item" data-title={'Date'}>
                     {database.date}
                 </td>

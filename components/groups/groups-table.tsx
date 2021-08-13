@@ -1,8 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
-import useStore from '../../store/use-store';
+import useStore, { StoreState } from '../../store/use-store';
 import Link from 'next/link';
 import { BiChevronDown, BiChevronUp } from 'react-icons/bi';
+import shallow from 'zustand/shallow';
 
 type GroupsTableProps = {
     className?: string;
@@ -12,39 +13,55 @@ type GroupsTableProps = {
     }[];
 };
 
-export default function GroupsTable({ className, groupObj }: GroupsTableProps) {
-    const setFilterSearch = useStore((state) => state.setFilterSearch);
-    const toggleOrderIncidentByGroup = useStore((state) => state.toggleOrderIncidentByGroup);
-    const orderIncidentByGroup = useStore((state) => state.orderIncidentByGroup);
-    const toggleOrderGroupByIncident = useStore((state) => state.toggleOrderGroupByIncident);
-    const orderGroupByIncident = useStore((state) => state.orderGroupByIncident);
+const groupsState = ({
+    setFilterSearch,
+    toggleOrderEventsByData,
+    toggleOrderEventsByGroupsInvolved,
+    orderEventsByGroupsInvolved,
+    orderEventsByData,
+}: StoreState) => ({
+    setFilterSearch,
+    toggleOrderEventsByData,
+    toggleOrderEventsByGroupsInvolved,
+    orderEventsByGroupsInvolved,
+    orderEventsByData,
+});
 
-    const keys = [];
-    const orders = [];
+export default function GroupsTable({ className, groupObj }: GroupsTableProps) {
+    const {
+        setFilterSearch,
+        toggleOrderEventsByData,
+        toggleOrderEventsByGroupsInvolved,
+        orderEventsByGroupsInvolved,
+        orderEventsByData,
+    } = useStore(groupsState, shallow);
 
     return (
         <>
             <table className={classNames('table', className)}>
                 <thead>
                     <tr className="table__heading-group">
-                        <th className="table__heading w-full" onClick={toggleOrderIncidentByGroup}>
-                            Groupe{' '}
+                        <th
+                            className="table__heading w-full"
+                            onClick={toggleOrderEventsByGroupsInvolved}
+                        >
+                            Groupe
                             <span>
-                                {orderIncidentByGroup === 'desc' ? (
-                                    <BiChevronUp />
-                                ) : orderIncidentByGroup === 'asc' ? (
-                                    <BiChevronDown />
-                                ) : null}
+                                {orderEventsByGroupsInvolved === 'desc' ? (
+                                    <BiChevronUp className="icon" />
+                                ) : orderEventsByGroupsInvolved === 'asc' ? (
+                                    <BiChevronDown className="icon" />
+                                ) : <BiChevronUp className="hidden" />}
                             </span>
                         </th>
-                        <th className="table__heading pr-3xl" onClick={toggleOrderGroupByIncident}>
-                            Nombre d&apos;incidents{' '}
+                        <th className="table__heading pr-3xl" onClick={toggleOrderEventsByData}>
+                            Nombre d&apos;événements{' '}
                             <span>
-                                {orderGroupByIncident === 'desc' ? (
-                                    <BiChevronUp />
-                                ) : orderGroupByIncident === 'asc' ? (
-                                    <BiChevronDown />
-                                ) : null}
+                                {orderEventsByData === 'desc' ? (
+                                    <BiChevronUp className="icon" />
+                                ) : orderEventsByData === 'asc' ? (
+                                    <BiChevronDown className="icon" />
+                                ) : <BiChevronUp className="hidden" />}
                             </span>
                         </th>
                     </tr>
@@ -61,7 +78,7 @@ export default function GroupsTable({ className, groupObj }: GroupsTableProps) {
                                     <td className="table__item" data-title={'Groupe'}>
                                         {group.label}
                                     </td>
-                                    <td className="table__item" data-title={'Incidents'}>
+                                    <td className="table__item" data-title={'Événement'}>
                                         {group.data}
                                     </td>
                                 </tr>

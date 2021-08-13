@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Database } from '../utils/fetch-database';
 import { GetState, SetState } from 'zustand';
 import { StoreState } from './use-store';
@@ -43,7 +45,7 @@ const createFilterSlice = (set: SetState<StoreState>, get: GetState<StoreState>)
         const keys: OrderByKeys[] & Function[] = [];
         const orders: any[] = [];
 
-        get().orderByDate !== 'none' &&
+        get().orderByDate &&
             keys.push((o: Database) => {
                 return get().orderByDegreeOfViolence !== 'none'
                     ? new Date(o.date).getFullYear()

@@ -100,6 +100,7 @@ export default function Home({ database }: HomeProps) {
                     <SearchInput className={'mt-md'} />
                     <ShowMore />
                     <ShowMoreFilters />
+
                     <DatabaseTable database={database.slice(0, 50)} className={'mb-2xl'} />
                 </div>
             </div>

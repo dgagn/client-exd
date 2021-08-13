@@ -2,9 +2,9 @@ import React from 'react';
 import classNames from 'classnames';
 import dynamic from 'next/dynamic';
 import useStore, { StoreState } from '../../store/use-store';
-import { BiChevronDown, BiChevronUp } from 'react-icons/bi';
 import { Database } from '../../utils/fetch-database';
 import shallow from 'zustand/shallow';
+import { BiChevronDown, BiChevronUp } from 'react-icons/bi';
 
 const DatabaseEntry = dynamic(() => import('./database-entry'));
 
@@ -13,100 +13,84 @@ type DatabaseTableProps = {
     database: Database[];
 };
 
-const databaseTableSelector = ({
+const tableState = ({
     toggleOrderByDate,
     orderByDate,
+    orderByDegreeOfViolence,
+    toggleOrderByDegreeOfViolence,
+    orderByEvents,
+    toggleOrderByEvents,
+    orderByGroupsInvolved,
+    toggleOrderByGroupsInvolved,
     toggleOrderByType,
     orderByType,
-    orderByEvents,
-    orderByDegreeOfViolence,
-    toggleOrderByEvents,
-    toggleOrderByGroupsInvolved,
-    orderByGroupsInvolved,
-    toggleOrderByDegreeOfViolence,
 }: StoreState) => ({
     toggleOrderByDate,
     orderByDate,
+    toggleOrderByDegreeOfViolence,
+    orderByDegreeOfViolence,
+    orderByEvents,
+    toggleOrderByEvents,
+    orderByGroupsInvolved,
+    toggleOrderByGroupsInvolved,
     toggleOrderByType,
     orderByType,
-    orderByEvents,
-    orderByDegreeOfViolence,
-    toggleOrderByEvents,
-    toggleOrderByGroupsInvolved,
-    orderByGroupsInvolved,
-    toggleOrderByDegreeOfViolence,
 });
 
 export default function DatabaseTable({ className, database }: DatabaseTableProps) {
     const {
         toggleOrderByDate,
         orderByDate,
+        toggleOrderByDegreeOfViolence,
+        orderByDegreeOfViolence,
+        orderByEvents,
+        toggleOrderByEvents,
+        orderByGroupsInvolved,
+        toggleOrderByGroupsInvolved,
         toggleOrderByType,
         orderByType,
-        orderByEvents,
-        orderByDegreeOfViolence,
-        toggleOrderByEvents,
-        toggleOrderByGroupsInvolved,
-        orderByGroupsInvolved,
-        toggleOrderByDegreeOfViolence,
-    } = useStore(databaseTableSelector, shallow);
+    } = useStore(tableState, shallow);
 
     return database.length > 0 ? (
         <table className={classNames('table', className)}>
             <thead>
                 <tr className="table__heading-group">
-                    <th
-                        className="table__heading"
-                        onClick={() => {
-                            toggleOrderByDate();
-                        }}
-                    >
-                        Date{' '}
+                    <th className="table__heading" onClick={toggleOrderByDate}>
+                        Date
                         <span>
                             {orderByDate === 'desc' ? (
                                 <BiChevronUp className="icon" />
                             ) : orderByDate === 'asc' ? (
                                 <BiChevronDown className="icon" />
-                            ) : (
-                                <BiChevronDown className="icon hidden" />
-                            )}
+                            ) : null}
                         </span>
                     </th>
-                    <th
-                        className="table__heading"
-                        onClick={() => {
-                            toggleOrderByType();
-                        }}
-                    >
+                    <th className="table__heading" onClick={toggleOrderByType}>
                         Type d’événement{' '}
                         <span>
                             {orderByType === 'desc' ? (
                                 <BiChevronUp className="icon" />
                             ) : orderByType === 'asc' ? (
                                 <BiChevronDown className="icon" />
-                            ) : <BiChevronDown className="icon hidden" />}
+                            ) : null}
                         </span>
                     </th>
                     <th
                         className="table__heading degree-violence"
-                        onClick={() => {
-                            toggleOrderByDegreeOfViolence();
-                        }}
+                        onClick={toggleOrderByDegreeOfViolence}
                     >
-                        Degré de violence{' '}
+                        Degré de violence
                         <span>
                             {orderByDegreeOfViolence === 'desc' ? (
                                 <BiChevronUp className="icon" />
                             ) : orderByDegreeOfViolence === 'asc' ? (
                                 <BiChevronDown className="icon" />
-                            ) : <BiChevronDown className="icon hidden" />}
+                            ) : null}
                         </span>
                     </th>
                     <th
                         className="table__heading groups-involved"
-                        onClick={() => {
-                            toggleOrderByGroupsInvolved();
-                        }}
+                        onClick={toggleOrderByGroupsInvolved}
                     >
                         Groupe(s) impliqué(s){' '}
                         <span>
@@ -114,22 +98,17 @@ export default function DatabaseTable({ className, database }: DatabaseTableProp
                                 <BiChevronUp className="icon" />
                             ) : orderByGroupsInvolved === 'asc' ? (
                                 <BiChevronDown className="icon" />
-                            ) : <BiChevronDown className="icon hidden" />}
+                            ) : null}
                         </span>
                     </th>
-                    <th
-                        className="table__heading events"
-                        onClick={() => {
-                            toggleOrderByEvents();
-                        }}
-                    >
+                    <th className="table__heading events" onClick={toggleOrderByEvents}>
                         Événement{' '}
                         <span>
                             {orderByEvents === 'desc' ? (
                                 <BiChevronUp className="icon" />
                             ) : orderByEvents === 'asc' ? (
                                 <BiChevronDown className="icon" />
-                            ) : <BiChevronDown className="icon hidden" />}
+                            ) : null}
                         </span>
                     </th>
                 </tr>

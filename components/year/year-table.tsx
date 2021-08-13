@@ -20,7 +20,7 @@ export default function YearTable({ className, groupObj }: GroupsTableProps) {
                 <thead>
                     <tr className="table__heading-group">
                         <th className="table__heading w-full">Année</th>
-                        <th className="table__heading pr-3xl">Nombre d&apos;incidents</th>
+                        <th className="table__heading pr-3xl">Nombre d&apos;événements</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,7 +35,7 @@ export default function YearTable({ className, groupObj }: GroupsTableProps) {
                                     <td className="table__item" data-title={'Groupe'}>
                                         {group.label}
                                     </td>
-                                    <td className="table__item" data-title={'Incidents'}>
+                                    <td className="table__item" data-title={'Événement'}>
                                         {group.data}
                                     </td>
                                 </tr>

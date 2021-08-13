@@ -28,13 +28,25 @@ export default function Nav() {
                     />
                     <ul className="nav__list" aria-label="Liens de navigation principal du CEFIR">
                         <li aria-label="Lien vers l'accueil">
-                            <Link href={'/'}>Accueil</Link>
+                            <Link href={'/'} passHref>
+                                <button className="button-reset text-bg-fx text-bg-fx--scale-y">
+                                    Accueil
+                                </button>
+                            </Link>
                         </li>
                         <li aria-label="Lien vers les incidents par groupes">
-                            <Link href={'/incidentsParGroupe'}>Incidents par groupe</Link>
+                            <Link href={'/evenementsParGroupe'}>
+                                <button className="button-reset text-bg-fx text-bg-fx--scale-y">
+                                    Événements par groupe
+                                </button>
+                            </Link>
                         </li>
                         <li aria-label="Lien vers les incidents par groupes">
-                            <Link href={'/incidentsParAnnee'}>Incidents par année</Link>
+                            <Link href={'/evenementsParAnnee'}>
+                                <button className="button-reset text-bg-fx text-bg-fx--scale-y">
+                                    Événements par année
+                                </button>
+                            </Link>
                         </li>
                         <li>
                             <button
@@ -53,7 +65,6 @@ export default function Nav() {
                         <div className="hamburger-inner" />
                     </div>
                 </div>*/}
-
         </>
     );
 }

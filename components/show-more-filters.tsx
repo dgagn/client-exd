@@ -18,29 +18,6 @@ export default function ShowMoreFilters() {
                 <span role='img' aria-label='todo'>📝</span> Permettre à l&apos;utilisateur de sauvegarder les recherches
                 <br/>
                 <span role='img' aria-label='todo'>📝</span> Permettre à l&apos;utilisateur de télécharger la base de données
-                <br/><br/>
-                Example de recherche complexes:
-                <br />
-                <button
-                    className="button-reset text-bg-fx text-bg-fx--scale-y"
-                    onClick={() => setFilterSearch('!atalante, elevee')}
-                >
-                    !atalante, elevee
-                </button>
-                <br />
-                <button
-                    className="button-reset text-bg-fx text-bg-fx--scale-y"
-                    onClick={() => setFilterSearch('atalante, elevee, !la meute')}
-                >
-                    atalante, elevee, !la meute
-                </button>
-                <br />
-                <button
-                    className="button-reset text-bg-fx text-bg-fx--scale-y"
-                    onClick={() => setFilterSearch('elevee, montreal')}
-                >
-                    elevee, montreal
-                </button>
             </div>
         </div>
     ) : null;
