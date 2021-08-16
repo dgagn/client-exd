@@ -15,7 +15,12 @@ export default function createResetFiltersSlice(set: SetState<StoreState>, get: 
                 filterByDegreeOfViolence: true,
                 filterByGroupsInvolved: true,
                 filterByEvents: true,
-                filteredDatabase: get().database
+                filteredDatabase: get().database,
+                orderByDate: 'none',
+                orderByEvents: 'none',
+                orderByType: 'none',
+                orderByDegreeOfViolence: 'none',
+                orderByGroupsInvolved: 'none'
             });
         }
     };

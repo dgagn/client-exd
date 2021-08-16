@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from "react";
 import useStore, { StoreState } from '../store/use-store';
 import shallow from 'zustand/shallow';
 
@@ -14,6 +14,11 @@ const showMoreSelector = ({
     database,
     filterByGroupsInvolved,
     filterByDegreeOfViolence,
+                              orderByDate,
+orderByEvents,
+orderByType,
+orderByDegreeOfViolence,
+orderByGroupsInvolved
 }: StoreState) => ({
     showMoreFilters,
     toggleShowMoreFilters,
@@ -26,9 +31,15 @@ const showMoreSelector = ({
     database,
     filterByGroupsInvolved,
     filterByDegreeOfViolence,
+    orderByDate,
+    orderByEvents,
+    orderByType,
+    orderByDegreeOfViolence,
+    orderByGroupsInvolved
 });
 
 export default function ShowMore() {
+    console.log('render');
     const {
         showMoreFilters,
         toggleShowMoreFilters,
@@ -41,16 +52,26 @@ export default function ShowMore() {
         database,
         filterByGroupsInvolved,
         filterByDegreeOfViolence,
+        orderByDate,
+        orderByEvents,
+        orderByType,
+        orderByDegreeOfViolence,
+        orderByGroupsInvolved
     } = useStore(showMoreSelector, shallow);
     const canReset = useMemo(
-        () =>
-            filterSearch !== '' ||
-            !filterByDate ||
-            !filterByType ||
-            !filterByEvents ||
-            filteredDatabase === database ||
-            !filterByGroupsInvolved ||
-            !filterByDegreeOfViolence,
+        () => {
+            return filterSearch !== '' ||
+                !filterByDate ||
+                !filterByType ||
+                !filterByEvents ||
+                !filterByGroupsInvolved ||
+                !filterByDegreeOfViolence ||
+                orderByDate !== 'none' ||
+                orderByEvents !== 'none' ||
+                orderByType !== 'none' ||
+                orderByDegreeOfViolence !== 'none' ||
+                orderByGroupsInvolved !== 'none'
+        },
         [
             filterSearch,
             filterByDate,
@@ -60,6 +81,11 @@ export default function ShowMore() {
             database,
             filterByGroupsInvolved,
             filterByDegreeOfViolence,
+            orderByDate,
+            orderByEvents,
+            orderByType,
+            orderByDegreeOfViolence,
+            orderByGroupsInvolved
         ]
     );
 

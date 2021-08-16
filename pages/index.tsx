@@ -42,6 +42,7 @@ export default function Home({ database }: HomeProps) {
     useEffect(() => loadDatabase(database), []);
     const router = useRouter()
 
+
     useEffect(() => {
         const elem = id !== '' && document.getElementById(`${id}`)
         console.log(elem);
@@ -49,6 +50,7 @@ export default function Home({ database }: HomeProps) {
             elem!.scrollIntoView()
         }
     }, [id])
+
 
     const percent = useMemo(() => {
         return `${((viewedIds.length / database.length) * 100).toFixed(2)} %`
@@ -68,9 +70,8 @@ export default function Home({ database }: HomeProps) {
                         Rechercher{' '}
                         <span className="resultat">{filteredDatabase?.length} résultats</span>
                     </h3>
-                    {percent}
                     <p className="mt-md mb-lg max-w-sm" aria-label="Informations sur les balises">
-                        Cliquer sur les balises pour exclure les colonnes dans la recherche.
+                        Cliquer sur les balises pour exclure les colonnes dans la recherche. ({percent})
                     </p>
 
                     <Tags />

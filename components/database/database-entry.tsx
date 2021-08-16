@@ -6,6 +6,8 @@ import useStore, { StoreState } from "../../store/use-store";
 import shallow from "zustand/shallow";
 import { BsFillEyeFill } from 'react-icons/bs'
 import usePersistantStore, { PersistantStoreState } from "../../store/use-persistant-store";
+import { useMediaQuery } from 'beautiful-react-hooks'
+
 
 type DatabaseEntry = {
     database: Database;
@@ -44,13 +46,19 @@ export default function DatabaseEntry({ database }: DatabaseEntry) {
         }
     }, [database._id])
 
+    const isSmall = useMediaQuery('(max-width: 64rem)')
+
     return (
         <Link href={`/evenement/${database._id}`} passHref>
             <tr className={classNames("table__group", {
                 'bg-primary-50': id === database._id
             })} onMouseDown={handleMiddleMouseClick} id={database._id}>
                 <td className="table__item" data-title={'Date'}>
-                    {database.date}
+                    {database.date} {isSmall && viewedIds.includes(database._id) ? (
+                        <div className='text-right text-primary-400 flex eye bg-primary-100 p-3xs rounded-full'>
+                            <BsFillEyeFill />
+                        </div>
+                    ) : null}
                 </td>
                 <td className="table__item" data-title={'Type'}>
                     {database.type}
@@ -72,11 +80,11 @@ export default function DatabaseEntry({ database }: DatabaseEntry) {
                     ))}
                 </td>
                 <td className="table__item" data-title={'Événement'}>
-                    {viewedIds.includes(database._id) && (
+                    {viewedIds.includes(database._id) && !isSmall ? (
                         <div className='text-right text-primary-400 flex eye bg-primary-100 p-3xs rounded-full'>
                             <BsFillEyeFill />
                         </div>
-                    )}
+                    ) : null}
                     {database.evenement}
                 </td>
             </tr>
