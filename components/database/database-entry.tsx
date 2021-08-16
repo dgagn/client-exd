@@ -4,15 +4,19 @@ import classNames from 'classnames';
 import Link from 'next/link';
 import useStore, { StoreState } from "../../store/use-store";
 import shallow from "zustand/shallow";
+import { BsFillEyeFill } from 'react-icons/bs'
+import usePersistantStore, { PersistantStoreState } from "../../store/use-persistant-store";
 
 type DatabaseEntry = {
     database: Database;
 };
 
 const databaseState = ({ id }: StoreState) => ({ id })
+const databasePersistState = ({ viewedIds }: PersistantStoreState) => ({ viewedIds })
 
 export default function DatabaseEntry({ database }: DatabaseEntry) {
     const { id } = useStore(databaseState, shallow)
+    const { viewedIds } = usePersistantStore(databasePersistState, shallow)
 
     const degreeOfViolenceClasses = classNames('table__item', {
         'text-success-800': database.degreViolence.includes('Aucune'),
@@ -68,6 +72,11 @@ export default function DatabaseEntry({ database }: DatabaseEntry) {
                     ))}
                 </td>
                 <td className="table__item" data-title={'Événement'}>
+                    {viewedIds.includes(database._id) && (
+                        <div className='text-right text-primary-400 flex eye bg-primary-100 p-3xs rounded-full'>
+                            <BsFillEyeFill />
+                        </div>
+                    )}
                     {database.evenement}
                 </td>
             </tr>

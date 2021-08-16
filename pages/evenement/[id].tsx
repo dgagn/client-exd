@@ -9,6 +9,7 @@ import getDatabase, { Database } from '../../utils/fetch-database';
 import useStore, { StoreState } from '../../store/use-store';
 import shallow from 'zustand/shallow';
 import Head from 'next/head';
+import usePersistantStore, { PersistantStoreState } from "../../store/use-persistant-store";
 
 export async function getStaticPaths() {
     const db = await getDatabase();
@@ -39,10 +40,12 @@ export async function getStaticProps(ctx: any) {
 }
 
 const idState = ({ filteredDatabase, setId }: StoreState) => ({ filteredDatabase, setId });
+const idPersistantState = ({ setPersistantViewedIds }: PersistantStoreState) => ({ setPersistantViewedIds });
 
 export default function Id({ entry }: { entry: Database }) {
     const [html, setHtml] = useState<any>(null);
     const { filteredDatabase, setId } = useStore(idState, shallow);
+    const { setPersistantViewedIds } = usePersistantStore(idPersistantState, shallow);
     const [nextId, setNextId] = useState<string | null>(null);
     const [prevId, setPrevId] = useState<string | null>(null);
 
@@ -57,6 +60,8 @@ export default function Id({ entry }: { entry: Database }) {
         nextArticleId ? setNextId(nextArticleId) : setNextId(null);
         prevArticleId ? setPrevId(prevArticleId) : setPrevId(null);
         setId(entry._id)
+
+        setPersistantViewedIds(entry._id)
     }, [filteredDatabase, entry._id]);
 
     const degreeOfViolenceClasses = classNames('', {

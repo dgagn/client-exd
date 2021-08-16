@@ -17,6 +17,7 @@
     }
 
     &__item {
+        position: relative;
         padding: spacing-get(sm) spacing-get(sm) spacing-get(sm) 45%;
 
         &::before {

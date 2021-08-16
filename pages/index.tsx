@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from "react";
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import useStore, { StoreState } from '../store/use-store';
 import getDatabase, { Database } from '../utils/fetch-database';
 import shallow from 'zustand/shallow';
 import { useRouter } from "next/router";
+import usePersistantStore, { PersistantStoreState } from "../store/use-persistant-store";
 
 const SearchInput = dynamic(() => import('../components/search-input'));
 const DatabaseTable = dynamic(() => import('../components/database/database-table'));
@@ -32,9 +33,12 @@ const homeState = ({ filteredDatabase, loadDatabase, database, id }: StoreState)
     database,
     id
 });
+const homePersistState = ({ viewedIds }: PersistantStoreState) => ({ viewedIds });
+
 
 export default function Home({ database }: HomeProps) {
     const { filteredDatabase, loadDatabase, database: db, id } = useStore(homeState, shallow);
+    const { viewedIds } = usePersistantStore(homePersistState, shallow);
     useEffect(() => loadDatabase(database), []);
     const router = useRouter()
 
@@ -45,6 +49,10 @@ export default function Home({ database }: HomeProps) {
             elem!.scrollIntoView()
         }
     }, [id])
+
+    const percent = useMemo(() => {
+        return `${((viewedIds.length / database.length) * 100).toFixed(2)} %`
+    }, [viewedIds.length, database.length])
 
     return db.length > 0 && database.length > 0 ? (
         <>
@@ -60,6 +68,7 @@ export default function Home({ database }: HomeProps) {
                         Rechercher{' '}
                         <span className="resultat">{filteredDatabase?.length} résultats</span>
                     </h3>
+                    {percent}
                     <p className="mt-md mb-lg max-w-sm" aria-label="Informations sur les balises">
                         Cliquer sur les balises pour exclure les colonnes dans la recherche.
                     </p>
