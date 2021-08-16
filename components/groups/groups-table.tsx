@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import useStore, { StoreState } from '../../store/use-store';
 import Link from 'next/link';
@@ -19,12 +19,14 @@ const groupsState = ({
     toggleOrderEventsByGroupsInvolved,
     orderEventsByGroupsInvolved,
     orderEventsByData,
+    setId,
 }: StoreState) => ({
     setFilterSearch,
     toggleOrderEventsByData,
     toggleOrderEventsByGroupsInvolved,
     orderEventsByGroupsInvolved,
     orderEventsByData,
+    setId,
 });
 
 export default function GroupsTable({ className, groupObj }: GroupsTableProps) {
@@ -34,7 +36,12 @@ export default function GroupsTable({ className, groupObj }: GroupsTableProps) {
         toggleOrderEventsByGroupsInvolved,
         orderEventsByGroupsInvolved,
         orderEventsByData,
+        setId,
     } = useStore(groupsState, shallow);
+
+    useEffect(() => {
+        setId('');
+    }, []);
 
     return (
         <>
@@ -51,7 +58,9 @@ export default function GroupsTable({ className, groupObj }: GroupsTableProps) {
                                     <BiChevronUp className="icon" />
                                 ) : orderEventsByGroupsInvolved === 'asc' ? (
                                     <BiChevronDown className="icon" />
-                                ) : <BiChevronUp className="hidden" />}
+                                ) : (
+                                    <BiChevronUp className="hidden" />
+                                )}
                             </span>
                         </th>
                         <th className="table__heading pr-3xl" onClick={toggleOrderEventsByData}>
@@ -61,7 +70,9 @@ export default function GroupsTable({ className, groupObj }: GroupsTableProps) {
                                     <BiChevronUp className="icon" />
                                 ) : orderEventsByData === 'asc' ? (
                                     <BiChevronDown className="icon" />
-                                ) : <BiChevronUp className="hidden" />}
+                                ) : (
+                                    <BiChevronUp className="hidden" />
+                                )}
                             </span>
                         </th>
                     </tr>

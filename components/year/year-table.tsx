@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import classNames from 'classnames';
-import useStore from '../../store/use-store';
+import useStore, { StoreState } from "../../store/use-store";
 import Link from 'next/link';
+import shallow from "zustand/shallow";
 
 type GroupsTableProps = {
     className?: string;
@@ -11,8 +12,14 @@ type GroupsTableProps = {
     }[];
 };
 
+const yearState = ({ setId, setFilterSearch }: StoreState) => ({ setId, setFilterSearch })
+
 export default function YearTable({ className, groupObj }: GroupsTableProps) {
-    const setFilterSearch = useStore((state) => state.setFilterSearch);
+    const { setId, setFilterSearch } = useStore(yearState, shallow);
+
+    useEffect(() => {
+        setId('')
+    }, [])
 
     return (
         <>
@@ -29,7 +36,10 @@ export default function YearTable({ className, groupObj }: GroupsTableProps) {
                             <Link href="/" key={group.label} passHref>
                                 <tr
                                     key={group.label}
-                                    onClick={() => setFilterSearch(group.label)}
+                                    onClick={() => {
+                                        setId('')
+                                        setFilterSearch(group.label)
+                                    }}
                                     className="pointer table__group"
                                 >
                                     <td className="table__item" data-title={'Groupe'}>

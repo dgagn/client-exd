@@ -4,6 +4,7 @@ import Head from 'next/head';
 import useStore, { StoreState } from '../store/use-store';
 import getDatabase, { Database } from '../utils/fetch-database';
 import shallow from 'zustand/shallow';
+import { useRouter } from "next/router";
 
 const SearchInput = dynamic(() => import('../components/search-input'));
 const DatabaseTable = dynamic(() => import('../components/database/database-table'));
@@ -25,15 +26,25 @@ export async function getStaticProps() {
     };
 }
 
-const homeState = ({ filteredDatabase, loadDatabase, database }: StoreState) => ({
+const homeState = ({ filteredDatabase, loadDatabase, database, id }: StoreState) => ({
     filteredDatabase,
     loadDatabase,
     database,
+    id
 });
 
 export default function Home({ database }: HomeProps) {
-    const { filteredDatabase, loadDatabase, database: db } = useStore(homeState, shallow);
+    const { filteredDatabase, loadDatabase, database: db, id } = useStore(homeState, shallow);
     useEffect(() => loadDatabase(database), []);
+    const router = useRouter()
+
+    useEffect(() => {
+        const elem = id !== '' && document.getElementById(`${id}`)
+        console.log(elem);
+        if(elem) {
+            elem!.scrollIntoView()
+        }
+    }, [id])
 
     return db.length > 0 && database.length > 0 ? (
         <>

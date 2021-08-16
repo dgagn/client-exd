@@ -53,7 +53,12 @@ export default function EvenementsParGroupe({ database }: IncidentsParGroupeProp
                     </p>
 
                     <SearchGroupsFilter className='mb-xl' />
-
+                    <p
+                            className="font-italic mt-lg mb-sm"
+                            aria-label="Informations sur les balises"
+                    >
+                        Cliquer sur une colonne pour l&apos;ordonner.
+                    </p>
                     <GroupsTable groupObj={filteredDatabaseByGroups} />
                 </div>
             </div>

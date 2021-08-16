@@ -38,13 +38,14 @@ export async function getStaticProps(ctx: any) {
     };
 }
 
-const idState = ({ filteredDatabase }: StoreState) => ({ filteredDatabase });
+const idState = ({ filteredDatabase, setId }: StoreState) => ({ filteredDatabase, setId });
 
 export default function Id({ entry }: { entry: Database }) {
     const [html, setHtml] = useState<any>(null);
-    const { filteredDatabase } = useStore(idState, shallow);
+    const { filteredDatabase, setId } = useStore(idState, shallow);
     const [nextId, setNextId] = useState<string | null>(null);
     const [prevId, setPrevId] = useState<string | null>(null);
+
 
     useEffect(() => {
         let index = filteredDatabase.findIndex((e) => e._id === entry._id);
@@ -55,6 +56,7 @@ export default function Id({ entry }: { entry: Database }) {
 
         nextArticleId ? setNextId(nextArticleId) : setNextId(null);
         prevArticleId ? setPrevId(prevArticleId) : setPrevId(null);
+        setId(entry._id)
     }, [filteredDatabase, entry._id]);
 
     const degreeOfViolenceClasses = classNames('', {
@@ -115,9 +117,8 @@ export default function Id({ entry }: { entry: Database }) {
                         <div className="flex space-around gap-y-md mb-2xl">
                             {prevId ? (
                                 <Link href={`/evenement/${prevId}`} passHref>
-                                    <a
+                                    <button
                                         className="button-reset text-contrast-900 link-fx-3--inverse flex-wrap"
-                                        href="#0"
                                     >
                                         <svg
                                             className="icone"
@@ -144,7 +145,7 @@ export default function Id({ entry }: { entry: Database }) {
                                             />
                                         </svg>
                                         <span>Événement précédent</span>
-                                    </a>
+                                    </button>
                                 </Link>
                             ) : (
                                 <div />
@@ -185,7 +186,7 @@ export default function Id({ entry }: { entry: Database }) {
                             )}
                         </div>
 
-                        <Link href="/" passHref>
+                        <Link href={`/`} passHref>
                             <button className="button-reset text-bg-fx text-bg-fx--scale-y">
                                 Retour à l&apos;accueil
                             </button>

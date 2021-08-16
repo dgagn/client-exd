@@ -2,11 +2,18 @@ import React, { useCallback, useMemo, MouseEvent } from "react";
 import { Database } from '../../utils/fetch-database';
 import classNames from 'classnames';
 import Link from 'next/link';
+import useStore, { StoreState } from "../../store/use-store";
+import shallow from "zustand/shallow";
 
 type DatabaseEntry = {
     database: Database;
 };
+
+const databaseState = ({ id }: StoreState) => ({ id })
+
 export default function DatabaseEntry({ database }: DatabaseEntry) {
+    const { id } = useStore(databaseState, shallow)
+
     const degreeOfViolenceClasses = classNames('table__item', {
         'text-success-800': database.degreViolence.includes('Aucune'),
         'text-warning-800': database.degreViolence.includes('faible'),
@@ -35,7 +42,9 @@ export default function DatabaseEntry({ database }: DatabaseEntry) {
 
     return (
         <Link href={`/evenement/${database._id}`} passHref>
-            <tr className="table__group" onMouseDown={handleMiddleMouseClick}>
+            <tr className={classNames("table__group", {
+                'bg-primary-50': id === database._id
+            })} onMouseDown={handleMiddleMouseClick} id={database._id}>
                 <td className="table__item" data-title={'Date'}>
                     {database.date}
                 </td>

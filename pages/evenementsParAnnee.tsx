@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import YearTable from '../components/year/year-table';
 import { sortBy, uniq } from 'lodash';
 import Head from 'next/head';
@@ -41,6 +41,12 @@ export default function EvenementsParAnnee({ database }: IncidentsParAnneeProps)
                     </h3>
                     <p className="mt-md mb-lg" aria-label="Informations sur la recherche">
                         Vous pouvez cliquer sur une année pour appliquer le filtre.
+                    </p>
+                    <p
+                            className="font-italic mt-lg mb-sm"
+                            aria-label="Informations sur les balises"
+                    >
+                        Cliquer sur une colonne pour l&apos;ordonner.
                     </p>
                     <YearTable groupObj={filteredGroupsData} />
                 </div>
