@@ -73,7 +73,7 @@ export default function Home({ database }: HomeProps) {
                             <span className='block mt-xs'>
                                 Vous avez vu{' '}
                                 <span className='text-primary-600'>{percent.toFixed(2).replace('.', ',')} %</span>
-                                {' '}des événements
+                                {' '}soit <span className="text-primary-600">{viewedIds.length} sur {database.length}</span> événements
                             </span>
                         )}
                     </p>
