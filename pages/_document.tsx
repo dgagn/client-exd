@@ -156,7 +156,7 @@ class MyDocument extends Document {
                             href="/apple-splash-1136-640.jpg"
                             media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
                     />
-                    <meta name="theme-color" color="#FFFFFF" />
+                    <meta name="theme-color" color="#ffffff" />
                     <link rel="manifest" href="/manifest.json" />
                 </Head>
                 <body>
