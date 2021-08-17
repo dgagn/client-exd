@@ -10,6 +10,7 @@ import useStore, { StoreState } from '../../store/use-store';
 import shallow from 'zustand/shallow';
 import Head from 'next/head';
 import usePersistantStore, { PersistantStoreState } from "../../store/use-persistant-store";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 export async function getStaticPaths() {
     const db = await getDatabase();
@@ -119,37 +120,13 @@ export default function Id({ entry }: { entry: Database }) {
             <div className="container max-w-xl">
                 <div className="mt-2xl mb-2xl">
                     <div className="max-w-prose mx-auto">
-                        <div className="flex space-around gap-y-md mb-2xl">
+                        <div className="flex space-between gap-y-md mb-2xl">
                             {prevId ? (
                                 <Link href={`/evenement/${prevId}`} passHref>
                                     <button
-                                        className="button-reset text-contrast-900 link-fx-3--inverse flex-wrap"
+                                        className="button-reset text-bg-fx text-bg-fx--scale-y"
                                     >
-                                        <svg
-                                            className="icone"
-                                            viewBox="0 0 12 12"
-                                            aria-hidden="true"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        >
-                                            <line
-                                                strokeWidth={1.5}
-                                                x1="3.5"
-                                                y1="6"
-                                                x2="9"
-                                                y2="11.5"
-                                            />
-                                            <line
-                                                strokeWidth={1.5}
-                                                x1="9"
-                                                y1="0.5"
-                                                x2="3.5"
-                                                y2="6"
-                                            />
-                                        </svg>
-                                        <span>Événement précédent</span>
+                                        <span className='flex align-center'><BiChevronLeft className='mr-3xs text-contrast-700' /> Événement précédent</span>
                                     </button>
                                 </Link>
                             ) : (
@@ -157,36 +134,12 @@ export default function Id({ entry }: { entry: Database }) {
                             )}
                             {nextId && (
                                 <Link href={`/evenement/${nextId}`} passHref>
-                                    <a
-                                        className="button-reset text-contrast-900 link-fx-3 flex-wrap"
-                                        href="#0"
+                                    <button
+                                        className="button-reset text-bg-fx text-bg-fx--scale-y"
                                     >
-                                        <span>Événement suivant</span>
-                                        <svg
-                                            className="icone"
-                                            viewBox="0 0 12 12"
-                                            aria-hidden="true"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        >
-                                            <line
-                                                strokeWidth={1.5}
-                                                x1="9"
-                                                y1="6"
-                                                x2="3.5"
-                                                y2="11.5"
-                                            />
-                                            <line
-                                                strokeWidth={1.5}
-                                                x1="3.5"
-                                                y1="0.5"
-                                                x2="9"
-                                                y2="6"
-                                            />
-                                        </svg>
-                                    </a>
+                                        <span className='flex align-center'>Événement suivant <BiChevronRight className='ml-3xs text-contrast-700' /></span>
+
+                                    </button>
                                 </Link>
                             )}
                         </div>

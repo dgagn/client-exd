@@ -4,6 +4,7 @@ import NProgress from 'nprogress';
 import Router from 'next/router';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
+import BackTop from "../components/back-top";
 
 const Nav = dynamic(() => import('../components/nav'));
 
@@ -23,6 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             </Head>
             <Nav />
             <Component {...pageProps} />
+            <BackTop />
         </>
     );
 }

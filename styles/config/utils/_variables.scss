@@ -1,4 +1,6 @@
 @use "../colors" as *;
+@use "../colors/colors" as c;
+@use "../colors/violet" as *;
 @use "../spacing" as *;
 @use "../max-width" as *;
 @use "../typography" as *;
@@ -53,6 +55,20 @@ body[data-theme="dark"] {
     --color-warning-800: #{color-pure-get(warning, 500)};
     --color-caution-500: #{color-pure-get(caution, 300)};
     --color-caution-800: #{color-pure-get(caution, 500)};
-    --color-primary-200: #{color-pure-get(primary, 700)};
-    --color-primary-50: #{color-pure-get(primary, 700)};
+    --color-primary-600: #{map-get($violet, 400)};
+    --color-primary-50: #{map-get($violet, 500)};
+    --color-primary-200: #{map-get($violet, 800)};
+}
+
+@each $color, $color-map in c.$colors {
+    body[color-primary=#{$color}] {
+        @each $color-intensity, $hsl in $color-map {
+            #{$color-prefix}primary-#{$color-intensity}: #{$hsl};
+        }
+    }
+    body[color-contrast=#{$color}] {
+        @each $color-intensity, $hsl in $color-map {
+            #{$color-prefix}contrast-#{$color-intensity}: #{$hsl};
+        }
+    }
 }

@@ -8,3 +8,6 @@
 @use "link";
 @use "tag";
 @use "blockquote";
+@use "back-top" with (
+    $back-top-icon-url: '/back-top.svg'
+);

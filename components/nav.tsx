@@ -1,26 +1,13 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FiMoon, FiSun } from 'react-icons/fi';
-import useStore, { StoreState } from "../store/use-store";
-import usePersistantStore, { PersistantStoreState } from "../store/use-persistant-store";
-import shallow from "zustand/shallow";
-
-const homeState = ({ database }: StoreState) => ({
-    database,
-});
-
-
-
 
 export default function Nav() {
     const [isDark, toggleDarkMode] = useState(false);
 
-    const { database } = useStore(homeState, shallow);
-
     useEffect(() => {
         document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
     }, [isDark]);
-
 
     return (
         <>

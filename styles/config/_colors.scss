@@ -1,5 +1,4 @@
-@use "colors/cool-gray" as *;
-@use "colors/gray" as *;
+@use "colors/blue-gray" as *;
 @use "colors/blue" as *;
 @use "colors/red" as *;
 @use "colors/green" as *;
@@ -12,7 +11,7 @@ $color-prefix: --color- !default;
 
 $colors: (
     primary: $blue,
-    contrast: $gray,
+    contrast: $blue-gray,
     error: $red,
     success: $green,
     warning: $yellow,

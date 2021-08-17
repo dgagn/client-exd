@@ -40,8 +40,6 @@ export default function Home({ database }: HomeProps) {
     const { filteredDatabase, loadDatabase, database: db, id } = useStore(homeState, shallow);
     const { viewedIds } = usePersistantStore(homePersistState, shallow);
     useEffect(() => loadDatabase(database), []);
-    const router = useRouter()
-
 
     useEffect(() => {
         const elem = id !== '' && document.getElementById(`${id}`)
@@ -52,8 +50,10 @@ export default function Home({ database }: HomeProps) {
     }, [id])
 
 
+
+
     const percent = useMemo(() => {
-        return `${((viewedIds.length / database.length) * 100).toFixed(2)} %`
+        return ((viewedIds.length / database.length) * 100)
     }, [viewedIds.length, database.length])
 
     return db.length > 0 && database.length > 0 ? (
@@ -71,7 +71,13 @@ export default function Home({ database }: HomeProps) {
                         <span className="resultat">{filteredDatabase?.length} résultats</span>
                     </h3>
                     <p className="mt-md mb-lg max-w-sm" aria-label="Informations sur les balises">
-                        Cliquer sur les balises pour exclure les colonnes dans la recherche. ({percent})
+                        Cliquer sur les balises pour exclure les colonnes dans la recherche. {percent > 0 && (
+                            <span className='block mt-xs'>
+                                Vous avez vu{' '}
+                                <span className='text-primary-600'>{percent.toFixed(2).replace('.', ',')} %</span>
+                                {' '}des événements
+                            </span>
+                        )}
                     </p>
 
                     <Tags />
