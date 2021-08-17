@@ -3,6 +3,7 @@ import YearTable from '../components/year/year-table';
 import { sortBy, uniq } from 'lodash';
 import Head from 'next/head';
 import getDatabase, { Database } from '../utils/fetch-database';
+import useColors from "../hooks/use-colors";
 
 interface IncidentsParAnneeProps {
     database: Database[];

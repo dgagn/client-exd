@@ -15,9 +15,7 @@ export default function Table({ className, headers, body }: TableProps) {
                 <tr className="table__heading-group">{headers}</tr>
             </thead>
             <tbody>
-                <tr>
-                    {body}
-                </tr>
+                {body}
             </tbody>
         </table>
     );

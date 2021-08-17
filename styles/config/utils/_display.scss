@@ -1,5 +1,6 @@
 @use "../display" as *;
 @use "../breakpoints" as *;
+@use "../spacing" as *;
 
 @each $display in $displays {
     .#{$display} {
@@ -16,6 +17,11 @@
         }
     }
 }
+
+.relative {
+    position: relative;
+}
+
 
 .align-center {
     align-items: center;

@@ -6,6 +6,7 @@ import getDatabase, { Database } from '../utils/fetch-database';
 import shallow from 'zustand/shallow';
 import { useRouter } from "next/router";
 import usePersistantStore, { PersistantStoreState } from "../store/use-persistant-store";
+import useColors from "../hooks/use-colors";
 
 const SearchInput = dynamic(() => import('../components/search-input'));
 const DatabaseTable = dynamic(() => import('../components/database/database-table'));
@@ -48,9 +49,6 @@ export default function Home({ database }: HomeProps) {
             elem!.scrollIntoView()
         }
     }, [id])
-
-
-
 
     const percent = useMemo(() => {
         return ((viewedIds.length / database.length) * 100)

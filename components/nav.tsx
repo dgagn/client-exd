@@ -34,6 +34,13 @@ export default function Nav() {
                                 </button>
                             </Link>
                         </li>
+                        <li aria-label="Lien vers l'accueil">
+                            <Link href={'/parametre'} passHref>
+                                <button className="button-reset text-bg-fx text-bg-fx--scale-y">
+                                    Paramètre
+                                </button>
+                            </Link>
+                        </li>
                         <li aria-label="Lien vers les incidents par groupes">
                             <Link href={'/evenementsParGroupe'}>
                                 <button className="button-reset text-bg-fx text-bg-fx--scale-y">

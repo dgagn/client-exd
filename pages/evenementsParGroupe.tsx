@@ -7,6 +7,7 @@ import useStore, { StoreState } from '../store/use-store';
 import shallow from 'zustand/shallow';
 import SearchGroupsFilter from "../components/search-groups-filter";
 import useGroupsFilter from "../hooks/use-groups-filter";
+import useColors from "../hooks/use-colors";
 
 interface IncidentsParGroupeProps {
     database: Database[];

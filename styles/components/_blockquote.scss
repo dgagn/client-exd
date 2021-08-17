@@ -39,9 +39,16 @@
 .eye {
     position: absolute;
     top: spacing-get(xs);
-    right: spacing-get(xs);
     transition: background-color 0.3s var(--ease-out);
     transform: scale(0.85);
+
+    &--left {
+        left: spacing-get(xs);
+    }
+
+    &--right {
+        right: spacing-get(xs);
+    }
 
     &:hover {
         background-color: color-get(primary, 200) !important;

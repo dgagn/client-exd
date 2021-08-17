@@ -62,7 +62,7 @@ export default function DatabaseTable({ className, database }: DatabaseTableProp
                                 <BiChevronUp className="icon" />
                             ) : orderByDate === 'asc' ? (
                                 <BiChevronDown className="icon" />
-                            ) : null}
+                            ) : <BiChevronDown className="icon hidden" />}
                         </span>
                     </th>
                     <th className="table__heading" onClick={toggleOrderByType}>
@@ -72,7 +72,7 @@ export default function DatabaseTable({ className, database }: DatabaseTableProp
                                 <BiChevronUp className="icon" />
                             ) : orderByType === 'asc' ? (
                                 <BiChevronDown className="icon" />
-                            ) : null}
+                            ) : <BiChevronDown className="icon hidden" />}
                         </span>
                     </th>
                     <th
@@ -85,7 +85,7 @@ export default function DatabaseTable({ className, database }: DatabaseTableProp
                                 <BiChevronUp className="icon" />
                             ) : orderByDegreeOfViolence === 'asc' ? (
                                 <BiChevronDown className="icon" />
-                            ) : null}
+                            ) : <BiChevronDown className="icon hidden" />}
                         </span>
                     </th>
                     <th
@@ -98,7 +98,7 @@ export default function DatabaseTable({ className, database }: DatabaseTableProp
                                 <BiChevronUp className="icon" />
                             ) : orderByGroupsInvolved === 'asc' ? (
                                 <BiChevronDown className="icon" />
-                            ) : null}
+                            ) : <BiChevronDown className="icon hidden" />}
                         </span>
                     </th>
                     <th className="table__heading events" onClick={toggleOrderByEvents}>
@@ -108,7 +108,7 @@ export default function DatabaseTable({ className, database }: DatabaseTableProp
                                 <BiChevronUp className="icon" />
                             ) : orderByEvents === 'asc' ? (
                                 <BiChevronDown className="icon" />
-                            ) : null}
+                            ) : <BiChevronDown className="icon hidden" />}
                         </span>
                     </th>
                 </tr>

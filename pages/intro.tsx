@@ -1,4 +1,5 @@
 import React from "react";
+import useColors from "../hooks/use-colors";
 
 export default function Intro() {
     return (

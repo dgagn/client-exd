@@ -5,6 +5,7 @@ import Router from 'next/router';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import BackTop from "../components/back-top";
+import useColors from "../hooks/use-colors";
 
 const Nav = dynamic(() => import('../components/nav'));
 
@@ -13,6 +14,8 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }: AppProps) {
+    useColors()
+
     return (
         <>
             <Head>

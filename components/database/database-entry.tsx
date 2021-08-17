@@ -55,7 +55,7 @@ export default function DatabaseEntry({ database }: DatabaseEntry) {
             })} onMouseDown={handleMiddleMouseClick} id={database._id}>
                 <td className="table__item" data-title={'Date'}>
                     {database.date} {isSmall && viewedIds.includes(database._id) ? (
-                        <div className='text-right text-primary-400 flex eye bg-primary-100 p-3xs rounded-full'>
+                        <div className='text-right text-primary-400 flex eye eye--right bg-primary-100 p-3xs rounded-full'>
                             <BsFillEyeFill />
                         </div>
                     ) : null}
@@ -81,7 +81,7 @@ export default function DatabaseEntry({ database }: DatabaseEntry) {
                 </td>
                 <td className="table__item" data-title={'Événement'}>
                     {viewedIds.includes(database._id) && !isSmall ? (
-                        <div className='text-right text-primary-400 flex eye bg-primary-100 p-3xs rounded-full'>
+                        <div className='text-right text-primary-400 flex eye eye--right bg-primary-100 p-3xs rounded-full'>
                             <BsFillEyeFill />
                         </div>
                     ) : null}

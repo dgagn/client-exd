@@ -10,10 +10,21 @@
         display: block;
     }
 
+    td:first-child,
+    th:first-child {
+        border-radius: 8px 0 0 8px;
+    }
+
+    td:last-child,
+    th:last-child {
+        border-radius: 0 8px 8px 0;
+    }
+
     &__heading-group {
         position: absolute;
         top: -9999px;
         left: -9999px;
+        border-radius: 16px;
     }
 
     &__item {

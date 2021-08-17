@@ -1,3 +1,6 @@
+@use "../config/colors" as *;
+@use "../config/spacing" as *;
+
 .circle {
     display: inline-flex;
     align-content: center;
@@ -5,4 +8,22 @@
     width: 14px;
     height: 14px;
     border-radius: 50%;
+
+    &--large {
+        width: 32px;
+        height: 32px;
+    }
+
+    &--selected {
+        position: relative;
+
+        &::before {
+            position: absolute;
+            width: 144%;
+            height: 144%;
+            content: '';
+            border: 3px solid var(--color-primary-500);
+            border-radius: 50%;
+        }
+    }
 }
