@@ -126,7 +126,7 @@ export default function Id({ entry }: { entry: Database }) {
                                     <button
                                         className="button-reset text-bg-fx text-bg-fx--scale-y"
                                     >
-                                        <span className='flex align-center'><BiChevronLeft className='mr-3xs text-contrast-700' /> Événement précédent</span>
+                                        <span className='flex align-center'><BiChevronLeft className='mr-3xs text-contrast-700' /> Précédent</span>
                                     </button>
                                 </Link>
                             ) : (
@@ -137,7 +137,7 @@ export default function Id({ entry }: { entry: Database }) {
                                     <button
                                         className="button-reset text-bg-fx text-bg-fx--scale-y"
                                     >
-                                        <span className='flex align-center'>Événement suivant <BiChevronRight className='ml-3xs text-contrast-700' /></span>
+                                        <span className='flex align-center'>Suivant <BiChevronRight className='ml-3xs text-contrast-700' /></span>
 
                                     </button>
                                 </Link>
