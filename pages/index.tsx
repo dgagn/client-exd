@@ -66,7 +66,7 @@ export default function Home({ database }: HomeProps) {
                             🔍{' '}
                         </span>
                         Rechercher{' '}
-                        <span className="resultat">{filteredDatabase?.length} résultats</span>
+                        <span className="resultat">{filteredDatabase?.length} résultats!</span>
                     </h3>
                     <p className="mt-md mb-lg max-w-sm" aria-label="Informations sur les balises">
                         Cliquer sur les balises pour exclure les colonnes dans la recherche. {percent > 0 && (
