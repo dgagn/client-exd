@@ -40,8 +40,7 @@ export default function Parametre() {
     return (
         <>
             <div className="container max-w-xl">
-                {/* eslint-disable-next-line jsx-a11y/no-onchange */}
-                <select name="primary-colors" id="primary" value={primary} onChange={(e) => {
+                <select name="primary-colors" id="primary" value={primary} onBlur={(e) => setPrimary(e.target.value)} onChange={(e) => {
                     setPrimary(e.target.value)
                 }}>
                     {primaryColors.map(color => (
@@ -49,7 +48,7 @@ export default function Parametre() {
                     ))}
                 </select>
 
-                <select name="contrast-colors" id="primary" value={contrast} onChange={(e) => {
+                <select name="contrast-colors" id="primary" value={contrast} onBlur={(e) => setPrimary(e.target.value)} onChange={(e) => {
                     setContrast(e.target.value)
                 }}>
                     {primaryColors.map(color => (
