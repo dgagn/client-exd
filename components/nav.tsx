@@ -37,7 +37,7 @@ export default function Nav() {
                         <li aria-label="Lien vers l'accueil">
                             <Link href={'/parametre'} passHref>
                                 <button className="button-reset text-bg-fx text-bg-fx--scale-y">
-                                    Paramètre
+                                    Paramètres
                                 </button>
                             </Link>
                         </li>
