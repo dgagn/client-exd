@@ -1,17 +1,17 @@
 @use "../spacing" as *;
 
 @each $spacing-key, $spacing-value in $spacing {
-    body:not([class="no-webp"]) .gap-#{$spacing-key} {
+    body:not([class="no-gap"]) .gap-#{$spacing-key} {
         gap: spacing-get($spacing-key);
     }
-    body:not([class="no-webp"]) .gap-x-#{$spacing-key} {
+    body:not([class="no-gap"]) .gap-x-#{$spacing-key} {
         column-gap: spacing-get($spacing-key);
     }
-    body:not([class="no-webp"]) .gap-y-#{$spacing-key} {
+    body:not([class="no-gap"]) .gap-y-#{$spacing-key} {
         row-gap: spacing-get($spacing-key);
     }
 
-    body.no-webp {
+    body.no-gap {
         .gap-x-#{$spacing-key} > * {
             margin-left: spacing-get($spacing-key);
         }
