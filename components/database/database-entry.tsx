@@ -14,7 +14,10 @@ type DatabaseEntry = {
 };
 
 const databaseState = ({ id }: StoreState) => ({ id });
-const databasePersistState = ({ viewedIds, bookmarkIds }: PersistantStoreState) => ({ viewedIds, bookmarkIds });
+const databasePersistState = ({ viewedIds, bookmarkIds }: PersistantStoreState) => ({
+    viewedIds,
+    bookmarkIds,
+});
 
 export default function DatabaseEntry({ database }: DatabaseEntry) {
     const { id } = useStore(databaseState, shallow);
@@ -64,12 +67,14 @@ export default function DatabaseEntry({ database }: DatabaseEntry) {
                     {database.date}{' '}
                     {isSmall && (
                         <div className="flex gap-x-3xs absolute top-sm right-sm">
-                            <IconCircle color={'warning'}>
-                                <BsFillBookmarkFill />
-                            </IconCircle>
                             {viewedIds.includes(database._id) && (
                                 <IconCircle color={'primary'}>
                                     <BsFillEyeFill />
+                                </IconCircle>
+                            )}
+                            {bookmarkIds.includes(database._id) && (
+                                <IconCircle color={'warning'}>
+                                    <BsFillBookmarkFill />
                                 </IconCircle>
                             )}
                         </div>
@@ -98,9 +103,9 @@ export default function DatabaseEntry({ database }: DatabaseEntry) {
                     {!isSmall && (
                         <div className="flex gap-x-3xs absolute top-sm right-sm">
                             {viewedIds.includes(database._id) && (
-                                    <IconCircle color={'primary'}>
-                                        <BsFillEyeFill />
-                                    </IconCircle>
+                                <IconCircle color={'primary'}>
+                                    <BsFillEyeFill />
+                                </IconCircle>
                             )}
                             {bookmarkIds.includes(database._id) && (
                                 <IconCircle color={'warning'}>

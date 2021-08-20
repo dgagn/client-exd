@@ -19,9 +19,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     const isWebPSupported = (): boolean => {
         const canvas = document.createElement('canvas');
-        return canvas.getContext && canvas.getContext('2d')
+        const result = canvas.getContext && canvas.getContext('2d')
             ? canvas.toDataURL('image/webp').indexOf('data:image/webp') == 0
             : false;
+        canvas.remove()
+        return result
     };
 
     useEffect(() => {
