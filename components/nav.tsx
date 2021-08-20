@@ -10,10 +10,12 @@ export default function Nav() {
     const { isDark, toggleDarkMode } = usePersistantStore(navState, shallow)
 
     const src = useMemo(() => {
+        console.log(isDark);
         return isDark ? '/LogoCEFIR_1x_dark.webp' : '/LogoCEFIR_1x.webp'
     }, [isDark])
 
     const srcSet = useMemo(() => {
+        console.log(isDark);
         return isDark
                 ? '/LogoCEFIR_1x_dark.webp 1x, /LogoCEFIR_2x_dark.webp 2x'
                 : '/LogoCEFIR_1x.webp 1x, /LogoCEFIR_2x.webp 2x'
@@ -29,13 +31,13 @@ export default function Nav() {
                 <nav className="nav">
                     <Link href='/' passHref>
                         <img
-                                className="logo pointer"
-                                src={src}
-                                srcSet={srcSet}
-                                alt={'Logo CEFIR'}
-                                loading="lazy"
-                                width={118}
-                                height={64}
+                            className="logo pointer"
+                            src={src}
+                            srcSet={srcSet}
+                            alt={'Logo CEFIR'}
+                            loading="lazy"
+                            width={118}
+                            height={64}
                         />
                     </Link>
                     <ul className="nav__list" aria-label="Liens de navigation principal du CEFIR">
@@ -70,7 +72,7 @@ export default function Nav() {
                         <li>
                             <button
                                 aria-label="Bouton pour changer de thème"
-                                onClick={() => toggleDarkMode(!isDark)}
+                                onClick={toggleDarkMode}
                                 className="pointer"
                             >
                                 {isDark ? <FiSun /> : <FiMoon />}
