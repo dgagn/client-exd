@@ -42,7 +42,7 @@ export default function Parametre() {
     return (
         <>
             <div className="container max-w-xl">
-                <div className="mb-lg mt-2xl">
+                <div className="mb-lg mt-xl">
                     <h3 className="mb-md">Paramètres</h3>
                     <p className="mb-md">
                         Couleur primaire <span className="text-primary-500">{selectedPrimary}</span>
@@ -71,7 +71,7 @@ export default function Parametre() {
                         Couleur de contraste{' '}
                         <span className="text-contrast-500">{selectedContrast}</span>
                     </p>
-                    <ul className="flex gap-x-sm">
+                    <ul className="flex gap-x-sm flex-wrap">
                         {contrastColors.map((color) => (
                             <button
                                 key={color.color}

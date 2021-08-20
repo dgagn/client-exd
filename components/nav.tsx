@@ -27,7 +27,7 @@ export default function Nav() {
 
     return (
         <>
-            <div className="container max-w-xl mt-xl">
+            <div className="container max-w-xl mt-xl pb-lg">
                 <nav className="nav gap-y-md">
                     <Link href='/' passHref>
                         <div

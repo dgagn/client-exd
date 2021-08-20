@@ -63,7 +63,7 @@ export default function Home({ database }: HomeProps) {
                 <title>CEFIR - Accueil</title>
             </Head>
             <div className="container max-w-xl">
-                <div className="mt-2xl mb-lg">
+                <div className="mt-xl mb-lg">
                     <h3>
                         <span role="img" aria-label="Un pictogramme de recherche">
                             🔍{' '}
@@ -83,7 +83,7 @@ export default function Home({ database }: HomeProps) {
 
                     <Tags />
 
-                    <SearchInput className={'mt-md'} />
+                    <SearchInput className={'mt-lg'} />
                     <p
                         className="font-italic mt-lg mb-sm"
                         aria-label="Informations sur les balises"
