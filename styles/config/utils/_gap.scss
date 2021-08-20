@@ -10,4 +10,27 @@
     .gap-y-#{$spacing-key} {
         row-gap: spacing-get($spacing-key);
     }
+    body.no-webp .gap-x-#{$spacing-key} {
+        margin-right: spacing-get($spacing-key);
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+    body.no-webp .gap-#{$spacing-key} {
+        margin-right: spacing-get($spacing-key);
+        margin-bottom: spacing-get($spacing-key);
+
+        &:last-child {
+            margin-right: 0;
+            margin-bottom: 0;
+        }
+    }
+    body.no-webp .gap-y-#{$spacing-key} {
+        margin-bottom: spacing-get($spacing-key);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
 }
