@@ -6,20 +6,7 @@ import shallow from "zustand/shallow";
 
 const navState = ({ isDark, toggleDarkMode }: PersistantStoreState) => ({ isDark, toggleDarkMode })
 export default function Nav() {
-    //const [isDark, toggleDarkMode] = useState(false);
     const { isDark, toggleDarkMode } = usePersistantStore(navState, shallow)
-
-    const src = useMemo(() => {
-        console.log(isDark);
-        return isDark ? '/LogoCEFIR_1x_dark.webp' : '/LogoCEFIR_1x.webp'
-    }, [isDark])
-
-    const srcSet = useMemo(() => {
-        console.log(isDark);
-        return isDark
-                ? '/LogoCEFIR_1x_dark.webp 1x, /LogoCEFIR_2x_dark.webp 2x'
-                : '/LogoCEFIR_1x.webp 1x, /LogoCEFIR_2x.webp 2x'
-    }, [isDark])
 
     useEffect(() => {
         document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
@@ -48,6 +35,13 @@ export default function Nav() {
                             <Link href={'/parametre'} passHref>
                                 <button className="button-reset text-bg-fx text-bg-fx--scale-y">
                                     Paramètres
+                                </button>
+                            </Link>
+                        </li>
+                        <li aria-label="Lien vers l'accueil">
+                            <Link href={'/liste'} passHref>
+                                <button className="button-reset text-bg-fx text-bg-fx--scale-y">
+                                    Liste
                                 </button>
                             </Link>
                         </li>

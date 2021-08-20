@@ -1,0 +1,22 @@
+@use "../config" as *;
+
+@each $breakpoint-key, $breakpoint-value in $breakpoints {
+    @each $display-value in $displays {
+        .#{$display-value}\@#{$breakpoint-key} {
+            @include breakpoint($breakpoint-key) {
+                display: $display-value;
+            }
+        }
+        .#{$display-value}\@\!#{$breakpoint-key} {
+            @include breakpoint($breakpoint-key, 'not all') {
+                display: $display-value;
+            }
+        }
+    }
+}
+
+@each $display-value in $displays {
+    .#{$display-value} {
+        display: $display-value;
+    }
+}

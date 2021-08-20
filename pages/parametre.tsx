@@ -43,7 +43,7 @@ export default function Parametre() {
         <>
             <div className="container max-w-xl">
                 <div className="mb-lg mt-xl">
-                    <h3 className="mb-md">Paramètres</h3>
+                    <h3 className="mb-md"><span role='img' aria-label='Emoji de gear'>⚙️</span> Paramètres</h3>
                     <p className="mb-md">
                         Couleur primaire <span className="text-primary-500">{selectedPrimary}</span>
                     </p>
@@ -89,61 +89,6 @@ export default function Parametre() {
                             </button>
                         ))}
                     </ul>
-                </div>
-                <div className="mt-lg">
-                    <button className="button-reset text-bg-fx text-bg-fx--scale-y mt-sm">
-                        Un bouton
-                    </button>
-
-                    <ul className="tag-list mt-lg flex@md gap-x-md gap-y-xs flex-wrap font-bold">
-                        <Tag onClick={() => {}} isSelected={true}>
-                            {selectedPrimary}
-                        </Tag>
-                        <Tag onClick={() => {}} isSelected={true}>
-                            {selectedContrast}
-                        </Tag>
-                        <Tag onClick={() => {}} isSelected={true}>
-                            Tag
-                        </Tag>
-                        <Tag onClick={() => {}} isSelected={true}>
-                            Tag
-                        </Tag>
-                        <Tag onClick={() => {}} isSelected={true}>
-                            Tag
-                        </Tag>
-                    </ul>
-
-                    <Search className='mt-lg' id='parametre' value={''} onChange={() => {}} />
-
-                    <Table
-                        className="mb-2xl mt-lg"
-                        body={
-                            <>
-                                <tr className="table__group">
-                                    <td className="table__item" data-title={'Primaire'}>
-                                        {selectedPrimary}
-                                    </td>
-                                    <td className="table__item" data-title={'Contraste'}>
-                                        {selectedContrast}
-                                    </td>
-                                </tr>
-                                <tr className="table__group">
-                                    <td className="table__item" data-title={'Primaire'}>
-                                        {selectedPrimary}
-                                    </td>
-                                    <td className="table__item" data-title={'Contraste'}>
-                                        {selectedContrast}
-                                    </td>
-                                </tr>
-                            </>
-                        }
-                        headers={
-                            <>
-                                <TableHeader className='w-full'>Primaire</TableHeader>
-                                <TableHeader className='pr-3xl'>Primaire</TableHeader>
-                            </>
-                        }
-                    />
                 </div>
             </div>
         </>

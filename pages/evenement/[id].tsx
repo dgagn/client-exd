@@ -178,13 +178,17 @@ export default function Id({ entry }: { entry: Database }) {
                             </button>
                         </Link>
 
+                        <div>
+                            <select name="" id="">
+                                <option value="">Favoris</option>
+                                <option value="">Test</option>
+                            </select>
+                        </div>
+
                         <button onClick={() => toggleBookmarkId(entry._id)} className="button-reset text-bg-fx text-bg-fx--scale-y">
                             Bookmark
                         </button>
 
-                        {/*<div className="tooltip bg-contrast-800 p-md flex rounded">
-                            <button className='button-reset text-bg-fx text-bg-fx--scale-y'>Surligner</button>
-                        </div>*/}
                         <p className="mt-lg" onMouseUpCapture={handleHighlight}>
                             {entry.description}
                         </p>

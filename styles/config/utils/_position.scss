@@ -15,3 +15,8 @@
     }
 }
 
+@each $inset-abbr, $inset-full in $inset {
+    .#{$inset-full}-0 {
+        #{$inset-full}: 0;
+    }
+}
