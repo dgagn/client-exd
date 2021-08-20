@@ -19,3 +19,23 @@
         }
     }
 }
+
+.logo-image {
+    --image-url: url('/LogoCEFIR_1x.webp?');
+
+    width: 118px;
+    height: 64px;
+    background-image: var(--image-url);
+}
+
+.no-webp .logo-image {
+    --image-url: url('/LogoCEFIR.png?');
+}
+
+body[data-theme="dark"] .logo-image {
+    --image-url: url('/LogoCEFIR_1x_dark.webp?');
+}
+
+body[data-theme="dark"].no-webp .logo-image {
+    --image-url: url('/LogoCEFIR_dark.png?');
+}

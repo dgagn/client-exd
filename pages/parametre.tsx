@@ -125,9 +125,6 @@ export default function Parametre() {
                                     </td>
                                     <td className="table__item" data-title={'Contraste'}>
                                         {selectedContrast}
-                                        <div className='text-right text-primary-400 flex eye eye--right bg-primary-100 p-3xs rounded-full'>
-                                            <BsFillEyeFill />
-                                        </div>
                                     </td>
                                 </tr>
                                 <tr className="table__group">

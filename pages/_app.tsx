@@ -6,6 +6,7 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import BackTop from '../components/back-top';
 import useColors from '../hooks/use-colors';
+import { useEffect } from "react";
 
 const Nav = dynamic(() => import('../components/nav'));
 
@@ -15,6 +16,18 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }: AppProps) {
     useColors();
+
+    const isWebPSupported = (): boolean => {
+        const canvas = document.createElement('canvas');
+        return canvas.getContext && canvas.getContext('2d')
+            ? canvas.toDataURL('image/webp').indexOf('data:image/webp') == 0
+            : false;
+    };
+
+    useEffect(() => {
+        const webpSupport = isWebPSupported();
+        !webpSupport && document.body.classList.add('no-webp')
+    }, [])
 
     return (
         <>

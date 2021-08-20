@@ -30,16 +30,11 @@ export default function Nav() {
             <div className="container max-w-xl mt-xl">
                 <nav className="nav">
                     <Link href='/' passHref>
-                        <img
-                            className="logo pointer"
-                            src={src}
-                            srcSet={srcSet}
-                            alt={'Logo CEFIR'}
-                            loading="lazy"
-                            width={118}
-                            height={64}
+                        <div
+                            className="logo logo-image pointer"
                         />
                     </Link>
+
                     <ul className="nav__list" aria-label="Liens de navigation principal du CEFIR">
                         <li aria-label="Lien vers l'accueil">
                             <Link href={'/'} passHref>
