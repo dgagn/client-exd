@@ -3,7 +3,7 @@ import usePersistantStore, { PersistantStoreState } from "../store/use-persistan
 import shallow from "zustand/shallow";
 import useColors from "../hooks/use-colors";
 import Tag from "../components/tag";
-import Table from "../components/table";
+import Table, { TableBody, TableHead, TableHeader } from "../components/table";
 import { AiOutlineCheck } from 'react-icons/ai'
 import classNames from "classnames";
 import useStore, { StoreState } from "../store/use-store";
@@ -142,8 +142,8 @@ export default function Parametre() {
                         }
                         headers={
                             <>
-                                <th className="table__heading w-full">Primaire</th>
-                                <th className="table__heading pr-3xl">Contraste</th>
+                                <TableHeader className='w-full'>Primaire</TableHeader>
+                                <TableHeader className='pr-3xl'>Primaire</TableHeader>
                             </>
                         }
                     />

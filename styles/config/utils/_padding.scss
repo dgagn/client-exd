@@ -16,7 +16,7 @@
         padding-bottom: spacing-get($spacing-key) !important;
     }
 
-    @each $position-short, $position-long in $position {
+    @each $position-short, $position-long in $inset {
         .p#{$position-short}-#{$spacing-key} {
             padding-#{$position-long}: spacing-get($spacing-key) !important;
         }
@@ -35,7 +35,7 @@
     padding-bottom: 0 !important;
 }
 
-@each $position-short, $position-long in $position {
+@each $position-short, $position-long in $inset {
     .p#{$position-short}-0 {
         padding-#{$position-long}: 0 !important;
     }

@@ -11,14 +11,26 @@ interface TableProps {
 export default function Table({ className, headers, body }: TableProps) {
     return (
         <table className={classNames('table', className)}>
-            <thead>
+            <TableHead>
                 <tr className="table__heading-group">{headers}</tr>
-            </thead>
-            <tbody>
+            </TableHead>
+            <TableBody>
                 {body}
-            </tbody>
+            </TableBody>
         </table>
     );
+}
+
+interface TableHeadProps {}
+
+export function TableHead({ children }: PropsWithChildren<TableHeadProps>) {
+    return <thead>{children}</thead>;
+}
+
+interface TableBodyProps {}
+
+export function TableBody({ children }: PropsWithChildren<TableBodyProps>) {
+    return <tbody>{children}</tbody>;
 }
 
 interface TableHeaderProps {
@@ -27,12 +39,23 @@ interface TableHeaderProps {
     onClick?: () => void;
 }
 
-function TableHeader({ className, order, children, onClick }: PropsWithChildren<TableHeaderProps>) {
+export function TableHeader({
+    className,
+    order,
+    children,
+    onClick,
+}: PropsWithChildren<TableHeaderProps>) {
     return (
         <th onClick={onClick} className={classNames('table__heading', className)}>
             {children}{' '}
             <span>
-                {order === 'desc' ? <BiChevronUp className='icon' /> : order === 'asc' ? <BiChevronDown className='icon' /> : <BiChevronDown className='hidden' />}
+                {order === 'desc' ? (
+                    <BiChevronUp className="icon" />
+                ) : order === 'asc' ? (
+                    <BiChevronDown className="icon" />
+                ) : (
+                    <BiChevronDown className="icon hidden" />
+                )}
             </span>
         </th>
     );

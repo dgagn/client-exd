@@ -1,0 +1,17 @@
+@use "../spacing" as *;
+@use "../position" as *;
+
+@each $position-name, $position-value in $positions {
+    .#{$position-name} {
+        position: #{$position-value} !important;
+    }
+}
+
+@each $spacing-key, $spacing-value in $spacing {
+    @each $inset-abbr, $inset-full in $inset {
+        .#{$inset-full}-#{$spacing-key} {
+            #{$inset-full}: var(--spacing-#{$spacing-key});
+        }
+    }
+}
+

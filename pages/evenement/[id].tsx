@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { MouseEvent, useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 import frCa from 'dayjs/locale/fr-ca';
@@ -9,8 +9,8 @@ import getDatabase, { Database } from '../../utils/fetch-database';
 import useStore, { StoreState } from '../../store/use-store';
 import shallow from 'zustand/shallow';
 import Head from 'next/head';
-import usePersistantStore, { PersistantStoreState } from "../../store/use-persistant-store";
-import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import usePersistantStore, { PersistantStoreState } from '../../store/use-persistant-store';
+import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 
 export async function getStaticPaths() {
     const db = await getDatabase();
@@ -41,15 +41,17 @@ export async function getStaticProps(ctx: any) {
 }
 
 const idState = ({ filteredDatabase, setId }: StoreState) => ({ filteredDatabase, setId });
-const idPersistantState = ({ setPersistantViewedIds }: PersistantStoreState) => ({ setPersistantViewedIds });
+const idPersistantState = ({ setPersistantViewedIds, toggleBookmarkId }: PersistantStoreState) => ({
+    setPersistantViewedIds,
+    toggleBookmarkId
+});
 
 export default function Id({ entry }: { entry: Database }) {
     const [html, setHtml] = useState<any>(null);
     const { filteredDatabase, setId } = useStore(idState, shallow);
-    const { setPersistantViewedIds } = usePersistantStore(idPersistantState, shallow);
+    const { setPersistantViewedIds, toggleBookmarkId } = usePersistantStore(idPersistantState, shallow);
     const [nextId, setNextId] = useState<string | null>(null);
     const [prevId, setPrevId] = useState<string | null>(null);
-
 
     useEffect(() => {
         let index = filteredDatabase.findIndex((e) => e._id === entry._id);
@@ -60,9 +62,9 @@ export default function Id({ entry }: { entry: Database }) {
 
         nextArticleId ? setNextId(nextArticleId) : setNextId(null);
         prevArticleId ? setPrevId(prevArticleId) : setPrevId(null);
-        setId(entry._id)
+        setId(entry._id);
 
-        setPersistantViewedIds(entry._id)
+        setPersistantViewedIds(entry._id);
     }, [filteredDatabase, entry._id]);
 
     const degreeOfViolenceClasses = classNames('', {
@@ -103,6 +105,32 @@ export default function Id({ entry }: { entry: Database }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const getText = () => {
+        let text = '';
+        let activeEl: any = document.activeElement;
+        let activeElTagName = activeEl ? activeEl.tagName.toLowerCase() : null;
+        if (
+                activeElTagName == 'textarea' ||
+                (activeElTagName == 'input' &&
+                        /^(?:text|search|password|tel|url)$/i.test(activeEl.type) &&
+                        typeof activeEl.selectionStart == 'number')
+        ) {
+            text = activeEl.value.slice(activeEl.selectionStart, activeEl.selectionEnd);
+        } else if (window.getSelection) {
+            text = window.getSelection()!.toString();
+        }
+        return text;
+    }
+
+    const handleHighlight = useCallback((e: MouseEvent<HTMLParagraphElement>) => {
+        const text = getText()
+        if(text === "") {
+            return;
+        }
+
+
+    }, []);
+
     return (
         <>
             <Head>
@@ -123,10 +151,11 @@ export default function Id({ entry }: { entry: Database }) {
                         <div className="flex space-between gap-y-md mb-2xl">
                             {prevId ? (
                                 <Link href={`/evenement/${prevId}`} passHref>
-                                    <button
-                                        className="button-reset text-bg-fx text-bg-fx--scale-y"
-                                    >
-                                        <span className='flex align-center'><BiChevronLeft className='mr-3xs text-contrast-700' /> Précédent</span>
+                                    <button className="button-reset text-bg-fx text-bg-fx--scale-y">
+                                        <span className="flex align-center">
+                                            <BiChevronLeft className="mr-3xs color-icon" />{' '}
+                                            Précédent
+                                        </span>
                                     </button>
                                 </Link>
                             ) : (
@@ -134,11 +163,10 @@ export default function Id({ entry }: { entry: Database }) {
                             )}
                             {nextId && (
                                 <Link href={`/evenement/${nextId}`} passHref>
-                                    <button
-                                        className="button-reset text-bg-fx text-bg-fx--scale-y"
-                                    >
-                                        <span className='flex align-center'>Suivant <BiChevronRight className='ml-3xs text-contrast-700' /></span>
-
+                                    <button className="button-reset text-bg-fx text-bg-fx--scale-y">
+                                        <span className="flex align-center">
+                                            Suivant <BiChevronRight className="ml-3xs color-icon" />
+                                        </span>
                                     </button>
                                 </Link>
                             )}
@@ -150,7 +178,16 @@ export default function Id({ entry }: { entry: Database }) {
                             </button>
                         </Link>
 
-                        <p className="mt-lg">{entry.description}</p>
+                        <button onClick={() => toggleBookmarkId(entry._id)} className="button-reset text-bg-fx text-bg-fx--scale-y">
+                            Bookmark
+                        </button>
+
+                        {/*<div className="tooltip bg-contrast-800 p-md flex rounded">
+                            <button className='button-reset text-bg-fx text-bg-fx--scale-y'>Surligner</button>
+                        </div>*/}
+                        <p className="mt-lg" onMouseUpCapture={handleHighlight}>
+                            {entry.description}
+                        </p>
                         <ul className="flex gap-x-md flex-wrap mt-md">
                             {entry.groupeImplique.split('\n').map((group) => {
                                 return (

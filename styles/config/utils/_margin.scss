@@ -30,7 +30,7 @@
         margin-bottom: calc(#{spacing-get($spacing-key)} * -1) !important;
     }
 
-    @each $position-short, $position-long in $position {
+    @each $position-short, $position-long in $inset {
         .m#{$position-short}-#{$spacing-key} {
             margin-#{$position-long}: spacing-get($spacing-key) !important;
         }
@@ -64,7 +64,7 @@
     margin-bottom: 0 !important;
 }
 
-@each $position-short, $position-long in $position {
+@each $position-short, $position-long in $inset {
     .m#{$position-short}-auto {
         margin-#{$position-long}: auto !important;
     }

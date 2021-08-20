@@ -7,9 +7,7 @@ type TagProps = {
 };
 export default function Tag({ children, onClick, isSelected }: PropsWithChildren<TagProps>) {
     const classes = classNames('rounded px-sm py-xs tag pointer', {
-        'bg-contrast-100': isSelected,
         'tag--selected': !isSelected,
-        'bg-error-200': !isSelected,
     });
 
     return (

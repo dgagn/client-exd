@@ -12,6 +12,6 @@ export default function BackTop() {
     });
 
     return <div className={classes} ref={ref}>
-        <HiChevronUp className='text-contrast-50' style={{ width: 22, height: 22 }} />
+        <HiChevronUp className='back-top-icon' style={{ width: 22, height: 22 }} />
     </div>;
 }

@@ -1,24 +1,24 @@
-import React, { useCallback, useMemo, MouseEvent } from "react";
+import React, { MouseEvent, useCallback, useMemo } from 'react';
 import { Database } from '../../utils/fetch-database';
 import classNames from 'classnames';
 import Link from 'next/link';
-import useStore, { StoreState } from "../../store/use-store";
-import shallow from "zustand/shallow";
-import { BsFillEyeFill } from 'react-icons/bs'
-import usePersistantStore, { PersistantStoreState } from "../../store/use-persistant-store";
-import { useMediaQuery } from 'beautiful-react-hooks'
-
+import useStore, { StoreState } from '../../store/use-store';
+import shallow from 'zustand/shallow';
+import { BsFillBookmarkFill, BsFillEyeFill } from 'react-icons/bs';
+import usePersistantStore, { PersistantStoreState } from '../../store/use-persistant-store';
+import { useMediaQuery } from 'beautiful-react-hooks';
+import IconCircle from '../icon-circle';
 
 type DatabaseEntry = {
     database: Database;
 };
 
-const databaseState = ({ id }: StoreState) => ({ id })
-const databasePersistState = ({ viewedIds }: PersistantStoreState) => ({ viewedIds })
+const databaseState = ({ id }: StoreState) => ({ id });
+const databasePersistState = ({ viewedIds, bookmarkIds }: PersistantStoreState) => ({ viewedIds, bookmarkIds });
 
 export default function DatabaseEntry({ database }: DatabaseEntry) {
-    const { id } = useStore(databaseState, shallow)
-    const { viewedIds } = usePersistantStore(databasePersistState, shallow)
+    const { id } = useStore(databaseState, shallow);
+    const { viewedIds, bookmarkIds } = usePersistantStore(databasePersistState, shallow);
 
     const degreeOfViolenceClasses = classNames('table__item', {
         'text-success-800': database.degreViolence.includes('Aucune'),
@@ -39,26 +39,41 @@ export default function DatabaseEntry({ database }: DatabaseEntry) {
         [database.groupeImplique]
     );
 
-    const handleMiddleMouseClick = useCallback((e: MouseEvent<HTMLTableRowElement>) => {
-        const middleClick = e.button === 1
-        if(middleClick) {
-            window.open(`/evenement/${database._id}`, '_blank')
-        }
-    }, [database._id])
+    const handleMiddleMouseClick = useCallback(
+        (e: MouseEvent<HTMLTableRowElement>) => {
+            const middleClick = e.button === 1;
+            if (middleClick) {
+                window.open(`/evenement/${database._id}`, '_blank');
+            }
+        },
+        [database._id]
+    );
 
-    const isSmall = useMediaQuery('(max-width: 64rem)')
+    const isSmall = useMediaQuery('(max-width: 64rem)');
 
     return (
         <Link href={`/evenement/${database._id}`} passHref>
-            <tr className={classNames("table__group", {
-                'bg-primary-50': id === database._id
-            })} onMouseDown={handleMiddleMouseClick} id={database._id}>
+            <tr
+                className={classNames('table__group relative', {
+                    'is-selected': id === database._id,
+                })}
+                onMouseDown={handleMiddleMouseClick}
+                id={database._id}
+            >
                 <td className="table__item" data-title={'Date'}>
-                    {database.date} {isSmall && viewedIds.includes(database._id) ? (
-                        <div className='text-right text-primary-400 flex eye eye--right bg-primary-100 p-3xs rounded-full'>
-                            <BsFillEyeFill />
+                    {database.date}{' '}
+                    {isSmall && (
+                        <div className="flex gap-x-3xs absolute top-sm right-sm">
+                            <IconCircle color={'warning'}>
+                                <BsFillBookmarkFill />
+                            </IconCircle>
+                            {viewedIds.includes(database._id) && (
+                                <IconCircle color={'primary'}>
+                                    <BsFillEyeFill />
+                                </IconCircle>
+                            )}
                         </div>
-                    ) : null}
+                    )}
                 </td>
                 <td className="table__item" data-title={'Type'}>
                     {database.type}
@@ -80,11 +95,21 @@ export default function DatabaseEntry({ database }: DatabaseEntry) {
                     ))}
                 </td>
                 <td className="table__item" data-title={'Événement'}>
-                    {viewedIds.includes(database._id) && !isSmall ? (
-                        <div className='text-right text-primary-400 flex eye eye--right bg-primary-100 p-3xs rounded-full'>
-                            <BsFillEyeFill />
+                    {!isSmall && (
+                        <div className="flex gap-x-3xs absolute top-sm right-sm">
+                            {viewedIds.includes(database._id) && (
+                                    <IconCircle color={'primary'}>
+                                        <BsFillEyeFill />
+                                    </IconCircle>
+                            )}
+                            {bookmarkIds.includes(database._id) && (
+                                <IconCircle color={'warning'}>
+                                    <BsFillBookmarkFill />
+                                </IconCircle>
+                            )}
                         </div>
-                    ) : null}
+                    )}
+
                     {database.evenement}
                 </td>
             </tr>

@@ -1,3 +1,9 @@
 @use "vendor/hamburgers/hamburgers";
 @use "config";
 @use "components";
+
+::selection {
+    color: #000;
+    background-color: var(--color-primary-300);
+}
+

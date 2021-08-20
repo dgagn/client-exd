@@ -1,6 +1,14 @@
-$position: (
+$inset: (
     t: 'top',
     b: 'bottom',
     l: 'left',
     r: 'right'
+) !default;
+
+$positions: (
+    absolute: 'absolute',
+    static: 'static',
+    fixed: 'fixed',
+    relative: 'relative',
+    sticky: 'sticky'
 ) !default;

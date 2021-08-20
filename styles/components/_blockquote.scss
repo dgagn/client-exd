@@ -6,6 +6,11 @@
     border-left: 3px solid color-get(primary, 500);
 }
 
+:root {
+    --eye-color-bg: var(--color-primary-100);
+    --eye-color-icon: var(--color-primary-400);
+}
+
 .bg-blur {
     @include breakpoint(sm) {
         padding: spacing-get(xl);
@@ -39,6 +44,8 @@
 .eye {
     position: absolute;
     top: spacing-get(xs);
+    color: var(--eye-color-icon);
+    background-color: var(--eye-color-bg);
     transition: background-color 0.3s var(--ease-out);
     transform: scale(0.85);
 
@@ -50,9 +57,13 @@
         right: spacing-get(xs);
     }
 
+    &--right-xl {
+        right: calc(#{spacing-get(lg)} + #{spacing-get(xs)});
+    }
+
     &:hover {
-        background-color: color-get(primary, 200) !important;
         color: color-get(primary, 500) !important;
+        background-color: color-get(primary, 200) !important;
     }
 }
 

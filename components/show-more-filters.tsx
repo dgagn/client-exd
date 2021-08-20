@@ -4,14 +4,13 @@ import shallow from 'zustand/shallow';
 
 const showMoreSelector = ({ showMoreFilters, setFilterSearch }: StoreState) => ({
     showMoreFilters,
-    setFilterSearch,
 });
 
 export default function ShowMoreFilters() {
-    const { showMoreFilters, setFilterSearch } = useStore(showMoreSelector, shallow);
+    const { showMoreFilters } = useStore(showMoreSelector, shallow);
 
     return showMoreFilters ? (
-        <div className="flex gap-md flex-wrap@sm bg-primary-50 p-lg rounded mb-lg">
+        <div className="flex gap-md flex-wrap@sm show-more-bg p-lg rounded mb-lg">
             <div className="flex-1">
                 <span role='img' aria-label='todo'>📝</span> Doit ajouter un filtre pour filtrer par date de début et date de fin.
                 <br/>

@@ -4,6 +4,7 @@
 
 :root {
     --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+    --link-color: var(--color-primary-200);
 }
 
 .text-bg-fx {
@@ -11,6 +12,7 @@
     background-repeat: no-repeat;
     transition: background-size 0.3s;
     will-change: background-size;
+    color: var(--base-color);
 
     &:hover {
         background-size: 100% 100%;
@@ -19,13 +21,13 @@
 
 .text-bg-fx--scale-x {
     padding: var(--spacing-4xs) 0;
-    background-image: linear-gradient(color-get(primary, 200), color-get(primary, 200));
+    background-image: linear-gradient(var(--link-color), var(--link-color));
     background-size: 0% 100%;
 }
 
 .text-bg-fx--scale-y {
     text-decoration: none;
-    background-image: linear-gradient(color-get(primary, 200), color-get(primary, 200));
+    background-image: linear-gradient(var(--link-color), var(--link-color));
     background-position: center bottom;
     background-size: 100% 2px;
 }

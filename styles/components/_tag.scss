@@ -2,6 +2,13 @@
 @use "../config/breakpoints" as *;
 @use "../config/spacing" as *;
 
+:root {
+    --tag-color: var(--color-contrast-100);
+    --tag-color-hover: var(--color-contrast-200);
+    --tag-color-error: #{color-pure-get(error, 200)};
+    --tag-color-error-hover: #{color-pure-get(error, 100)};
+}
+
 .tag-list {
     @include breakpoint(md, 'not all') {
         height: 218px;
@@ -25,20 +32,23 @@
 
 .tag {
     border: 0;
-    transition: 0.5s;
+    transition: 0.3s;
+
+    background-color: var(--tag-color);
 
     &:hover {
-        background-color: color-get(contrast, 200);
+        background-color: var(--tag-color-hover);
     }
 
     &--selected {
+        background-color: var(--tag-color-error);
         &:hover {
-            background-color: color-get(error, 100);
+            background-color: var(--tag-color-error-hover);
         }
     }
 
     span {
-        transition: 0.5s;
+        transition: 0.3s;
 
         &:hover {
             color: color-get(error, 600);

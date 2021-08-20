@@ -18,6 +18,9 @@ interface HomeProps {
     database: Database[];
 }
 
+// TODO: Surlignage du texte
+// TODO:
+
 export async function getStaticProps() {
     const db = await getDatabase();
 
@@ -66,14 +69,14 @@ export default function Home({ database }: HomeProps) {
                             🔍{' '}
                         </span>
                         Rechercher{' '}
-                        <span className="resultat">{filteredDatabase?.length} résultats!</span>
+                        <span className="resultat">{filteredDatabase?.length} résultats</span>
                     </h3>
                     <p className="mt-md mb-lg max-w-sm" aria-label="Informations sur les balises">
                         Cliquer sur les balises pour exclure les colonnes dans la recherche. {percent > 0 && (
                             <span className='block mt-xs'>
                                 Vous avez vu{' '}
-                                <span className='text-primary-600'>{percent.toFixed(2).replace('.', ',')} %</span>
-                                {' '}soit <span className="text-primary-600">{viewedIds.length} sur {database.length}</span> événements
+                                <span className='color-info'>{percent.toFixed(2).replace('.', ',')} %</span>
+                                {' '}soit <span className="color-info">{viewedIds.length} sur {database.length}</span> événements
                             </span>
                         )}
                     </p>
@@ -126,7 +129,7 @@ export default function Home({ database }: HomeProps) {
                     <ShowMore />
                     <ShowMoreFilters />
 
-                    <DatabaseTable database={database.slice(0, 50)} className={'mb-2xl'} />
+                    <DatabaseTable database={database.slice(0, 25)} className={'mb-2xl'} />
                 </div>
             </div>
         </>

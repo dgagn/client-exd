@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from 'react';
 import YearTable from '../components/year/year-table';
 import { sortBy, uniq } from 'lodash';
 import Head from 'next/head';
 import getDatabase, { Database } from '../utils/fetch-database';
-import useColors from "../hooks/use-colors";
 
 interface IncidentsParAnneeProps {
     database: Database[];
@@ -38,14 +37,14 @@ export default function EvenementsParAnnee({ database }: IncidentsParAnneeProps)
                 <div className="mt-2xl mb-lg">
                     <h3>
                         Événements par année{' '}
-                        <span className='resultat'>{filteredGroupsData?.length} résultats</span>
+                        <span className="resultat">{filteredGroupsData?.length} résultats</span>
                     </h3>
                     <p className="mt-md mb-lg" aria-label="Informations sur la recherche">
                         Vous pouvez cliquer sur une année pour appliquer le filtre.
                     </p>
                     <p
-                            className="font-italic mt-lg mb-sm"
-                            aria-label="Informations sur les balises"
+                        className="font-italic mt-lg mb-sm"
+                        aria-label="Informations sur les balises"
                     >
                         Cliquer sur une colonne pour l&apos;ordonner.
                     </p>
