@@ -28,14 +28,15 @@ export default function Nav() {
     return (
         <>
             <div className="container max-w-xl mt-xl">
-                <nav className="nav">
+                <nav className="nav gap-y-md">
                     <Link href='/' passHref>
                         <div
                             className="logo logo-image pointer"
+                            role='img'
                         />
                     </Link>
 
-                    <ul className="nav__list" aria-label="Liens de navigation principal du CEFIR">
+                    <ul className="nav__list gap-y-md" aria-label="Liens de navigation principal du CEFIR">
                         <li aria-label="Lien vers l'accueil">
                             <Link href={'/'} passHref>
                                 <button className="button-reset text-bg-fx text-bg-fx--scale-y">
