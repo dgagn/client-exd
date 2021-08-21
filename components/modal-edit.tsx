@@ -30,7 +30,7 @@ export default function ModalEdit({ open, toggleOpen, nom, note }: ModalEditProp
         setNewNote(note)
         setNewName(nom)
         toggleOpen()
-    }, [toggleOpen])
+    }, [nom, note, toggleOpen])
 
     useEffect(() => {
         const close = (e: any) => {

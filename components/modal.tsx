@@ -60,7 +60,7 @@ export default function Modal({ open, toggleOpen }: ModalProps) {
         };
         window.addEventListener('keydown', close);
         return () => window.removeEventListener('keydown', close);
-    }, [newToggle]);
+    }, [newToggle, open]);
 
     const createList = useCallback(() => {
         const noms = liste.map((l) => trim(l.nom));

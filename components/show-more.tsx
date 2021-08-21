@@ -72,21 +72,7 @@ export default function ShowMore() {
                 orderByDegreeOfViolence !== 'none' ||
                 orderByGroupsInvolved !== 'none'
         },
-        [
-            filterSearch,
-            filterByDate,
-            filterByType,
-            filterByEvents,
-            filteredDatabase,
-            database,
-            filterByGroupsInvolved,
-            filterByDegreeOfViolence,
-            orderByDate,
-            orderByEvents,
-            orderByType,
-            orderByDegreeOfViolence,
-            orderByGroupsInvolved
-        ]
+        [filterSearch, filterByDate, filterByType, filterByEvents, filterByGroupsInvolved, filterByDegreeOfViolence, orderByDate, orderByEvents, orderByType, orderByDegreeOfViolence, orderByGroupsInvolved]
     );
 
     const showMoreText = useMemo(() => {

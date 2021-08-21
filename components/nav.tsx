@@ -46,14 +46,14 @@ export default function Nav() {
                             </Link>
                         </li>
                         <li aria-label="Lien vers les incidents par groupes">
-                            <Link href={'/evenementsParGroupe'}>
+                            <Link href={'/evenementsParGroupe'} passHref>
                                 <button className="button-reset text-bg-fx text-bg-fx--scale-y">
                                     Par groupe
                                 </button>
                             </Link>
                         </li>
                         <li aria-label="Lien vers les incidents par groupes">
-                            <Link href={'/evenementsParAnnee'}>
+                            <Link href={'/evenementsParAnnee'} passHref>
                                 <button className="button-reset text-bg-fx text-bg-fx--scale-y">
                                     Par année
                                 </button>

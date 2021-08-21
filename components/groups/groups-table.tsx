@@ -41,7 +41,7 @@ export default function GroupsTable({ className, groupObj }: GroupsTableProps) {
 
     useEffect(() => {
         setId('');
-    }, []);
+    }, [setId]);
 
     return (
         <>

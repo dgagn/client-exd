@@ -19,7 +19,7 @@ export default function YearTable({ className, groupObj }: GroupsTableProps) {
 
     useEffect(() => {
         setId('')
-    }, [])
+    }, [setId])
 
     return (
         <>
