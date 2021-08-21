@@ -224,7 +224,7 @@ export default function Id({ entry }: { entry: Database }) {
                         </Link>
 
                         <div className='pb-lg'>
-                            {listNames.length > 0 && <div className="flex gap-x-md align-center flex-wrap gap-y-md mb-lg">
+                            {listNames.length > 0 && <div className="flex gap-x-md align-center flex-wrap gap-y-md">
                                 <label htmlFor='ajouterListe'>Ajouter à la liste</label>
                                 {listNames.length !== 1 ? <select value={selectValue} onBlur={(e) => selectValue !== e.target.value && setSelectValue(e.target.value)} onChange={(e) => selectValue !== e.target.value && setSelectValue(e.target.value)} name="ajouter" id="ajouterListe" className='form__control w-auto'>
                                     {listNames.map(name => (
