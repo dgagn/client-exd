@@ -1,4 +1,4 @@
-import React, { MouseEvent, useCallback, useEffect, useState } from 'react';
+import React, { MouseEvent, useCallback, useEffect, useMemo, useState } from "react";
 import Link from 'next/link';
 import dayjs from 'dayjs';
 import frCa from 'dayjs/locale/fr-ca';
@@ -11,6 +11,10 @@ import shallow from 'zustand/shallow';
 import Head from 'next/head';
 import usePersistantStore, { PersistantStoreState } from '../../store/use-persistant-store';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
+import { flatten } from 'lodash';
+import IconCircle from "../../components/icon-circle";
+import { BsFillBookmarkFill } from "react-icons/bs";
+import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 
 export async function getStaticPaths() {
     const db = await getDatabase();
@@ -41,17 +45,22 @@ export async function getStaticProps(ctx: any) {
 }
 
 const idState = ({ filteredDatabase, setId }: StoreState) => ({ filteredDatabase, setId });
-const idPersistantState = ({ setPersistantViewedIds, toggleBookmarkId }: PersistantStoreState) => ({
+const idPersistantState = ({ setPersistantViewedIds, toggleBookmarkId, addToListe, liste, deleteToListe }: PersistantStoreState) => ({
     setPersistantViewedIds,
-    toggleBookmarkId
+    toggleBookmarkId,
+    addToListe,
+    liste,
+    deleteToListe
 });
 
 export default function Id({ entry }: { entry: Database }) {
     const [html, setHtml] = useState<any>(null);
     const { filteredDatabase, setId } = useStore(idState, shallow);
-    const { setPersistantViewedIds, toggleBookmarkId } = usePersistantStore(idPersistantState, shallow);
+    const { setPersistantViewedIds, deleteToListe, addToListe, liste } = usePersistantStore(idPersistantState, shallow);
     const [nextId, setNextId] = useState<string | null>(null);
     const [prevId, setPrevId] = useState<string | null>(null);
+    const [selectValue, setSelectValue] = useState('')
+    const [selectValueDelete, setSelectValueDelete] = useState('')
 
     useEffect(() => {
         let index = filteredDatabase.findIndex((e) => e._id === entry._id);
@@ -65,7 +74,7 @@ export default function Id({ entry }: { entry: Database }) {
         setId(entry._id);
 
         setPersistantViewedIds(entry._id);
-    }, [filteredDatabase, entry._id]);
+    }, [filteredDatabase, entry._id, setId, setPersistantViewedIds]);
 
     const degreeOfViolenceClasses = classNames('', {
         'text-success-800': entry.degreViolence.includes('Aucune'),
@@ -131,6 +140,37 @@ export default function Id({ entry }: { entry: Database }) {
 
     }, []);
 
+    const names = useMemo(() => {
+        const id = entry._id
+
+        const name: string[] = []
+        liste.forEach(l => {
+            const {ids, nom} = l
+            const isInListe = ids?.includes(id);
+            isInListe && name.push(nom)
+        })
+
+        return name
+
+    }, [entry._id, liste])
+
+    useEffect(() => {
+        console.log(names);
+    }, [names])
+
+    const listNames = useMemo(() => {
+        return liste.map(l => l.nom).filter(n => !names.includes(n))
+    }, [liste, names])
+
+    const removelistNames = useMemo(() => {
+        return liste.map(l => l.nom).filter(n => names.includes(n))
+    }, [liste, names])
+
+    useEffect(() => {
+        setSelectValue(listNames[0])
+        setSelectValueDelete(removelistNames[0])
+    }, [listNames, removelistNames])
+
     return (
         <>
             <Head>
@@ -143,12 +183,17 @@ export default function Id({ entry }: { entry: Database }) {
                     <p className="text-contrast-50 mt-sm text-center">
                         {dayjs(entry.date).locale(frCa).format('le D MMMM, YYYY')}
                     </p>
+                    <p className='mt-sm text-warning-500 font-bold flex gap-x-md flex-wrap justify-center'>
+                        {names.map(name => (
+                            <span key={name}>{name}</span>
+                        ))}
+                    </p>
                 </div>
             </div>
             <div className="container max-w-xl">
                 <div className="mt-2xl mb-2xl">
                     <div className="max-w-prose mx-auto">
-                        <div className="flex space-between gap-y-md mb-2xl">
+                        <div className="flex space-between gap-y-md mb-xl">
                             {prevId ? (
                                 <Link href={`/evenement/${prevId}`} passHref>
                                     <button className="button-reset text-bg-fx text-bg-fx--scale-y">
@@ -173,21 +218,34 @@ export default function Id({ entry }: { entry: Database }) {
                         </div>
 
                         <Link href={`/`} passHref>
-                            <button className="button-reset text-bg-fx text-bg-fx--scale-y">
+                            <button className="button-reset text-bg-fx text-bg-fx--scale-y mb-xl">
                                 Retour à l&apos;accueil
                             </button>
                         </Link>
 
-                        <div>
-                            <select name="" id="">
-                                <option value="">Favoris</option>
-                                <option value="">Test</option>
-                            </select>
-                        </div>
+                        {listNames.length > 0 && <div className="flex gap-x-md align-center flex-wrap gap-y-md mb-lg">
+                            <label htmlFor='ajouterListe'>Ajouter à la liste</label>
+                            {listNames.length !== 1 ? <select value={selectValue} onChange={(e) => selectValue !== e.target.value && setSelectValue(e.target.value)} name="ajouter" id="ajouterListe" className='form__control w-auto'>
+                                {listNames.map(name => (
+                                    <option key={name} value={name}>{name}</option>
+                                ))}
+                            </select> : <p>{listNames[0]}</p>}
+                            <IconCircle color={'success'}>
+                                <AiOutlineCheck onClick={() => addToListe(selectValue, entry._id)} />
+                            </IconCircle>
+                        </div>}
 
-                        <button onClick={() => toggleBookmarkId(entry._id)} className="button-reset text-bg-fx text-bg-fx--scale-y">
-                            Bookmark
-                        </button>
+                        {removelistNames.length > 0 && <div className="flex gap-x-md align-center flex-wrap gap-y-md">
+                            <label htmlFor='retirerListe'>Retirer de la liste</label>
+                            {removelistNames.length !== 1 ? <select onChange={(e) => selectValueDelete !== e.target.value && setSelectValueDelete(e.target.value)} name="retirer" id="retirerListe" className='form__control w-auto'>
+                                {removelistNames.map(name => (
+                                    <option key={name} value={name}>{name}</option>
+                                ))}
+                            </select> : <p>{removelistNames[0]}</p>}
+                            <IconCircle color={'error'}>
+                                <AiOutlineClose onClick={() => deleteToListe(selectValueDelete, entry._id)} />
+                            </IconCircle>
+                        </div>}
 
                         <p className="mt-lg" onMouseUpCapture={handleHighlight}>
                             {entry.description}

@@ -1,5 +1,6 @@
 @use "../position" as *;
 @use "../spacing" as *;
+@use "../breakpoints" as *;
 
 @each $spacing-key, $space-value in $spacing {
     .p-#{$spacing-key} {
@@ -39,4 +40,14 @@
     .p#{$position-short}-0 {
         padding-#{$position-long}: 0 !important;
     }
+}
+
+.p-sm\@\!sm {
+    @include breakpoint(sm, 'not all') {
+        padding: spacing-get(sm) !important;
+    }
+}
+
+.w-auto {
+    width: auto !important;
 }

@@ -8,20 +8,22 @@ import { BsFillBookmarkFill, BsFillEyeFill } from 'react-icons/bs';
 import usePersistantStore, { PersistantStoreState } from '../../store/use-persistant-store';
 import { useMediaQuery } from 'beautiful-react-hooks';
 import IconCircle from '../icon-circle';
+import { flatten } from "lodash";
 
 type DatabaseEntry = {
     database: Database;
 };
 
 const databaseState = ({ id }: StoreState) => ({ id });
-const databasePersistState = ({ viewedIds, bookmarkIds }: PersistantStoreState) => ({
+const databasePersistState = ({ viewedIds, bookmarkIds, liste }: PersistantStoreState) => ({
     viewedIds,
     bookmarkIds,
+    liste
 });
 
 export default function DatabaseEntry({ database }: DatabaseEntry) {
     const { id } = useStore(databaseState, shallow);
-    const { viewedIds, bookmarkIds } = usePersistantStore(databasePersistState, shallow);
+    const { viewedIds, bookmarkIds, liste } = usePersistantStore(databasePersistState, shallow);
 
     const degreeOfViolenceClasses = classNames('table__item', {
         'text-success-800': database.degreViolence.includes('Aucune'),
@@ -53,6 +55,11 @@ export default function DatabaseEntry({ database }: DatabaseEntry) {
     );
 
     const isSmall = useMediaQuery('(max-width: 64rem)');
+
+    const isInList = useMemo(() => {
+        const allIds = flatten(liste.map(l => l.ids))
+        return allIds.includes(database._id)
+    }, [database._id, liste])
 
     return (
         <Link href={`/evenement/${database._id}`} passHref>
@@ -107,7 +114,7 @@ export default function DatabaseEntry({ database }: DatabaseEntry) {
                                     <BsFillEyeFill />
                                 </IconCircle>
                             )}
-                            {bookmarkIds.includes(database._id) && (
+                            {isInList && (
                                 <IconCircle color={'warning'}>
                                     <BsFillBookmarkFill />
                                 </IconCircle>

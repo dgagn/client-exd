@@ -3,10 +3,10 @@ import classNames from "classnames";
 
 interface IconCircleProps {
     className?: string,
-    color?: 'primary' | 'warning' | 'error'
+    color?: 'primary' | 'warning' | 'error' | 'success'
 }
 export default function IconCircle({ className, children, color = "primary" }: PropsWithChildren<IconCircleProps>) {
-    return <div className={classNames('icon-circle', className)} data-color={color}>
+    return <button className={classNames('icon-circle pointer', className)} data-color={color}>
         {children}
-    </div>;
+    </button>;
 }

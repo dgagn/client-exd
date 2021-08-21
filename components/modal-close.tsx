@@ -54,8 +54,8 @@ export default function ModalClose({ open, toggleOpen, nom }: ModalCloseProps) {
 
     return open ? (
         <div className="modal">
-            <div className="content rounded relative">
-                <IconCircle className="absolute top-lg right-xl" color="error">
+            <div className="content rounded relative p-sm@!sm">
+                <IconCircle className="absolute top-lg right-xl pointer" color="error">
                     <AiOutlineClose onClick={newToggle} />
                 </IconCircle>
                 <h3 className="mt-sm">
@@ -75,7 +75,7 @@ export default function ModalClose({ open, toggleOpen, nom }: ModalCloseProps) {
                     {validationError !== '' && <p className='text-sm text-error-500 mt-xs'>{validationError}</p>}
                 </span>
 
-                <div className="flex mt-md mb-sm align-center justify-center mt-lg">
+                <div className="flex mt-md mb-sm align-center justify-center mt-lg flex-wrap gap-y-md">
                     <button
                         className="button-reset text-bg-fx text-bg-fx--scale-y mr-lg"
                         onClick={newToggle}

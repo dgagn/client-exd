@@ -44,6 +44,13 @@
     --icon-circle-icon-hover: var(--color-error-500);
 }
 
+.icon-circle[data-color="success"] {
+    --icon-circle-bg: var(--color-success-100);
+    --icon-circle-bg-hover: var(--color-success-200);
+    --icon-circle-icon: var(--color-success-400);
+    --icon-circle-icon-hover: var(--color-success-500);
+}
+
 // Dark mode
 body[data-theme="dark"] .icon-circle[data-color="primary"] {
     --icon-circle-bg: var(--color-primary-200);
@@ -64,4 +71,11 @@ body[data-theme="dark"] .icon-circle[data-color="error"] {
     --icon-circle-bg-hover: var(--color-error-300);
     --icon-circle-icon: var(--color-error-600);
     --icon-circle-icon-hover: var(--color-error-700);
+}
+
+body[data-theme="dark"] .icon-circle[data-color="success"] {
+    --icon-circle-bg: var(--color-success-200);
+    --icon-circle-bg-hover: var(--color-success-300);
+    --icon-circle-icon: var(--color-success-600);
+    --icon-circle-icon-hover: var(--color-success-700);
 }

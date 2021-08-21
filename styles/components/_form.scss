@@ -28,7 +28,9 @@ textarea {
     border-radius: 4px;
     outline: none;
 
-
+    .form__control--sm {
+        width: 65px;
+    }
 
 
     &:focus {

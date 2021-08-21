@@ -1,23 +1,26 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Liste } from '../../store/create-liste-slice';
-import IconCircle from "../icon-circle";
-import { AiFillEdit, AiOutlineClose } from "react-icons/ai";
+import IconCircle from '../icon-circle';
+import { AiFillEdit, AiOutlineClose } from 'react-icons/ai';
 
 type GroupsTableProps = {
     className?: string;
-    groupObj?: Liste[];
-    toggleClose: () => void
-    setNom: (nom: string) => void
+    groupObj: Liste[];
+    toggleClose: () => void;
+    setNom: (nom: string) => void;
+    setNote: (note: string) => void;
+    toggleEdit: () => void;
 };
 
-const liste = [
-    { nom: 'Dany', note: 'Une liste pour ma recherche de science', nombre: 12 },
-    { nom: 'Travail de session', note: 'Recherche pour mon cours de sociologie', nombre: 3 },
-    { nom: 'Test', note: 'Les extrémistes', nombre: 1 },
-];
-
-export default function ListeTable({ className, groupObj = liste, toggleClose, setNom }: GroupsTableProps) {
+export default function ListeTable({
+    className,
+    groupObj,
+    toggleClose,
+    setNom,
+    toggleEdit,
+    setNote,
+}: GroupsTableProps) {
     return (
         <>
             <table className={classNames('table mb-lg', className)}>
@@ -31,7 +34,11 @@ export default function ListeTable({ className, groupObj = liste, toggleClose, s
                 <tbody>
                     {groupObj.map((group) => {
                         return (
-                            <tr key={group.nom} onClick={() => {}} className="pointer table__group relative">
+                            <tr
+                                key={group.nom}
+                                onClick={() => {}}
+                                className="pointer table__group relative"
+                            >
                                 <td className="table__item" data-title={'Nom'}>
                                     {group.nom}
                                 </td>
@@ -39,20 +46,28 @@ export default function ListeTable({ className, groupObj = liste, toggleClose, s
                                     {group.note}
                                 </td>
                                 <td className="table__item" data-title={'Nombre'}>
-                                    516
-                                    {group.nom.toLowerCase() !== 'favoris' &&
+                                    {group.ids?.length ?? 0}
+                                    {group.nom.toLowerCase() !== 'favoris' && (
                                         <div className="flex gap-x-3xs absolute top-md right-sm">
-                                            <IconCircle className='' color={'primary'}>
-                                                <AiFillEdit />
+                                            <IconCircle className="" color={'primary'}>
+                                                <AiFillEdit
+                                                    onClick={() => {
+                                                        setNom(group.nom);
+                                                        setNote(group.note);
+                                                        toggleEdit();
+                                                    }}
+                                                />
                                             </IconCircle>
-                                            <IconCircle className='' color={'error'}>
-                                                <AiOutlineClose onClick={() => {
-                                                    setNom(group.nom)
-                                                    toggleClose()
-                                                }} />
+                                            <IconCircle className="" color={'error'}>
+                                                <AiOutlineClose
+                                                    onClick={() => {
+                                                        setNom(group.nom);
+                                                        toggleClose();
+                                                    }}
+                                                />
                                             </IconCircle>
                                         </div>
-                                    }
+                                    )}
                                 </td>
                             </tr>
                         );
