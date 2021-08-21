@@ -49,21 +49,21 @@ export default function ListeTable({
                                     {group.ids?.length ?? 0}
                                     {group.nom.toLowerCase() !== 'favoris' && (
                                         <div className="flex gap-x-3xs absolute top-md right-sm">
-                                            <IconCircle className="" color={'primary'}>
+                                            <IconCircle className="" color={'primary'} onClick={() => {
+                                                setNom(group.nom);
+                                                setNote(group.note);
+                                                toggleEdit();
+                                            }}>
                                                 <AiFillEdit
-                                                    onClick={() => {
-                                                        setNom(group.nom);
-                                                        setNote(group.note);
-                                                        toggleEdit();
-                                                    }}
+
                                                 />
                                             </IconCircle>
-                                            <IconCircle className="" color={'error'}>
+                                            <IconCircle className="" color={'error'} onClick={() => {
+                                                setNom(group.nom);
+                                                toggleClose();
+                                            }}>
                                                 <AiOutlineClose
-                                                    onClick={() => {
-                                                        setNom(group.nom);
-                                                        toggleClose();
-                                                    }}
+
                                                 />
                                             </IconCircle>
                                         </div>

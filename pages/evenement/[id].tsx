@@ -223,29 +223,31 @@ export default function Id({ entry }: { entry: Database }) {
                             </button>
                         </Link>
 
-                        {listNames.length > 0 && <div className="flex gap-x-md align-center flex-wrap gap-y-md mb-lg">
-                            <label htmlFor='ajouterListe'>Ajouter à la liste</label>
-                            {listNames.length !== 1 ? <select value={selectValue} onChange={(e) => selectValue !== e.target.value && setSelectValue(e.target.value)} name="ajouter" id="ajouterListe" className='form__control w-auto'>
-                                {listNames.map(name => (
-                                    <option key={name} value={name}>{name}</option>
-                                ))}
-                            </select> : <p>{listNames[0]}</p>}
-                            <IconCircle color={'success'}>
-                                <AiOutlineCheck onClick={() => addToListe(selectValue, entry._id)} />
-                            </IconCircle>
-                        </div>}
+                        <div className='pb-lg'>
+                            {listNames.length > 0 && <div className="flex gap-x-md align-center flex-wrap gap-y-md mb-lg">
+                                <label htmlFor='ajouterListe'>Ajouter à la liste</label>
+                                {listNames.length !== 1 ? <select value={selectValue} onBlur={(e) => selectValue !== e.target.value && setSelectValue(e.target.value)} onChange={(e) => selectValue !== e.target.value && setSelectValue(e.target.value)} name="ajouter" id="ajouterListe" className='form__control w-auto'>
+                                    {listNames.map(name => (
+                                            <option key={name} value={name}>{name}</option>
+                                    ))}
+                                </select> : <p>{listNames[0]}</p>}
+                                <IconCircle color={'success'} onClick={() => addToListe(selectValue, entry._id)}>
+                                    <AiOutlineCheck />
+                                </IconCircle>
+                            </div>}
 
-                        {removelistNames.length > 0 && <div className="flex gap-x-md align-center flex-wrap gap-y-md">
-                            <label htmlFor='retirerListe'>Retirer de la liste</label>
-                            {removelistNames.length !== 1 ? <select onChange={(e) => selectValueDelete !== e.target.value && setSelectValueDelete(e.target.value)} name="retirer" id="retirerListe" className='form__control w-auto'>
-                                {removelistNames.map(name => (
-                                    <option key={name} value={name}>{name}</option>
-                                ))}
-                            </select> : <p>{removelistNames[0]}</p>}
-                            <IconCircle color={'error'}>
-                                <AiOutlineClose onClick={() => deleteToListe(selectValueDelete, entry._id)} />
-                            </IconCircle>
-                        </div>}
+                            {removelistNames.length > 0 && <div className="flex gap-x-md align-center flex-wrap gap-y-md">
+                                <label htmlFor='retirerListe'>Retirer de la liste</label>
+                                {removelistNames.length !== 1 ? <select onBlur={(e) => selectValue !== e.target.value && setSelectValue(e.target.value)} onChange={(e) => selectValueDelete !== e.target.value && setSelectValueDelete(e.target.value)} name="retirer" id="retirerListe" className='form__control w-auto'>
+                                    {removelistNames.map(name => (
+                                        <option key={name} value={name}>{name}</option>
+                                    ))}
+                                </select> : <p>{removelistNames[0]}</p>}
+                                <IconCircle color={'error'} onClick={() => deleteToListe(selectValueDelete, entry._id)}>
+                                    <AiOutlineClose />
+                                </IconCircle>
+                            </div>}
+                        </div>
 
                         <p className="mt-lg" onMouseUpCapture={handleHighlight}>
                             {entry.description}

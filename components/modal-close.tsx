@@ -55,8 +55,8 @@ export default function ModalClose({ open, toggleOpen, nom }: ModalCloseProps) {
     return open ? (
         <div className="modal">
             <div className="content rounded relative p-sm@!sm">
-                <IconCircle className="absolute top-lg right-xl pointer" color="error">
-                    <AiOutlineClose onClick={newToggle} />
+                <IconCircle className="absolute top-lg right-xl pointer" color="error" onClick={newToggle}>
+                    <AiOutlineClose  />
                 </IconCircle>
                 <h3 className="mt-sm">
                     <span role="img" aria-label="emoji pour un étoile">
