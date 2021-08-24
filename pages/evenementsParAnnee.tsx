@@ -33,8 +33,8 @@ export default function EvenementsParAnnee({ database }: IncidentsParAnneeProps)
             <Head>
                 <title>CEFIR - Événements par année</title>
             </Head>
-            <div className="container max-w-xl">
-                <div className="mt-xl mb-lg">
+            <div className="container max-w-xl mb-xl">
+                <div className="mt-xl">
                     <h3>
                         Événements par année{' '}
                         <span className="resultat">{filteredGroupsData?.length} résultats</span>

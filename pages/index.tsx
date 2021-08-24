@@ -58,7 +58,7 @@ export default function Home({ database }: HomeProps) {
             <Head>
                 <title>CEFIR - Accueil</title>
             </Head>
-            <div className="container max-w-xl">
+            <div className="container max-w-xl mb-xl">
                 <div className="mt-xl mb-lg">
                     <h3>
                         <span role="img" aria-label="Un pictogramme de recherche">
@@ -98,6 +98,7 @@ export default function Home({ database }: HomeProps) {
                         Ajouter un point d&apos;exclamation avant les mots pour les exclure.
                     </p>
                     <ShowMore />
+
                     <ShowMoreFilters />
                     <p
                         className="font-italic mt-lg mb-sm"

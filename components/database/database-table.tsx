@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, KeyboardEvent } from "react";
 import classNames from 'classnames';
 import dynamic from 'next/dynamic';
 import useStore, { StoreState } from '../../store/use-store';
@@ -51,11 +51,18 @@ export default function DatabaseTable({ className, database }: DatabaseTableProp
         orderByType,
     } = useStore(tableState, shallow);
 
+    const handleKeyboard = useCallback((e: KeyboardEvent<HTMLTableHeaderCellElement>, func: () => void) => {
+        e.preventDefault()
+        if(e.key === 'Enter' || e.key === ' ') {
+            func()
+        }
+    }, [toggleOrderByDate, toggleOrderByType, toggleOrderByEvents, orderByGroupsInvolved, toggleOrderByDegreeOfViolence])
+
     return database.length > 0 ? (
         <table className={classNames('table', className)}>
             <thead>
                 <tr className="table__heading-group">
-                    <th className="table__heading" onClick={toggleOrderByDate}>
+                    <th className="table__heading" onClick={toggleOrderByDate} onKeyDown={(e) => handleKeyboard(e, toggleOrderByDate)} role='button' tabIndex={0}>
                         Date
                         <span>
                             {orderByDate === 'desc' ? (
@@ -65,7 +72,7 @@ export default function DatabaseTable({ className, database }: DatabaseTableProp
                             ) : <BiChevronDown className="icon hidden" />}
                         </span>
                     </th>
-                    <th className="table__heading" onClick={toggleOrderByType}>
+                    <th className="table__heading" onClick={toggleOrderByType} onKeyDown={(e) => handleKeyboard(e, toggleOrderByType)} role='button' tabIndex={0}>
                         Type d’événement{' '}
                         <span>
                             {orderByType === 'desc' ? (
@@ -78,6 +85,7 @@ export default function DatabaseTable({ className, database }: DatabaseTableProp
                     <th
                         className="table__heading degree-violence"
                         onClick={toggleOrderByDegreeOfViolence}
+                        onKeyDown={(e) => handleKeyboard(e, toggleOrderByDegreeOfViolence)} role='button' tabIndex={0}
                     >
                         Degré de violence
                         <span>
@@ -91,6 +99,7 @@ export default function DatabaseTable({ className, database }: DatabaseTableProp
                     <th
                         className="table__heading groups-involved"
                         onClick={toggleOrderByGroupsInvolved}
+                        onKeyDown={(e) => handleKeyboard(e, toggleOrderByGroupsInvolved)} role='button' tabIndex={0}
                     >
                         Groupe(s) impliqué(s){' '}
                         <span>
@@ -101,7 +110,7 @@ export default function DatabaseTable({ className, database }: DatabaseTableProp
                             ) : <BiChevronDown className="icon hidden" />}
                         </span>
                     </th>
-                    <th className="table__heading events" onClick={toggleOrderByEvents}>
+                    <th className="table__heading events" onClick={toggleOrderByEvents} onKeyDown={(e) => handleKeyboard(e, toggleOrderByEvents)} role='button' tabIndex={0}>
                         Événement{' '}
                         <span>
                             {orderByEvents === 'desc' ? (

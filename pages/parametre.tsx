@@ -1,49 +1,50 @@
-import React, { useEffect, useMemo, useState } from "react";
-import usePersistantStore, { PersistantStoreState } from "../store/use-persistant-store";
-import shallow from "zustand/shallow";
-import useColors from "../hooks/use-colors";
-import Tag from "../components/tag";
-import Table, { TableBody, TableHead, TableHeader } from "../components/table";
-import { AiOutlineCheck } from 'react-icons/ai'
-import classNames from "classnames";
-import useStore, { StoreState } from "../store/use-store";
-import Search from "../components/search";
-import { BsFillEyeFill } from "react-icons/bs";
+import React, { useEffect, useMemo, useState } from 'react';
+import shallow from 'zustand/shallow';
+import useColors from '../hooks/use-colors';
+import { AiOutlineCheck } from 'react-icons/ai';
+import classNames from 'classnames';
+import useStore, { StoreState } from '../store/use-store';
 
-const yearState = ({ setId }: StoreState) => ({ setId })
+const yearState = ({ setId }: StoreState) => ({ setId });
 
 export default function Parametre() {
-    const { setContrast, contrast, primary, primaryColors, setPrimary, contrastColors } = useColors()
-    const [value, setValue] = useState('')
-    const [cValue, setCValue] = useState('')
+    const { setContrast, contrast, primary, primaryColors, setPrimary, contrastColors } =
+        useColors();
+    const [value, setValue] = useState('');
+    const [cValue, setCValue] = useState('');
 
     const { setId } = useStore(yearState, shallow);
 
     useEffect(() => {
-        setId('')
-    }, [setId])
+        setId('');
+    }, [setId]);
 
     useEffect(() => {
-        setValue(primary)
-    }, [primary])
+        setValue(primary);
+    }, [primary]);
 
     useEffect(() => {
-        setCValue(contrast)
-    }, [contrast])
+        setCValue(contrast);
+    }, [contrast]);
 
     const selectedContrast = useMemo(() => {
-        return contrastColors.filter(el => el.color === contrast).map((el) => el.name)[0]
-    }, [contrast, contrastColors])
+        return contrastColors.filter((el) => el.color === contrast).map((el) => el.name)[0];
+    }, [contrast, contrastColors]);
 
     const selectedPrimary = useMemo(() => {
-        return primaryColors.filter(el => el.color === primary).map((el) => el.name)[0]
-    }, [primary, primaryColors])
+        return primaryColors.filter((el) => el.color === primary).map((el) => el.name)[0];
+    }, [primary, primaryColors]);
 
     return (
         <>
             <div className="container max-w-xl">
                 <div className="mb-lg mt-xl">
-                    <h3 className="mb-md"><span role='img' aria-label='Emoji de gear'>⚙️</span> Paramètres</h3>
+                    <h3 className="mb-md">
+                        <span role="img" aria-label="Emoji de gear">
+                            ⚙️
+                        </span>{' '}
+                        Paramètres
+                    </h3>
                     <p className="mb-md">
                         Couleur primaire <span className="text-primary-500">{selectedPrimary}</span>
                     </p>
@@ -66,7 +67,7 @@ export default function Parametre() {
                         ))}
                     </ul>
                 </div>
-                <div>
+                <div className='mb-xl'>
                     <p className="mb-sm">
                         Couleur de contraste{' '}
                         <span className="text-contrast-500">{selectedContrast}</span>

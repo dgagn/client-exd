@@ -43,7 +43,7 @@ export default function EvenementsParGroupe({ database }: IncidentsParGroupeProp
             <Head>
                 <title>CEFIR - Événements par groupe</title>
             </Head>
-            <div className="container max-w-xl">
+            <div className="container max-w-xl mb-xl">
                 <div className="mt-xl mb-lg">
                     <h3>
                         Événements par groupe{' '}

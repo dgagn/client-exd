@@ -37,7 +37,7 @@ export default function Liste() {
     }, [openEdit]);
 
     return (
-        <div className="container max-w-xl">
+        <div className="container max-w-xl mb-xl">
             <div className="mt-xl mb-lg">
                 <h3>
                     <span role="img" aria-label="Emoji de sparkles">
